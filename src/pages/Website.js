@@ -283,7 +283,7 @@ const Website = () => {
              
               <div className=' font-extralight flex flex-col space-y-4'>
                   <p>
-                  We at Bipaypayment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
+                  We at Bitpay Payment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
 
 
                   </p>
