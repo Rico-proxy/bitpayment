@@ -90,14 +90,14 @@ const Register = () => {
 };
   
   return (
-    <div className='min-h-screen bg-[#0f1b39]'>
+    <div className='h-[100vh] overflow-hidden bg-[#0f1b39]'>
     <ToastContainer position="top-center"/>
-          <div className='flex justify-center pt-10 md:pt-20'>
+          <div className='flex justify-center pt-10 '>
                 <div className='flex flex-col  '>
                      <div className='font-bold'>
                             <h1 className='text-2xl font-bold mb-2 text-white text-center'>Register Your Account</h1>
                      </div>
-                   <div className='shadow-2xl bg-white  border-4 rounded-2xl  md:h-[80vh] p-5 md:p-16 '>
+                   <div className='shadow-2xl bg-white  border-4 rounded-2xl  md:h-full p-5 md:p-16 '>
                       <form onSubmit={handleSubmit} className='flex flex-col space-x-5 '>
                         <div className='md:flex md:flex-row md:space-x-5 '>
                         <div className='space-y-6'>
