@@ -46,7 +46,7 @@ const Access = () => {
     };
 
     return (
-        <div className='min-h-screen bg-[#0f1b39]'>
+        <div className='overflow-hidden min-h-screen bg-[#0f1b39]'>
             <Toaster position="top-center" reverseOrder={false} />
             <div className='px-10 md:px-0 flex justify-center md:pt-10 pt-20 '>
                 <div className='flex flex-col'>
@@ -56,7 +56,7 @@ const Access = () => {
                     <div className='font-bold'>
                         <h1 className='flex justify-center  items-center md:text-2xl text-white font-medium mb-2'>Welcome please enter  Access Code</h1>
                     </div>
-                    <div className='shadow-2xl bg-white border-dashed border-4 rounded-2xl md:h-[45vh] p-8 md:p-20'>
+                    <div className='shadow-2xl bg-white  border-4 rounded-2xl md:h-[45vh] p-8 md:p-20'>
                         <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
                             <label className='text-black text-xl font-semibold'>Enter  Access Code:</label>
                             <input 

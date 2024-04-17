@@ -90,7 +90,7 @@ const Register = () => {
 };
   
   return (
-    <div className='h-[100vh] overflow-hidden bg-[#0f1b39]'>
+    <div className='h- overflow-hidden bg-[#0f1b39]'>
     <ToastContainer position="top-center"/>
           <div className='flex justify-center pt-10 '>
                 <div className='flex flex-col  '>

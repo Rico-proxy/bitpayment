@@ -329,7 +329,7 @@ const Website = () => {
                       </span>
                       <span>
                         <BiMessageDetail  className='inline-block mr-2'/>
-                        Info@bitpaypaymentsystemsca.com
+                        support@bps-ca.com
                       </span>
                       <span>
                         <BsClock  className='inline-block mr-2'/>
