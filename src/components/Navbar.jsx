@@ -22,7 +22,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`top-0 left-0 z-50 md:px-[80px] md:flex flex-row items-center text-center justify-around p-5 h-16 fixed w-full ${scrolled ? 'bg-white' : ''}`}>
+    <nav className={`font-bold top-0 left-0 z-50 md:px-[80px] md:flex flex-row items-center text-center justify-around p-5 h-16 fixed w-full ${scrolled ? 'bg-white text-black'  : 'text-white'}`}>
       <div className="hidden text-[17px] font-bold md:flex md:flex-col">
         <img
           src="/assets/logo.svg"
@@ -31,7 +31,7 @@ const Navbar = () => {
           height={100}
         />
         <div>
-          <p className="text-[#f5f5f5] italic">Payment Systems</p>
+          <p className=" italic">Payment Systems</p>
         </div>
       </div>
       <ul className="hidden md:flex space-x-6 text-[16px]">

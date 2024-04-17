@@ -18,6 +18,9 @@ import Revert from './pages/Revert';
 import Support from './pages/Support';
 import './App.css';
 import Withdraw from './pages/Withdraw';
+import Policy from './pages/Policy';
+import Cookies from './pages/Cookies';
+import Legal from './pages/Legal';
 function App() {
   return (
     <Router>
@@ -37,6 +40,9 @@ function App() {
           <Route path="/transfer" element={<ProtectedRoute><TransferType /></ProtectedRoute>} />
           <Route path="/revert" element={<ProtectedRoute><Revert /></ProtectedRoute>} />
           <Route path="/support" element={<ProtectedRoute><Support /></ProtectedRoute>} />
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/legal" element={<Legal />} />
         </Routes>
       </AuthProvider>
     </Router>

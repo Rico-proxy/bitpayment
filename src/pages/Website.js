@@ -371,13 +371,13 @@ const Website = () => {
                   </div>
                   <div className='flex flex-col space-y-4 pt-2 font-extralight'>
                       <span>
-                        <Link to='/terms' className='hover:text-[#c62a88]'>Cookies Policy</Link>
+                        <Link to='/cookies' className='hover:text-[#c62a88]'>Cookies Policy</Link>
                       </span>
                       <span>
                         <Link to='/privacy' className='hover:text-[#c62a88]'>Legal Policy</Link>
                       </span>
                       <span>
-                        <Link to='/cookies' className='hover:text-[#c62a88]'>Privacy Policy</Link>
+                        <Link to='/policy' className='hover:text-[#c62a88]'>Privacy Policy</Link>
                       </span>
                     
                      
