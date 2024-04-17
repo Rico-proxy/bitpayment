@@ -16,7 +16,7 @@ const HeroCard3 = () => {
  
  className="my-auto md:grid md:grid-cols-2 gap-8 text-white   md:items-center ">
    <div className="space-y-8">
-     <h1 className="text-2xl md:text-6xl font-bold tracing-widest">Trusted and<span>Regulated</span></h1>
+     <h1 className="text-2xl md:text-6xl font-bold tracing-widest">Trusted and Regulated</h1>
      <p className='text-sm w-2/3 font-light md:w-3/5'>
         We are a fully licensed and regulated bank serving the financial community.
      </p>
