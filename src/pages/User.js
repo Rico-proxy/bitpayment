@@ -91,7 +91,7 @@ const User = () => {
   
 
   return (
-    <div className='min-h-screen text-white'>
+    <div className='overflow-hidden min-h-screen text-white'>
       <PreventBackNavigation/>
       <header className="h-16 fixed w-full bg-[#0f1b39] z-20">
         <div className='flex flex-row justify-between items-center text-center py-2 px-4 z-40'>
