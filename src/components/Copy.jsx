@@ -18,13 +18,14 @@ const Copy = () => {
   };
 
   return (
-    <div className='text-sm flex flex-row items-center'>
-      <div ref={divToCopyRef} className="content-to-copy mr-2 text-sm">
+    <div className='text-sm font-medium'>
+      <div ref={divToCopyRef} className="content-to-copy  text-sm">
       bc1qzwc4e8xwpar0e7zqd<span className='hidden'>werz29pavsjy8drqlqnag</span>
-      </div>
-      <button onClick={handleCopy} className="copy-button">
+      <button onClick={handleCopy} className="copy-button ml-2">
         <FiCopy size={20} />
       </button>
+      </div>
+     
       
     </div>
   );

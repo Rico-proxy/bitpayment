@@ -86,7 +86,7 @@ const Trade = () => {
           {transactions.map((transaction, index) => (
             <tr className="border-b  text-white " key={index}>
               <th scope="row" className="py-4 px-6  font-medium  whitespace-nowrap">
-                {transaction.amount}
+                ${transaction.amount}
               </th>
               <td className="py-4 px-6 text-white">
                 {transaction.type}

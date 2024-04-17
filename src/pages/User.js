@@ -27,6 +27,7 @@ import { FaBitcoinSign } from "react-icons/fa6";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import PreventBackNavigation from '../components/PreventBackNavigation';
+import UserList from '../components/UserList';
 const User = () => {
   useEffect(() => {
     AOS.init({
@@ -36,6 +37,7 @@ const User = () => {
       once: false, // whether animation should happen only once - while scrolling down
     });
   }, []);
+  
   
   const [userInfo, setUserInfo] = useState({});
 
@@ -101,9 +103,7 @@ const User = () => {
                 </div>
             </div>
             <div className='flex flex-row items-center space-x-4 relative' ref={dropdownRef}>
-              <div>
-                <BsBell className='text-xl'/>
-              </div>
+            
               <button className='flex flex-row items-center' onClick={toggleDropdown}>
                 <p>{userInfo.fullName}</p>
                 <IoIosArrowDown className='text-xl'/>
@@ -137,25 +137,30 @@ const User = () => {
                                   <div className="p-3 rounded-full bg-black">
                                     <AiOutlineArrowUp className="text-white md:text-3xl" />
                                   </div>
-                                   <p className="md:text-xl font-light">Transfer</p>
+                                   <p className="text-[19px] md:text-xl font-light">Transfer</p>
                             </Link>
                             <Link to="/transfer" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg-black">
                                     <AiOutlineArrowDown className="text-white md:text-3xl" />
                                   </div>
-                                   <p className="md:text-xl font-light">Receive</p>
+                                   <p className="text-[19px] md:text-xl font-light">Receive</p>
                             </Link>
                             </div> 
                            
                             
-                            <div className='md:flex md:flex-row md:space-x-3 justify-between'>
-                              <div>
-                              <p className='text-[19px]'>Ledger Account Number</p>
+                            <div className='md:flex md:flex-row md:space-x-3 justify-between space-y-8'>
+                              <div className='flex flex-col text-right pr-6'>
+                              <p className='text-[19px]'>Ledger Account </p>
                               
                               <Copy className="text-sm"/>
                               </div>
                              <div className='flex md:hidden'>
-                             <span className='text-[19px] font-bold'>Account Number:  {userInfo.accountNumber}</span>
+                             <span className='text-[19px] font-bold flex flex-col'>Account Number
+                              <span className='font-medium'>
+                              {userInfo.accountNumber}
+                              </span>
+                               </span>
+
                              </div>
                              
                             </div>
@@ -244,7 +249,9 @@ const User = () => {
                         <div className='rounded-2xl'> 
                             <Trade/>
                         </div>
-                       
+                        <div className='rounded-2xl'> 
+                            <UserList/>
+                        </div>
                       
                 </section>
                 <section className='md:flex md:flex-row gap-12'>
@@ -260,10 +267,10 @@ const User = () => {
                   <CurrencyRate/>
                   <div className='pt-6 md:pt-10 flex flex-col space-y-6 gap-10 md:flex md:flex-row justify-between md:gap-3'>
                               <div>
-                              <Transfer/>
+                              <Pin/>
                               </div>
                               <div>
-                              <WalletAddress/>
+                              <Transfer/>
                               </div>
                         </div>
                 </section>

@@ -29,6 +29,7 @@ const Login = () => {
         sessionStorage.setItem('authToken', loginResponse.token);
         sessionStorage.setItem('userId', loginResponse.id);
         sessionStorage.setItem('email', loginResponse.email);
+        sessionStorage.setItem('pin', loginResponse.pin);
         login();
         navigate(loginResponse.role === 'Admin' ? '/admin' : '/user');
       } else {
@@ -49,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className='overflow-y-hidden min-h-screen bg-[#0f1b39]'>
+    <div className='overflow-y-hidden  min-h-screen bg-[#0f1b39]'>
       <PreventBackNavigation2/>
       <ToastContainer />
       <div className='flex justify-center pt-32 md:pt-20'>
@@ -57,7 +58,7 @@ const Login = () => {
           <div className='font-bold'>
             <h1 className='text-2xl font-bold mb-10 text-white text-center'>Enter your Login Details</h1>
           </div>
-          <div className='p-8 shadow-2xl bg-white border-4 rounded-2xl md:h-[69vh] md:p-16'>
+          <div className='p-8 shadow-2xl bg-white border-4 rounded-2xl md:h-[79vh] md:p-16'>
             <form onSubmit={handleSubmit} className='flex flex-col space-y-5 md:space-y-12'>
                 <div className='flex flex-col items-center'>
                     <img src="/assets/logo.svg" alt="Digital Currency" width={100} height={100} className='mx-auto' />
