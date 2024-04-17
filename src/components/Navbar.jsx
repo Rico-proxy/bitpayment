@@ -20,7 +20,7 @@ const Navbar = () => {
     };
   }, []);
   return (
-    <nav className={` top-0 left-0 z-50 text-white md:px-[80px] md:flex flex-row items-center text-center justify-around p-5 h-24 fixed w-full ${scrolled ? 'bg-black' : ''}`}>
+    <nav className={` top-0 left-0 z-50 text-white md:px-[80px] md:flex flex-row items-center text-center justify-around p-5 h-16 fixed w-full ${scrolled ? 'bg-white' : ''}`}>
     <div className="hidden text-[17px] font-bold md:flex md:flex-col">
             <img
                         src="/assets/logo.svg"
@@ -50,7 +50,7 @@ const Navbar = () => {
           🇬🇧
          </Link>
     </div>
-   <div className='flex justify-end '>
+   <div className='flex justify-end md:hidden'>
     <Button2/>
    </div>
         

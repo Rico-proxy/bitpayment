@@ -32,7 +32,7 @@ const Button2 = () => {
 
   return (
     <div className='relative'>
-      <button onClick={toggleDrawer} className='text-white p-4'>
+      <button onClick={toggleDrawer} className='text-black p-4 py-4'>
         <CgMenu size={24} />
       </button>
       <div

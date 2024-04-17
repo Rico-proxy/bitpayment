@@ -27,7 +27,7 @@ const Website = () => {
     event.preventDefault();
   };
   return (
-    <div className='nocopy flex flex-col min-h-screen bg-[#0f1b39]' onContextMenu={handleContextMenu}>
+    <div className='pb-[330px] md:pb-0 overflow-hidden nocopy flex flex-col min-h-screen bg-[#0f1b39]' onContextMenu={handleContextMenu}>
       <PreventBackNavigation/>
     <Navbar />
       
@@ -276,13 +276,13 @@ const Website = () => {
       
     }}>
               <div className="h-[60v] md:min-h-screen pt-10 md:pt-[200px]  w-full md:h-full flex  justify-center items-center bg-black/70
-          backdrop-brightness-75 px-[80px]">
+          backdrop-brightness-75 ">
           
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 md:gap-32 text-white   ">
-            <div data-aos="zoom-in-left" className="space-y-8">
+            <div data-aos="zoom-in-left" className="space-y-8 px-[80px]">
               <h1 className="md:text-4xl font-bold tracing-widest">Contact BitPayment System</h1>
              
-              <div className='font-extralight flex flex-col space-y-4'>
+              <div className='text-center font-extralight flex flex-col space-y-4'>
                   <p>
                   We at BitPayment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
 
@@ -293,7 +293,7 @@ const Website = () => {
                     </p>
 
                     <p>
-                    Email: Drop us an email at support@bitpaymentsystems.com, and we'll get back to you promptly.
+                    Email: Drop us an email at <span className='font-bold'>support@bitpaymentsystems.com</span>, and we'll get back to you promptly.
                     </p>
                     <p>
                     Office Visit: You're welcome to visit our offices at 123 Payment Drive, Fintech Valley, Toronto, ON, 4B2 C1A. Please schedule an appointment for a personalized consultation.
@@ -303,18 +303,18 @@ const Website = () => {
               
             </div>
             <div data-aos="zoom-in-right" className='text-white pb-10'>
-              <h1 className='md:text-2xl pt-10 md:pt-0 pb-2 md:pb-4'>Contact Us</h1>
+              <h1 className='flex justify-center text-xl font-bold md:text-2xl pt-10 md:pt-0 pb-2 md:pb-4'>Contact Us</h1>
                  <Message/>
             </div>
             
           </div>
           </div>        
      </contact>
-     <footer className='pt-10 md:h-[60vh] bg-[#0f1b39] px-20 text-white'>
+     <footer className='pt-10   md:h-[60vh] bg-[#0f1b39] px-6 text-white'>
         <div className='grid grid-cols-1 md:grid md:grid-cols-3 py-5 gap-10'>
             <div className='flex flex-col justify-between'>
                   <div className='text-xl md:text-2xl font-bold'>
-                    <h1>Bitpay Payment System</h1>
+                    <h1>BitPayment System</h1>
                   </div>
                   <div className='flex flex-col space-y-4 pt-6 font-extralight'>
                       <span className="">
@@ -384,7 +384,7 @@ const Website = () => {
         </div>
         <div className='font-extralight'>
           <div className='grid grid-cols-1 gap-4 border-t pt-10 md:grid md:grid-cols-3 md:gap-10 text-sm '>
-          <div>© Bitpay Payment Systems 2024</div>
+          <div><span className='font-bold'>©</span> Bitpay Payment Systems 2024</div>
           <div>
             <Link to='https://find-and-update.company-information.service.gov.uk/officers/TAHU7mM7Vk0jvcKaDWjfqin2CBc/appointments'>Link to View Registered Link in Uk</Link></div>
             <div>
