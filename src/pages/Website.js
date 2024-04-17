@@ -296,7 +296,9 @@ const Website = () => {
                     and we'll get back to you promptly.
                     </p>
                     <p>
-                    Office Visit: You're welcome to visit our offices at 123 Payment Drive, Fintech Valley, Toronto, ON, 4B2 C1A. Please schedule an appointment for a personalized consultation.
+                    Office Visit:  Unit 3, 21 Botanic Avenue, Belfast,
+                        Northern Ireland, BT7 1JJ
+                        United Kingdom
                     </p>
               </div>
             
