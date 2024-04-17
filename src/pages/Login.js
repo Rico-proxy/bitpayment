@@ -49,7 +49,7 @@ const Login = () => {
   };
 
   return (
-    <div className='overflow-hidden min-h-screen bg-[#0f1b39]'>
+    <div className='overflow-y-hidden min-h-screen bg-[#0f1b39]'>
       <PreventBackNavigation2/>
       <ToastContainer />
       <div className='flex justify-center pt-32 md:pt-20'>
