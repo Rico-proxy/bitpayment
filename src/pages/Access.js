@@ -54,11 +54,11 @@ const Access = () => {
                         <Padlock/>
                     </div>
                     <div className='font-bold'>
-                        <h1 className='flex justify-center  items-center md:text-2xl text-white font-medium mb-2'>Welcome please enter your Access Code</h1>
+                        <h1 className='flex justify-center  items-center md:text-2xl text-white font-medium mb-2'>Welcome please enter  Access Code</h1>
                     </div>
                     <div className='shadow-2xl bg-white border-dashed border-4 rounded-2xl md:h-[45vh] p-8 md:p-20'>
                         <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
-                            <label className='text-black text-xl font-semibold'>Enter your Access Code:</label>
+                            <label className='text-black text-xl font-semibold'>Enter  Access Code:</label>
                             <input 
                                 type='text' 
                                 placeholder='Access Code' 
