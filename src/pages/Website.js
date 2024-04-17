@@ -352,11 +352,11 @@ const Website = () => {
                       </span>
                       <span>
                         <BsFillTelephoneMinusFill  className='inline-block mr-2'/>
-                        Tel: +1 437524-6861
+                        Tel: Tel: +1 (437) 524-6861
                       </span>
                       <span>
                         <BiMessageDetail  className='inline-block mr-2'/>
-                        Support@bps-ca.com
+                        support@bps-ca.com
                       </span>
                       <span>
                         <BsClock  className='inline-block mr-2'/>
