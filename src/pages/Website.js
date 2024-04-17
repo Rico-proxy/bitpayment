@@ -27,7 +27,7 @@ const Website = () => {
     event.preventDefault();
   };
   return (
-    <div className='pb-[330px] md:pb-0 overflow-hidden nocopy flex flex-col min-h-screen bg-[#0f1b39]' onContextMenu={handleContextMenu}>
+    <div className='pb-[100px] md:pb-0 overflow-hidden nocopy flex flex-col min-h-screen bg-[#0f1b39]' onContextMenu={handleContextMenu}>
       <PreventBackNavigation/>
     <Navbar />
       
@@ -37,10 +37,9 @@ const Website = () => {
       <Hero/>
       </div>
       <section className='flex flex-col space-y-6'>
-      <main className='flex justify-center  pt-32 px-10 md:px-[80px]'>
+      <main className='flex justify-center pt-10 md:pt-32 px-10 md:px-[80px]'>
             <div className='flex flex-col space-y-3'>
                    <div 
-                   data-aos="fade-down"
                    className="relative font-bold text-2xl text-white text-center pb-6">
                      LIVE MARKET
                   <div data-aos="fade-up" className="line"></div>
@@ -279,10 +278,10 @@ const Website = () => {
           backdrop-brightness-75 ">
           
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 md:gap-32 text-white   ">
-            <div data-aos="zoom-in-left" className="space-y-8 px-[80px]">
+            <div data-aos="zoom-in-left" className="space-y-8 px-6">
               <h1 className="md:text-4xl font-bold tracing-widest">Contact BitPayment System</h1>
              
-              <div className='text-center font-extralight flex flex-col space-y-4'>
+              <div className=' font-extralight flex flex-col space-y-4'>
                   <p>
                   We at BitPayment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
 
@@ -293,7 +292,8 @@ const Website = () => {
                     </p>
 
                     <p>
-                    Email: Drop us an email at <span className='font-bold'>support@bitpaymentsystems.com</span>, and we'll get back to you promptly.
+                    Email: Drop us an email <span className='font-bold '>support@bitpaymentsystems.com</span><br/>
+                    and we'll get back to you promptly.
                     </p>
                     <p>
                     Office Visit: You're welcome to visit our offices at 123 Payment Drive, Fintech Valley, Toronto, ON, 4B2 C1A. Please schedule an appointment for a personalized consultation.

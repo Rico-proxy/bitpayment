@@ -1,13 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CgMenu } from 'react-icons/cg';
-import { RiDashboardFill } from "react-icons/ri";
-import { BsFillPersonFill } from "react-icons/bs";
-import { FaQuestion } from "react-icons/fa";
-import { SlWallet } from "react-icons/sl";
 import { AiOutlineClose } from "react-icons/ai";
-import { BiLogOut } from "react-icons/bi";
 import { Link } from 'react-router-dom';
-import { BiSupport } from "react-icons/bi";
+import { BiLogOut } from "react-icons/bi";
 
 const Button2 = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,30 +27,23 @@ const Button2 = () => {
 
   return (
     <div className='relative'>
-      <button onClick={toggleDrawer} className='text-black p-4 py-4'>
-        <CgMenu size={24} />
+      <button onClick={toggleDrawer} className='text-black p-4'>
+        {isOpen ? <AiOutlineClose size={24} /> : <CgMenu size={24} />}
       </button>
       <div
         ref={drawerRef}
         className={`fixed top-0 left-0 h-full bg-[#0f1b39] p-8 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-40`}
       >
-        <button onClick={toggleDrawer} className='absolute top-0 right-0 pt-[36px] text-white p-4'>
-          <AiOutlineClose size={24}/>
-        </button>
         <nav className="mt-20 flex flex-col space-y-12">
           <Link to="/login" className="flex items-center space-x-3 border-b border-gray-700 pb-2">
-           
             <span className='text-xl'>Client Login</span>
           </Link>
           <Link to="/login" className="flex items-center space-x-3 border-b border-gray-700 pb-2">
-            
             <span className='text-xl'>Policy</span>
           </Link>
           <Link to="/login" className="flex items-center space-x-3 border-b border-gray-700 pb-2">
-          
             <span className='text-xl'>Terms</span>
           </Link>
-
           <Link to="/" className="mt-auto pt-40 flex items-center space-x-3">
             <BiLogOut className='text-3xl'/>
             <span className='text-xl'>Logout</span>
