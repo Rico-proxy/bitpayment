@@ -279,11 +279,11 @@ const Website = () => {
           
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 md:gap-32 text-white   ">
             <div data-aos="zoom-in-left" className="space-y-8 px-6">
-              <h1 className="md:text-4xl font-bold tracing-widest">Contact BitPayment System</h1>
+              <h1 className="md:text-4xl font-bold tracing-widest">Contact Bitpay Payment System</h1>
              
               <div className=' font-extralight flex flex-col space-y-4'>
                   <p>
-                  We at BitPayment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
+                  We at Bipaypayment Systems Limited are dedicated to providing you with exceptional service and support. Whether you have questions about our payment solutions, need assistance with transactions, or require technical support, our team is here to help.
 
 
                   </p>
@@ -292,7 +292,7 @@ const Website = () => {
                     </p>
 
                     <p>
-                    Email: Drop us an email <span className='font-bold '>support@bitpaymentsystems.com</span><br/>
+                    Email: Drop us an email <span className='font-bold '>support@bps-ca.com</span><br/>
                     and we'll get back to you promptly.
                     </p>
                     <p>
@@ -314,7 +314,7 @@ const Website = () => {
         <div className='grid grid-cols-1 md:grid md:grid-cols-3 py-5 gap-10'>
             <div className='flex flex-col justify-between'>
                   <div className='text-xl md:text-2xl font-bold'>
-                    <h1>Bitpayment System</h1>
+                    <h1>Bitpay Payment System</h1>
                   </div>
                   <div className='flex flex-col space-y-4 pt-6 font-extralight'>
                       <span className="">
@@ -325,7 +325,7 @@ const Website = () => {
                       </span>
                       <span>
                         <BsFillTelephoneMinusFill  className='inline-block mr-2'/>
-                        Tel: +44 741 836 1210
+                        Tel: +44 744 0356156
                       </span>
                       <span>
                         <BiMessageDetail  className='inline-block mr-2'/>
@@ -350,11 +350,11 @@ const Website = () => {
                       </span>
                       <span>
                         <BsFillTelephoneMinusFill  className='inline-block mr-2'/>
-                        Tel: +1 905 203 2530
+                        Tel: +1 437524-6861
                       </span>
                       <span>
                         <BiMessageDetail  className='inline-block mr-2'/>
-                        Info@bitpaypaymentsystemsca.com
+                        Support@bps-ca.com
                       </span>
                       <span>
                         <BsClock  className='inline-block mr-2'/>
