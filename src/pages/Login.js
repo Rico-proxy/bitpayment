@@ -62,7 +62,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className='flex flex-col space-y-5 md:space-y-12'>
                 <div className='flex flex-col items-center'>
                     <img src="/assets/logo.svg" alt="Digital Currency" width={100} height={100} className='mx-auto' />
-                    <h1 className='text-2xl italic text-blue-900 font-bold'>Payment System</h1>
+                    <h1 className='text-2xl italic text-blue-900 font-bold'>Payment Systems</h1>
                 </div>
                 <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
                   <FiMail className="text-black font-bold font-xl" />
