@@ -279,7 +279,7 @@ const Website = () => {
           
           <div className="grid grid-cols-1 md:grid md:grid-cols-2 md:gap-32 text-white   ">
             <div data-aos="zoom-in-left" className="space-y-8 px-6">
-              <h1 className="md:text-4xl font-bold tracing-widest">Contact Bitpay Payment System</h1>
+              <h1 className="md:text-4xl font-bold tracing-widest">Contact Bitpay Payment Systems</h1>
              
               <div className=' font-extralight flex flex-col space-y-4'>
                   <p>
