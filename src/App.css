@@ -1,0 +1,130 @@
+
+body{
+  scroll-behavior: smooth;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+  
+    font-size: 18px;
+  
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #000;
+  }
+ 
+
+  .hero{
+    background-image: url('../public/assets/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+
+  }
+  
+
+  .hero2{
+    background-image: url('../public/assets/hero2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
+
+  .hero3{
+    background-image: url('../public/assets/hero3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
+
+  .italic{
+    font-style: italic;
+  }
+
+  .map{
+    background-image: url('../public/assets/map.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+  }
+
+  .contact-form .form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust gap as needed */
+    margin-bottom: 15px; /* Space between form groups */
+  }
+  
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .contact-form .submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Add more styles as needed to match your design */
+  .contact-form .form-group1{
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust gap as needed */
+    margin-bottom: 15px;
+     /* Space between form groups */
+  }
+  .contact-form .form-group1 textarea {
+    width: 100%; /* This will make the textarea take up all available width within the form-group1 */
+    min-height: 200px; /* This sets a minimum height, making the textarea longer. Adjust as needed. */
+  }
+  .line {
+    display: block; /* Display block to take up its own space */
+    height: 2px; /* The thickness of your line */
+    width: 70px; /* The width of your line */
+    background-color: #F44E77; /* The pink color for your line */
+    margin: 0 auto; /* Center the line horizontally */
+  }
+  .nocopy {
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  }
+  .responsive-image {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+  }
+  
+  @media (max-width: 600px) {
+    .responsive-image {
+      width: 90%;
+    }
+  }
+  
