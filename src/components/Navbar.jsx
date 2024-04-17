@@ -31,7 +31,7 @@ const Navbar = () => {
           height={100}
         />
         <div>
-          <p className="text-[#f5f5f5] italic">Payment System</p>
+          <p className="text-[#f5f5f5] italic">Payment Systems</p>
         </div>
       </div>
       <ul className="hidden md:flex space-x-6 text-[16px]">
