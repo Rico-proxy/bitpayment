@@ -314,7 +314,7 @@ const Website = () => {
         <div className='grid grid-cols-1 md:grid md:grid-cols-3 py-5 gap-10'>
             <div className='flex flex-col justify-between'>
                   <div className='text-xl md:text-2xl font-bold'>
-                    <h1>BitPayment System</h1>
+                    <h1>Bitpayment System</h1>
                   </div>
                   <div className='flex flex-col space-y-4 pt-6 font-extralight'>
                       <span className="">
