@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url = 'https://api.nuhu.xyz/api/Auth/Login';
+    const url = 'https://api.nuhu.xyz/api/Auth/Log';
     const formData = {
       email: event.target.email.value,
       password: event.target.password.value,

@@ -21,8 +21,22 @@ const HeroCard2 = () => {
         We are a fully licensed and regulated bank serving the financial community.
      </p>
      <div className='flex flex-row  space-x-6 pt-4 text-[11px] md:text-sm'>
-     <Link className='hover:bg-[#2a3b64] px-2 py-3 hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl  text-white md:font-bold md:py-4 md:px-8 rounded-lg' to='/login'>REGULATIONS</Link>
-     <Link className='hover:bg-[#2a3b64] px-1 py-3 border  hover:delay-150 duration-150 bg-transparent shadow-2xl  text-white md:font-bold md:py-4 md:px-8 rounded-lg' to='/register'>Open An Account</Link>
+     <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href='/login' // Use 'href' for external links
+        className='hover:bg-[#2a3b64] px-2 py-3 hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white md:font-bold md:py-4 md:px-8 rounded-lg'
+      >
+        REGULATIONS
+      </a>
+          <a 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        href='/register' // Change 'to' to 'href' if this is a direct link
+        className='hover:bg-[#2a3b64] px-1 py-3 border hover:delay-150 duration-150 bg-transparent shadow-2xl text-white md:font-bold md:py-4 md:px-8 rounded-lg'
+      >
+        Open An Account
+      </a>
      </div>
      
    </div>
