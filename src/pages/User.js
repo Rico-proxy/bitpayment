@@ -249,9 +249,7 @@ const User = () => {
                         <div className='rounded-2xl'> 
                             <Trade/>
                         </div>
-                        <div className='rounded-2xl'> 
-                            <UserList/>
-                        </div>
+                        
                       
                 </section>
                 <section className='md:flex md:flex-row gap-12'>
