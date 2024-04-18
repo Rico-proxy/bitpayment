@@ -9,7 +9,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import User from './pages/User';
 import Website from './pages/Website';
-import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import Activity from './pages/Activity';
 import Transaction from './pages/Transaction';
@@ -33,7 +32,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
           <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
           <Route path="/transaction" element={<ProtectedRoute><Transaction /></ProtectedRoute>} />
