@@ -18,11 +18,11 @@ const HeroCard1 = () => {
    <div className="space-y-8">
      <h1 className="text-2xl md:text-6xl font-bold tracing-widest">Prime Banking <span className='font-bold'>Solutions</span>.</h1>
      <p className='text-sm w-2/3 font-light md:w-3/5'>
-        We are a fully licensed and regulated bank serving the financial community.
+        We are a fully licensed and Regulated bank serving the financial community.
      </p>
      <div className='flex flex-row  space-x-6 pt-4 text-[11px] md:text-sm'>
      <Link className='hover:bg-[#2a3b64] px-2 py-3 hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl  text-white md:font-bold md:py-4 md:px-8 rounded-lg' to='/login'>REGULATIONS</Link>
-     <a  target="_blank" rel="noopener noreferrer"className='hover:bg-[#2a3b64] px-1 py-3 border  hover:delay-150 duration-150 bg-transparent shadow-2xl  text-white md:font-bold md:py-4 md:px-8 rounded-lg' to='/register'>Open An Account</a>
+     <Link className='hover:bg-[#2a3b64] px-1 py-3 border  hover:delay-150 duration-150 bg-transparent shadow-2xl  text-white md:font-bold md:py-4 md:px-8 rounded-lg' to='/register'>Open An Account</Link>
      </div>
      
    </div>
