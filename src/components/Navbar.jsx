@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button2 from './Button2';
 
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -42,8 +43,12 @@ const Navbar = () => {
       </ul>
       <div className='hidden md:flex md:flex-row space-x-6 items-center text-center'>
         <Link className='hover:bg-[#2a3b64] text-[13px] hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white font-bold py-4 px-8 rounded-lg' to='/login'>CLIENT LOGIN</Link>    
-        <Link to="/website" className='text-2xl'>🇨🇦</Link>
-        <Link to="/website" className='text-2xl'>🇬🇧</Link>
+        <Link to="/website" className="">
+        <img src="/assets/Canada.png" alt="Canada Flag" style={{ width: '30px', height: '23px' }} />
+      </Link>
+      <Link to="/website" className="">
+        <img src="/assets/UK.png" alt="Canada Flag" style={{ width: '40px', height: '43px' }} />
+      </Link>
       </div>
       {/* Render Button2 only when scrolled is true */}
       {scrolled && (
