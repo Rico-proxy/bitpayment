@@ -42,7 +42,15 @@ const Navbar = () => {
         <li><a href="#contact" className="hover-underline py-2 px-4 rounded-md">Contact Us</a></li>
       </ul>
       <div className='hidden md:flex md:flex-row space-x-6 items-center text-center'>
-        <Link className='hover:bg-[#2a3b64] text-[13px] hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white font-bold py-4 px-8 rounded-lg' to='/login'>CLIENT LOGIN</Link>    
+      <a
+  className='hover:bg-[#2a3b64] text-[13px] hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white font-bold py-4 px-8 rounded-lg'
+  href='/login'
+  target='_blank'
+  rel='noopener noreferrer' // This is important for security reasons
+>
+  CLIENT LOGIN
+</a>
+   
         <Link to="/website" className="">
         <img src="/assets/Canada.png" alt="Canada Flag" style={{ width: '30px', height: '23px' }} />
       </Link>
