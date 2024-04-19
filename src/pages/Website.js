@@ -388,9 +388,12 @@ const Website = () => {
           <div className='grid grid-cols-1 gap-4 border-t pt-10 md:grid md:grid-cols-3 md:gap-10 text-sm '>
           <div><span className='font-bold'>©</span> Bitpay Payment Systems 2024</div>
           <div>
-            <Link to='https://find-and-update.company-information.service.gov.uk/officers/TAHU7mM7Vk0jvcKaDWjfqin2CBc/appointments'>Link to View Registered Link in Uk</Link></div>
+           
+          <a href='https://find-and-update.company-information.service.gov.uk/officers/TAHU7mM7Vk0jvcKaDWjfqin2CBc/appointments' className='' target="_blank" rel="noopener noreferrer">Link to view Registered link in UK</a>
+          </div>
             <div>
-            <Link to='https://find-and-update.company-information.service.gov.uk/company/NI648425' className=''>Link to view Corresponndence Link in Canada</Link>
+            <a href='https://find-and-update.company-information.service.gov.uk/company/NI648425' className='' target="_blank" rel="noopener noreferrer">Link to view correspondence link in Canada</a>
+
           </div>
           </div>
           
