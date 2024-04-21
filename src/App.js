@@ -1,7 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProtectedRoute from './auth/ProtectedRoute';
-import { AuthProvider } from './auth/AuthContext';
+
 
 import Access from './pages/Access';
 import Admin from './pages/Admin';
@@ -12,8 +11,8 @@ import Website from './pages/Website';
 import Dashboard from './pages/Dashboard';
 import Activity from './pages/Activity';
 import Transaction from './pages/Transaction';
-import TransferType from './pages/TransferType';
-import Revert from './pages/Revert';
+
+
 import './App.css';
 import Withdraw from './pages/Withdraw';
 import Policy from './pages/Policy';
@@ -24,24 +23,24 @@ import UserProfile from './pages/UserProfile';
 import UserTransaction from './pages/UserTransaction';
 import { StyledEngineProvider } from '@mui/material';
 import UserSupport from './pages/UserSupport';
+import Register2 from './pages/Register2';
+import Status from './pages/Status';
+import UserTransfer from './pages/UserTransfer';
 function App() {
   return (
     <StyledEngineProvider injectFirst>
     <Router>
-      <AuthProvider>
-        <Routes>
+         <Routes>
           <Route path="/" element={<Access />} />
           <Route path="/website" element={<Website />} />
           <Route path="/withdraw" element={<Withdraw />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/user" element={<User />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
-          <Route path="/transaction" element={<ProtectedRoute><Transaction /></ProtectedRoute>} />
-          <Route path="/transfer" element={<ProtectedRoute><TransferType /></ProtectedRoute>} />
-          <Route path="/revert" element={<ProtectedRoute><Revert /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/activity" element={<Activity />} />
+          <Route path="/transaction" element={<Transaction />} />
           <Route path="/support" element={<UserSupport />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/cookies" element={<Cookies />} />
@@ -49,8 +48,10 @@ function App() {
           <Route path="/balance" element={<UserBalance />} />
           <Route path='/profile'  element={<UserProfile/>}/>
           <Route path='/usertransaction'  element={<UserTransaction/>}/>
+          <Route path='/register2'  element={<Register2/>}/>
+          <Route path='/status'  element={<Status/>}/>
+          <Route path='/usertransfer'  element={<UserTransfer/>}/>
         </Routes>
-      </AuthProvider>
     </Router>
     </StyledEngineProvider>
   );

@@ -14,10 +14,11 @@ import ProgressBar from '../components/ProgressBar';
 import Slide from '../components/Slide';
 import axios from 'axios';
 import Time from '../components/Time';
-import Status from '../components/Status';
+import Status from '../components/StatusState';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Slide2 from '../components/Slide2';
+import StatusState from '../components/StatusState';
 const User = () => {
   const [userInfo, setUserInfo] = useState({});
 
@@ -76,7 +77,9 @@ const User = () => {
                 <BsBellFill className="hover:animate-bounce"/>
                 </div>
                 
-                <Status statusType="active" />
+                <div>
+                  <StatusState/>
+                </div>
                 <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
                     <RiSettings4Line className="hover:animate-bounce text-2xl"/>

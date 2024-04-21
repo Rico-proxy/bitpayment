@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const ThreeCards = () => {
   return (
    <card className=' flex flex-col space-y-3'>
-            <div  className="bg  h-[23vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div  className="bg  h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-2xl font-semibold">$19,522</p>
                 <p className="text-sm">Expense</p>
@@ -20,7 +20,7 @@ const ThreeCards = () => {
                                                                 </svg>
             </div>
             </div>
-            <div className="bg h-[18vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div className="bg h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-2xl font-semibold">$19,522</p>
                 <p className="text-sm">Expense</p>
@@ -30,7 +30,7 @@ const ThreeCards = () => {
                 <Circle/>
             </div>
             </div>
-            <div className="bg h-[18vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div className="bg h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-2xl font-semibold">$19,522</p>
                 <p className="text-sm">Expense</p>

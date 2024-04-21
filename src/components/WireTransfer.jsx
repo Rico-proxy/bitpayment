@@ -7,6 +7,7 @@ import emailjs from 'emailjs-com';
 import { useNavigate } from 'react-router-dom';
 const WireTransfer = () => {
   const navigate = useNavigate();
+  
   // Retrieve the user ID from session storage directly on state initialization
   const [userId] = useState(sessionStorage.getItem('userId') || '');
   const [walletBalance] = useState(parseFloat(sessionStorage.getItem('walletBalance')) || 0);

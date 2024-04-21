@@ -11,6 +11,8 @@ import Hero from '../components/Hero'
 import Message from '../components/Message';
 import { BiMessageDetail } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
+import CryptoSlide2 from '../components/CryptoSlide2';
+import CryptoSlide3 from '../components/CryptoSlide3';
 
 import PreventBackNavigation from '../components/PreventBackNavigation2';
 import CryptoSlide from '../components/CryptoSlide';
@@ -51,16 +53,14 @@ const Website = () => {
                   </div>
                   
                   <div data-aos="zoom-in-left">
-                  <CryptoSlide/>
+                  <CryptoSlide2/>
                   </div>
 
                   <div data-aos="zoom-in-right">
-                  <CryptoSlide/>
+                  <CryptoSlide3/>
                   </div>
-
-                  <div data-aos="zoom-in-right">
-                  <CryptoSlide/>
-                  </div>
+                  
+                 
                    
                     
                 </div>

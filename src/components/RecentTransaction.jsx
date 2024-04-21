@@ -1,72 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 
-
 const RecentTransaction = () => {
-  const transactions = [
-    {
-      name: 'Livia Bator',
-      date: 'June 5, 2020, 08:22 AM',
-      amount: '+$5,553',
-      card: 'MasterCard 404',
-      status: 'Pending',
-      avatar: '/path-to-avatar1.jpg', // replace with your image path
-      statusColor: 'yellow',
-    },
-    {
-      name: 'Livia Bator',
-      date: 'June 5, 2020, 08:22 AM',
-      amount: '+$5,553',
-      card: 'MasterCard 404',
-      status: 'Pending',
-      avatar: '/path-to-avatar1.jpg', // replace with your image path
-      statusColor: 'yellow',
-    },
-    {
-      name: 'Livia Bator',
-      date: 'June 5, 2020, 08:22 AM',
-      amount: '+$5,553',
-      card: 'MasterCard 404',
-      status: 'Pending',
-      avatar: '/path-to-avatar1.jpg', // replace with your image path
-      statusColor: 'yellow',
-    },
-    {
-      name: 'Livia Bator',
-      date: 'June 5, 2020, 08:22 AM',
-      amount: '+$5,553',
-      card: 'MasterCard 404',
-      status: 'Pending',
-      avatar: '/path-to-avatar1.jpg', // replace with your image path
-      statusColor: 'yellow',
-    },
-    {
-      name: 'Livia Bator',
-      date: 'June 5, 2020, 08:22 AM',
-      amount: '+$5,553',
-      card: 'MasterCard 404',
-      status: 'Pending',
-      avatar: '/path-to-avatar1.jpg', // replace with your image path
-      statusColor: 'yellow',
-    },
-    // ... other transactions
-  ];
+  const [transactions, setTransactions] = useState([]);
 
-  const statusColors = {
-    Pending: 'bg-yellow-400',
-    Completed: 'bg-green-500',
-    Canceled: 'bg-red-500',
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        // Retrieving the user ID from session storage
+        const userId = sessionStorage.getItem('userId');
+        if (!userId) {
+          console.log('User ID not found in session storage.');
+          return;
+        }
+        const response = await fetch(`http://152.42.139.53:4040/api/Wallet/get-transactions?userId=${userId}`);
+        const data = await response.json();
+        
+        if (data && data.transactions) {
+          setTransactions(data.transactions.map(transaction => ({
+            ...transaction,
+            statusColor: getStatusColor(transaction.status)
+          })));
+        }
+      } catch (error) {
+        console.error('Failed to fetch transactions:', error);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Successful':
+        return 'bg-green-500';
+      case 'Reverted':
+        return 'bg-red-500';
+      default:
+        return 'bg-yellow-400'; // Assuming other statuses are pending or similar
+    }
   };
 
   return (
-    <div className="bg w-[800px] recent  text-white p-6 rounded-lg shadow-md ">
-      <h2 className="text-2xl font-semibold mb-4">Latest Transaction</h2>
-      <p className="mb-6">Lorem ipsum dolor sit amet, consectetur</p>
+    <div className="bg w-[800px] recent text-white p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4">Latest Transactions</h2>
+      <p className="mb-6">Below are your most recent transaction updates.</p>
       <ul>
         {transactions.map((transaction, index) => (
           <li key={index} className="flex items-center justify-between py-3 border-b border-gray-700">
             <div className="flex items-center">
-              <img className="h-12 w-12 rounded-full mr-4" src={transaction.avatar} alt={`${transaction.name}`} />
+              {/* Placeholder for avatar, replace '/path-to-avatar.jpg' with your path or logic to handle avatars */}
+              <img className="h-12 w-12 rounded-full mr-4" src="/path-to-avatar.jpg" alt={`${transaction.name}`} />
               <div>
                 <p className="font-semibold">{transaction.name}</p>
                 <p className="text-xs text-gray-400">{transaction.date}</p>
@@ -76,13 +60,9 @@ const RecentTransaction = () => {
               <p className="font-semibold">{transaction.amount}</p>
               <p className="text-xs text-gray-400">{transaction.card}</p>
             </div>
-            <div className={`flex items-center ${statusColors[transaction.status]} text-xs font-semibold px-3 py-1 rounded-full`}>
+            <div className={`flex items-center ${transaction.statusColor} text-xs font-semibold px-3 py-1 rounded-full`}>
               {transaction.status}
-              {transaction.status === 'Completed' ? (
-                <FaCaretDown className="h-4 w-4 ml-2" />
-              ) : (
-                <FaCaretDown className="h-4 w-4 ml-2" />
-              )}
+              <FaCaretDown className="h-4 w-4 ml-2" />
             </div>
             <FaCaretDown className="h-6 w-6" />
           </li>

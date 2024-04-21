@@ -12,15 +12,19 @@ import { ImProfile } from "react-icons/im";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FcSupport } from "react-icons/fc";
 import { CgLogOut } from "react-icons/cg";
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+import { HiOutlineViewList } from "react-icons/hi";
+import { BsClockHistory } from "react-icons/bs";
+import { GrRevert } from "react-icons/gr";
+import { CgToggleOff } from "react-icons/cg";
+const Sidebar2 = ({ isOpen, toggleSidebar }) => {
   // Define the menu items array
   const menus = [
-    { name: "Dashboard", link: "/user", icon: MdSpaceDashboard },
-    { name: "Balance", link: "/balance", icon: FaWallet },
-    { name: "Transfers ", link: "/usertransaction", icon: FiMessageSquare },
-    { name: "Profile", link: "/profile", icon: ImProfile },
-    { name: "Support", link: "/support", icon: FcSupport },
+    { name: "List", link: "/admin", icon: HiOutlineViewList },
+    { name: "History", link: "/activity", icon: BsClockHistory },
+    { name: "Revert ", link: "/transaction", icon: GrRevert },
+    {name: "Status", link: "/status", icon: CgToggleOff},
     {name: "Logout", link: "/logout", icon: CgLogOut}
+    
   ];
 
   return (
@@ -72,4 +76,4 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar2;

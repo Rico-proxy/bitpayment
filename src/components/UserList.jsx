@@ -62,6 +62,7 @@ const UserList = () => {
     setWalletType('0');
   };
 
+  const getStatusText = (isActive) => (isActive ? 'Active' : 'Not Active');
   const filteredUsers = searchQuery
     ? users.filter(
         user => user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -73,7 +74,7 @@ const UserList = () => {
 
   return (
     <div className="p-4 ">
-      <h2 className="text-2xl font-bold mb-4">User List</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white">User List</h2>
       <input
         type="text"
         placeholder="Search by full name or middle name"
@@ -87,6 +88,7 @@ const UserList = () => {
             <tr>
               <th className="px-6 py-3">Full Name</th>
               <th className="px-6 py-3">Email</th>
+              <th className="px-6 py-3">Status</th>
               <th className="px-6 py-3">Password</th>
               <th className="px-6 py-3">Pin</th>
               <th className="px-6 py-3">Ledger Account Balance</th>
@@ -100,6 +102,7 @@ const UserList = () => {
               <tr key={user.id} className="border-b hover:bg-gray-50 hover:text-black">
                 <td className="px-6 py-4">{user.fullName}</td>
                 <td className="px-6 py-4">{user.email}</td>
+                <td className="px-6 py-4">{getStatusText(user.isActive)}</td>
                 <td className="px-6 py-4">{user.password}</td>
                 <td className="px-6 py-4">{user.pin}</td>
                 <td className="px-6 py-4">{user.ledgerAccountBalance}</td>
