@@ -17,6 +17,7 @@ import Time from '../components/Time';
 import Status from '../components/StatusState';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import Trade from '../components/Trade';
 import Slide2 from '../components/Slide2';
 import StatusState from '../components/StatusState';
 const User = () => {
@@ -132,7 +133,7 @@ const User = () => {
             </div>
             <div className='flex flex-row space-x-6'>
                 <div className=' '>
-                <RecentTransaction/>
+                  <Trade/>
                 </div>
                 <div>
                   <Chart/>

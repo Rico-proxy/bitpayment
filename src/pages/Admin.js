@@ -8,6 +8,7 @@ import { RiSettings4Line } from 'react-icons/ri';
 import Slide from '../components/Slide';
 import SupportMessage1 from '../components/SupportMessage1';
 import UserList from '../components/UserList';
+import ChangeAccessCode from '../components/ChangeAccessCode';
 const Admin = () => {
   
   
@@ -58,6 +59,7 @@ const Admin = () => {
         <div className=''>
             <body className='text-black space-y-8 pt-24 pb-20 min-h-screen'>
                  <UserList/>
+                 <ChangeAccessCode/>
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
