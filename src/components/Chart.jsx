@@ -1,93 +1,86 @@
 import React from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-// Register the chart components we will be using
-ChartJS.register(
+import { Doughnut, Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
-  Filler
+  ArcElement,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
 );
 
-const LineChartComponent = () => {
-  // Ref to the chart element to access its context for gradient creation
-  const chartRef = React.useRef(null);
-
-  const data = {
-    labels: ['02:00', '02:30', '03:00', '03:30', '04:00', '04:30'], // Your labels
-    datasets: [
-      {
-        label: 'This month',
-        data: [65, 59, 80, 81, 56, 55], // Your data
-        fill: false, // No fill
-        borderColor: function(context) {
-          const chart = context.chart;
-          const {ctx, chartArea} = chart;
-
-          if (!chartArea) {
-            return null;
-          }
-          const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-          gradient.addColorStop(0, '#0d162c'); // Start with the shade of blue
-          gradient.addColorStop(1, '#000000'); // Transition to black
-          return gradient;
-        },
-        tension: 0.4,
-      },
-      {
-        label: 'Total balance',
-        data: [28, 48, 40, 19, 86, 27], // Another set of data
-        fill: false, // No fill
-        borderColor: function(context) {
-          const chart = context.chart;
-          const {ctx, chartArea} = chart;
-
-          if (!chartArea) {
-            return null;
-          }
-          const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-          gradient.addColorStop(0, '#0d162c'); // Start with the shade of blue
-          gradient.addColorStop(1, '#000000'); // Transition to black
-          return gradient;
-        },
-        tension: 0.4,
-      }
-    ],
-  };
-
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
+const doughnutData = {
+  labels: ['Income', 'Expense', 'Unknown'],
+  datasets: [
+    {
+      label: 'Summary',
+      data: [30, 46, 10],
+      backgroundColor: [
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(201, 203, 207, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 206, 86, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(201, 203, 207, 1)',
+      ],
+      borderWidth: 1,
     },
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Balance Statistic',
-      },
+  ],
+};
+
+const barData = {
+  labels: ['Sun', 'Mon', 'Wed', 'Fri', 'Sat'],
+  datasets: [
+    {
+      label: 'Daily',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: 'rgba(153, 102, 255, 0.2)',
+      borderColor: 'rgba(153, 102, 255, 1)',
+      borderWidth: 1,
     },
-  };
+  ],
+};
 
-  const chartContainerStyle = {
-    width: '100%',
-    height: '700px',
-    margin: 'auto', // Center the chart
-  };
+const doughnutOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+};
 
+const barOptions = {
+  responsive: true,
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
+};
+
+const Chart = () => {
   return (
-    <div style={chartContainerStyle}>
-      <Line ref={chartRef} data={data} options={options} />
+    <div className="bg w-full chart flex flex-col items-center justify-center h-full p-4  text-white ">
+      <h2 className="text-lg font-semibold mb-2">Weekly Summary</h2>
+      <div className="mb-4 w-full h-1/2">
+        <Doughnut data={doughnutData} options={doughnutOptions} />
+      </div>
+      <div className="w-full h-1/2">
+        <Bar data={barData} options={barOptions} />
+      </div>
     </div>
   );
 };
 
-export default LineChartComponent;
+export default Chart;

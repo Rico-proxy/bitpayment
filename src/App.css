@@ -68,8 +68,144 @@ body{
    
   }
 
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-button {
+    background: rgb(1, 29, 84); /* Use your desired color */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+  }
+  
+  .dropdown-button img {
+    border-radius: 50%;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 5px;
+    background-color: rgb(1, 29, 84);
+    min-width: 160px;
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* This will be applied when the dropdown is open */
+  .dropdown .dropdown-content {
+    display: block;
+  }
+  /* Add this to your CSS file */
+  .transition-width {
+    transition: width 300ms ease-in-out;
+  }
+  
+  /* This will hide the sidebar content when the width is 0 */
+  .w-0 {
+    width: 0;
+    overflow: hidden;
+  }
+  /* App.css or wherever your styles are defined */
+  .bg-gray-700 {
+    background-color: #4a5568; /* This is the Tailwind CSS gray-700 color */
+  }
+  
+  /* Add this to your CSS file */
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .fade-in-right {
+    animation: fadeInRight 1s ease forwards;
+  }
+  /* BalanceSummaryCard.css */
+  .balance-summary-card {
+    background: transparent; /* Purple background */
+    border-radius: 20px;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 560px; /* Set a fixed width or make it responsive */
+  
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .balance-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  
+  .bg{
+    background-color: rgb(1, 29, 84)
+    
+  }
+  /* Add more styles for toggle buttons and other elements */
+  .recent{
+   
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .card{
+  
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .chart{
+  
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .progress{
+   
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .footer{
+    
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .font{
+    font-style: italic;
+  }
   .contact-form {
-    max-width: 600px;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
   }
@@ -94,7 +230,7 @@ body{
   }
   
   input, select, textarea {
-    width: 100%;
+    width: 120%;
     padding: 10px;
     border: none;
     outline: none;

@@ -2,28 +2,36 @@ import React, { useState, useEffect } from 'react';
 
 const TimeBasedGreeting = () => {
   const [greeting, setGreeting] = useState('');
+  const [emoji, setEmoji] = useState('');
 
   useEffect(() => {
     const updateGreeting = () => {
-      const hour = new Date().getHours(); // get the current hour
+      const hour = new Date().getHours();
       if (hour < 12) {
-        setGreeting('Good Morning☀️');
+        setGreeting('Good Morning');
+        setEmoji('☀️');
       } else if (hour < 18) {
-        setGreeting('Good Afternoon☀️');
+        setGreeting('Good Afternoon');
+        setEmoji('☀️');
+      } else if (hour < 22) {
+        setGreeting('Good Evening');
+        setEmoji('🌓');
       } else {
-        setGreeting('Good Evening🌓');
+        setGreeting('Good Night');
+        setEmoji('🌓');
       }
     };
 
     updateGreeting();
-    // Set up an interval to update the greeting every minute so it stays current
     const intervalId = setInterval(updateGreeting, 60000);
-
-    // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
 
-  return <h1>{greeting}</h1>;
+  return (
+    <h1 className='font-semibold text-xl font text-white'>
+      {greeting} <span className="animate-pulse bg-black p-3 rounded-xl">{emoji}</span>
+    </h1>
+  );
 };
 
 export default TimeBasedGreeting;

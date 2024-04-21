@@ -3,7 +3,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import { BsFillTelephoneMinusFill } from "react-icons/bs";
-import Card from '../components/Card'
+import Card from '../components/CryptoSlide'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ScrollToTop from "react-scroll-to-top";
@@ -13,6 +13,7 @@ import { BiMessageDetail } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
 
 import PreventBackNavigation from '../components/PreventBackNavigation2';
+import CryptoSlide from '../components/CryptoSlide';
 const Website = () => {
 
   useEffect(() => {
@@ -46,19 +47,19 @@ const Website = () => {
                 </div>
                 <div className='flex flex-col gap-6 md:flex md:flex-row md:gap-3 pt-10'>
                   <div data-aos="zoom-in-left">
-                  <Card/>
+                  <CryptoSlide/>
                   </div>
                   
                   <div data-aos="zoom-in-left">
-                  <Card/>
+                  <CryptoSlide/>
                   </div>
 
                   <div data-aos="zoom-in-right">
-                  <Card/>
+                  <CryptoSlide/>
                   </div>
 
                   <div data-aos="zoom-in-right">
-                  <Card/>
+                  <CryptoSlide/>
                   </div>
                    
                     

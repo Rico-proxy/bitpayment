@@ -14,14 +14,19 @@ import Activity from './pages/Activity';
 import Transaction from './pages/Transaction';
 import TransferType from './pages/TransferType';
 import Revert from './pages/Revert';
-import Support from './pages/Support';
 import './App.css';
 import Withdraw from './pages/Withdraw';
 import Policy from './pages/Policy';
 import Cookies from './pages/Cookies';
 import Legal from './pages/Legal';
+import UserBalance from './pages/UserBalance';
+import UserProfile from './pages/UserProfile';
+import UserTransaction from './pages/UserTransaction';
+import { StyledEngineProvider } from '@mui/material';
+import UserSupport from './pages/UserSupport';
 function App() {
   return (
+    <StyledEngineProvider injectFirst>
     <Router>
       <AuthProvider>
         <Routes>
@@ -31,19 +36,23 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
-          <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
+          <Route path="/user" element={<User />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
           <Route path="/transaction" element={<ProtectedRoute><Transaction /></ProtectedRoute>} />
           <Route path="/transfer" element={<ProtectedRoute><TransferType /></ProtectedRoute>} />
           <Route path="/revert" element={<ProtectedRoute><Revert /></ProtectedRoute>} />
-          <Route path="/support" element={<ProtectedRoute><Support /></ProtectedRoute>} />
+          <Route path="/support" element={<UserSupport />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="/balance" element={<UserBalance />} />
+          <Route path='/profile'  element={<UserProfile/>}/>
+          <Route path='/usertransaction'  element={<UserTransaction/>}/>
         </Routes>
       </AuthProvider>
     </Router>
+    </StyledEngineProvider>
   );
 }
 
