@@ -42,7 +42,7 @@ const ThreeCards = () => {
             <div  className="bg  h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-2xl font-semibold">${formatCurrency(userInfo.usdAccountBalance)}</p>
-                <p className="text-sm">Usd Acount Balance</p>
+                <p className="text-sm">USD Acount Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
             <div className="p-2 bg-blue-600 rounded-full">

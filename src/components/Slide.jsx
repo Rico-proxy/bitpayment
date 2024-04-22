@@ -8,7 +8,7 @@ const Slide = () => {
                  Welcome to your Bitpay Payment Systems Limited personal dashboard.
                 </p>
                 <p className='px-2'>
-                Please, create a USER PIN authenticate all your transfers.
+                Please, create a USER PIN to authenticate all your transfers.
                   </p>
                   <p>
                   You can do this by clicking on your PROFILE icon, then, SET PIN.
