@@ -64,7 +64,7 @@ const Status = () => {
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='flex justify-center'>
-                  @2024 All rights reserved Bitpayment Systems Limited
+                  Copyright © 2024 All rights reserved. Bitpay Payment Systems Limited.
                   </div>
                 </div>
           </footer>
