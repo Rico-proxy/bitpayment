@@ -5,13 +5,16 @@ const Slide = () => {
     <div className='text-white font-bold font text-[14px] '>
         <Marquee className='border-b border-t border-black flex flex-row '>
                 <span>
-                    Welcome to Bitpayment systems Limited, 
+                    Welcome to Bitpay Payment Systems Limited, 
                 </span>    
-                <span className='px-4'>
-                Create a password to secure your account,       
+                <span className='px-2'>
+                Create a Transfer pin on the Profile Page to secure your account,       
                 </span>    
-                <span>
-                if not disregard this message
+                <span className='px-2'>
+                  To start making Transfers,
+                </span>
+                <span className='pr-5'>
+                If not disregard this message.
                 </span>
         </Marquee>
     </div>
