@@ -28,7 +28,7 @@ const Activity = () => {
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
             <div className='flex flex-col'>
-                <h1 className="text-[16px] font-semibold text-white">TransactionActivity</h1>
+                <h1 className="text-[16px] font-semibold text-white">Transaction Activity</h1>
                
             </div>
             <div>
@@ -62,7 +62,7 @@ const Activity = () => {
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='flex justify-center'>
-                  @2024 All rights reserved Bitpayment Systems Limited
+                  @2024 All rights reserved Bitpay Payment Systems Limited
                   </div>
                 </div>
           </footer>
