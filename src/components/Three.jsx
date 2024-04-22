@@ -13,8 +13,8 @@ const Three = () => {
                     <Circle4/>
                 </div>
                 <div>
-                    <p className="text-xl font font-semibold">Installment</p>
-                    <p className="text-sm">$5,412</p>
+                    <p className="text-xl font font-semibold">Investment</p>
+                    <p className="text-sm">$0</p>
                 </div>
                 
                 </card>
@@ -24,8 +24,8 @@ const Three = () => {
                     <Circle3/>
                 </div>
                 <div>
-                    <p className="text-xl font font-semibold">Installment</p>
-                    <p className="text-sm">$5,412</p>
+                    <p className="text-xl font font-semibold">Stocks</p>
+                    <p className="text-sm">$0</p>
                 </div>
                 
                 </card>
@@ -35,8 +35,8 @@ const Three = () => {
                     <Circle5/>
                 </div>
                 <div>
-                    <p className="text-xl font font-semibold">Installment</p>
-                    <p className="text-sm">$5,412</p>
+                    <p className="text-xl font font-semibold">Real Estate </p>
+                    <p className="text-sm">$0</p>
                 </div>
                 
                 </card>
