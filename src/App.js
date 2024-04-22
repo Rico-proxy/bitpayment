@@ -3,29 +3,29 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 import Access from './pages/Access';
-import Admin from './pages/Admin';
+import Admin from './admin/Admin';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import User from './pages/User';
+import User from './user/User';
 import Website from './pages/Website';
 import Dashboard from './pages/Dashboard';
-import Activity from './pages/Activity';
-import Transaction from './pages/Transaction';
+import Activity from './admin/Activity';
+import Transaction from './admin/Transaction';
 
 
 import './App.css';
-import Withdraw from './pages/Withdraw';
+import Withdraw from './user/Withdraw';
 import Policy from './pages/Policy';
 import Cookies from './pages/Cookies';
 import Legal from './pages/Legal';
-import UserBalance from './pages/UserBalance';
-import UserProfile from './pages/UserProfile';
-import UserTransaction from './pages/UserTransaction';
+import UserBalance from './user/UserBalance';
+import UserProfile from './user/UserProfile';
+import UserTransaction from './user/UserTransaction';
 import { StyledEngineProvider } from '@mui/material';
-import UserSupport from './pages/UserSupport';
+import UserSupport from './user/UserSupport';
 import Register2 from './pages/Register2';
-import Status from './pages/Status';
-import UserTransfer from './pages/UserTransfer';
+import Status from './admin/Status';
+import UserTransfer from './user/UserTransfer';
 function App() {
   return (
     <StyledEngineProvider injectFirst>

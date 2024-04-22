@@ -39,53 +39,54 @@ function SupportMessage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form text-black">
-      { /* Input for Name */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaUser className='icon'/>
-          <input type="text" name="name" placeholder="Your name*" value={formData.name} onChange={handleChange} required />
-        </div>
+    <form onSubmit={handleSubmit} className="p-4 max-w-2xl mx-auto bg-white shadow-lg rounded-lg">
+      <div className="mb-4">
+        <label className=" text-gray-700 text-sm font-bold mb-2 flex items-center">
+          <FaUser className="mr-2" />Your name*
+        </label>
+        <input type="text" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
 
-      { /* Input for Phone */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaPhone className='icon'/>
-          <input type="tel" name="phone" placeholder="Your phone*" value={formData.phone} onChange={handleChange} required />
-        </div>
+      <div className="mb-4">
+        <label className=" text-gray-700 text-sm font-bold mb-2 flex items-center">
+          <FaPhone className="mr-2" />Your phone*
+        </label>
+        <input type="tel" name="phone" placeholder="Enter your phone number" value={formData.phone} onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
 
-      { /* Input for Email */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaEnvelope className='icon'/>
-          <input type="email" name="email" placeholder="Your email*" value={formData.email} onChange={handleChange} required />
-        </div>
+      <div className="mb-4">
+        <label className=" text-gray-700 text-sm font-bold mb-2 flex items-center">
+          <FaEnvelope className="mr-2" />Your email*
+        </label>
+        <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
 
-      { /* Select Option */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaListAlt className='icon'/>
-          <select name="option" value={formData.option} onChange={handleChange} required>
-            <option value="">Choose your option*</option>
-            <option value="feedback">Feedback</option>
-            <option value="inquiry">Inquiry</option>
-            <option value="support">Support</option>
-          </select>
-        </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2  items-center">
+          <FaListAlt className="mr-2" />Choose your option*
+        </label>
+        <select name="option" value={formData.option} onChange={handleChange} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" required>
+          <option value="">Select an option</option>
+          <option value="feedback">Feedback</option>
+          <option value="inquiry">Inquiry</option>
+          <option value="support">Support</option>
+        </select>
       </div>
 
-      { /* Textarea for Message */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaPen className='icon'/>
-          <textarea name="message" placeholder="Your Message*" value={formData.message} onChange={handleChange} required></textarea>
-        </div>
+      <div className="mb-6">
+        <label className=" text-gray-700 text-sm font-bold mb-2 flex items-center">
+          <FaPen className="mr-2" />Your Message*
+        </label>
+        <textarea name="message" placeholder="Type your message here" value={formData.message} onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" rows="4" required></textarea>
       </div>
 
-      <button type="submit" className="submit-btn bg-[#0f1b39] text-white p-5">SEND MESSAGE</button>
+      <button type="submit" className="bg-[#0f1b39] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        SEND MESSAGE
+      </button>
     </form>
   );
 }

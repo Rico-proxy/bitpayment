@@ -39,11 +39,11 @@ function SupportMessage1() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white p-5 shadow-lg">
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto  p-5 shadow-lg">
       {/* Input for Name */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
-          <FaUser className="text-gray-700"/>
+          <FaUser className="text-white"/>
           <input type="text" name="name" placeholder="Your name*" value={formData.name} onChange={handleChange} required
                  className="flex-1 p-2 border border-gray-300 rounded outline-none" />
         </label>
@@ -52,7 +52,7 @@ function SupportMessage1() {
       {/* Input for Phone */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
-          <FaPhone className="text-gray-700"/>
+          <FaPhone className="text-white"/>
           <input type="tel" name="phone" placeholder="Your phone*" value={formData.phone} onChange={handleChange} required
                  className="flex-1 p-2 border border-gray-300 rounded outline-none" />
         </label>
@@ -61,7 +61,7 @@ function SupportMessage1() {
       {/* Input for Email */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
-          <FaEnvelope className="text-gray-700"/>
+          <FaEnvelope className="text-white"/>
           <input type="email" name="email" placeholder="Your email*" value={formData.email} onChange={handleChange} required
                  className="flex-1 p-2 border border-gray-300 rounded outline-none" />
         </label>
@@ -70,7 +70,7 @@ function SupportMessage1() {
       {/* Select Option */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
-          <FaListAlt className="text-gray-700"/>
+          <FaListAlt className="text-white"/>
           <select name="option" value={formData.option} onChange={handleChange} required
                   className="flex-1 p-2 border border-gray-300 rounded outline-none bg-white">
             <option value="">Choose your option*</option>
@@ -84,13 +84,13 @@ function SupportMessage1() {
       {/* Textarea for Message */}
       <div className="mb-4">
         <label className="flex items-center space-x-2">
-          <FaPen className="text-gray-700"/>
+          <FaPen className="text-white"/>
           <textarea name="message" placeholder="Your Message*" value={formData.message} onChange={handleChange} required
                     className="flex-1 p-2 border border-gray-300 rounded outline-none" rows="5"></textarea>
         </label>
       </div>
 
-      <button type="submit" className="w-full py-3 px-5 bg-blue-500 hover:bg-blue-600 text-white rounded transition duration-200">
+      <button type="submit" className="w-full py-3 px-5 bg  text-white rounded transition duration-200">
         SEND MESSAGE
       </button>
     </form>

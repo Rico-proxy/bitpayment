@@ -7,6 +7,7 @@ import { TbMessage2Exclamation } from 'react-icons/tb';
 import { RiSettings4Line } from 'react-icons/ri';
 import Slide from '../components/Slide';
 import SupportMessage1 from '../components/SupportMessage1';
+import Message from '../components/Message';
 const UserSupport = () => {
   
   
