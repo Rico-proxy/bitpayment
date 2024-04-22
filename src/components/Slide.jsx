@@ -8,10 +8,10 @@ const Slide = () => {
                     Welcome to Bitpay Payment Systems Limited, 
                 </span>    
                 <span className='px-2'>
-                Create a Transfer pin on the Profile Page to secure your account,       
+                Create a Transfer pin on the Profile Page        
                 </span>    
                 <span className='px-2'>
-                  To start making Transfers,
+                  To start making Transactions,
                 </span>
                 <span className='pr-5'>
                 If not disregard this message.

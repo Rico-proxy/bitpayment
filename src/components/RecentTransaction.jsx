@@ -33,7 +33,7 @@ const RecentTransaction = () => {
   const getStatusIcon = (status, type) => {
     if (status === 'Successful') {
       return <MdCheckCircle className='text-green-500'/>;
-    } else if (status === 'Reverted') {
+    } else if (status === 'Reversed') {
       return <MdCancel className='text-red-500'/>;
     } else {
       return type === 'Income' ? <MdArrowDownward /> : <MdArrowUpward />;
@@ -44,7 +44,7 @@ const RecentTransaction = () => {
     switch (status) {
       case 'Successful':
         return 'text-green-500';
-      case 'Reverted':
+      case 'Reversed':
         return 'text-red-500';
       default:
         return 'text-yellow-400'; // Assuming other statuses are pending or similar

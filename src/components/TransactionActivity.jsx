@@ -27,7 +27,7 @@ const TransactionActivity = () => {
     const emailParams = {
       email: transactionDetails.senderEmail,
       type: transactionDetails.type,
-      status: 'Reverted', // since we're sending this email after revert, the status is set manually
+      status: 'Reversed', // since we're sending this email after revert, the status is set manually
       amount: transactionDetails.amount.toString(), // converting to string if not already
       timestamp: new Date(transactionDetails.timestamp).toLocaleString(),
       walletType: transactionDetails.walletType || 'N/A',
@@ -48,11 +48,11 @@ const TransactionActivity = () => {
     try {
       const revertResponse = await axios.post(`https://api.nuhu.xyz/api/Admin/revert/${transactionId}`);
       if (revertResponse.status === 200) {
-        toast.success("Transaction reverted successfully.");
-        // Find the transaction that was reverted
-        const revertedTransaction = transactions.find(t => t.id === transactionId);
-        if(revertedTransaction){
-          sendRevertEmail(revertedTransaction); // Send the email notification
+        toast.success("Transaction Reversed successfully.");
+        // Find the transaction that was Reversed
+        const ReversedTransaction = transactions.find(t => t.id === transactionId);
+        if(ReversedTransaction){
+          sendRevertEmail(ReversedTransaction); // Send the email notification
           fetchTransactions(); // Refresh data to update statuses
         }
       }
@@ -97,9 +97,9 @@ const TransactionActivity = () => {
                     <button
                       className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
                       onClick={() => handleRevert(transaction.id)}
-                      disabled={transaction.status === 'Reverted'}
+                      disabled={transaction.status === 'Reversed'}
                     >
-                      {transaction.status === 'Reverted' ? 'Reverted' : 'Revert'}
+                      {transaction.status === 'Reversed' ? 'Reversed' : 'Revert'}
                     </button>
                   </td>
                 </tr>

@@ -51,7 +51,7 @@ const WalletCard = () => {
                 <div className='flex flex-row justify-between'>
                         <div className='font flex flex-col text-start space-y-2'>
                         <p className="text-xl font-semibold text-white">Wallet Balance</p>
-                        <p className="text-xl text-white font-light">$ {userInfo.walletBalance}</p>
+                        <p className="text-xl text-white font-light">${userInfo.walletBalance}</p>
                         <p className="text-xs text-white">+0.5% than last month</p>
                        </div> 
                        <div className='flex flex-col'>
