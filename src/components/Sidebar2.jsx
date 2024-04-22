@@ -23,7 +23,7 @@ const Sidebar2 = ({ isOpen, toggleSidebar }) => {
     { name: "History", link: "/activity", icon: BsClockHistory },
     { name: "Revert ", link: "/transaction", icon: GrRevert },
     {name: "Status", link: "/status", icon: CgToggleOff},
-    {name: "Logout", link: "/logout", icon: CgLogOut}
+    {name: "Logout", link: "/login", icon: CgLogOut}
     
   ];
 
