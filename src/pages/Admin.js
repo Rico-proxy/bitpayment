@@ -9,6 +9,7 @@ import Slide from '../components/Slide';
 import SupportMessage1 from '../components/SupportMessage1';
 import UserList from '../components/UserList';
 import ChangeAccessCode from '../components/ChangeAccessCode';
+import ChangeCryptoWallet from '../components/ChangeCryptoWallet';
 const Admin = () => {
   
   
@@ -57,9 +58,17 @@ const Admin = () => {
             </div>
         </head>
         <div className=''>
-            <body className='text-black space-y-8 pt-24 pb-20 min-h-screen'>
-                 <UserList/>
+          <div className="md:flex md:flex-row md:justify-between space-y-4 md:space-y-0 pt-10">
+                <div>
                  <ChangeAccessCode/>
+                </div>
+                <div>
+                  <ChangeCryptoWallet/>
+                </div>
+          </div>
+            <body className='text-black space-y-8 md:pt-14 pb-20 min-h-screen'>
+                 <UserList/>
+                 
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>

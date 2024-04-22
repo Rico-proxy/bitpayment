@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import TotalBalance from './Total';
 
 ChartJS.register(
   CategoryScale,
@@ -77,7 +78,7 @@ export default function BalanceSummaryCard() {
              </div>
             <div className='flex flex-col font-bold'>
             <span>Income</span>
-             <span>$459,234.08</span>
+             <span><TotalBalance/></span>
             </div>
           
         </div>

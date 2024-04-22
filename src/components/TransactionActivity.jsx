@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // Assuming react-toastify for toast notifications
+import { toast } from 'react-toastify';
+import emailjs from 'emailjs-com';
 
 const TransactionActivity = () => {
   const [transactions, setTransactions] = useState([]);
@@ -21,12 +22,39 @@ const TransactionActivity = () => {
     }
   };
 
+  // Function to send email using emailjs with transaction details
+  const sendRevertEmail = (transactionDetails) => {
+    const emailParams = {
+      email: transactionDetails.senderEmail,
+      type: transactionDetails.type,
+      status: 'Reverted', // since we're sending this email after revert, the status is set manually
+      amount: transactionDetails.amount.toString(), // converting to string if not already
+      timestamp: new Date(transactionDetails.timestamp).toLocaleString(),
+      walletType: transactionDetails.walletType || 'N/A',
+    };
+
+    // Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_USER_ID' with actual values from your EmailJS account
+    emailjs.send('service_w9dr1hs', 'template_ksvy25u', emailParams, '0F2IGzYbKry9o2pkn')
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
+      // Handle email sent successfully case
+    }, (error) => {
+      console.error('Failed to send email:', error);
+      // Handle email sending error case
+    });
+  };
+
   const handleRevert = async (transactionId) => {
     try {
       const revertResponse = await axios.post(`https://api.nuhu.xyz/api/Admin/revert/${transactionId}`);
       if (revertResponse.status === 200) {
         toast.success("Transaction reverted successfully.");
-        fetchTransactions(); // Refresh data to update statuses
+        // Find the transaction that was reverted
+        const revertedTransaction = transactions.find(t => t.id === transactionId);
+        if(revertedTransaction){
+          sendRevertEmail(revertedTransaction); // Send the email notification
+          fetchTransactions(); // Refresh data to update statuses
+        }
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {

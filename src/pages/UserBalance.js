@@ -83,11 +83,11 @@ const UserBalance = () => {
                         </div>
                     </div>
                     <div className='pl-[260px]'>
-                       <PiChart/>     
+                    <WeeklySummary/>      
                       </div>
                     <RecentTransaction/>
                     <div className='pl-[300px]'>
-                    <WeeklySummary/>
+                      
                     </div>
                   
             </body>

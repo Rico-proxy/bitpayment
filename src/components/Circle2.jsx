@@ -47,7 +47,7 @@ const Circle2 = () => {
   };
 
   return (
-    <div style={{ width: '130px', height: '70px' }}> {/* Adjust the width and height as needed */}
+    <div style={{ width: '80px', height: '70px' }}> {/* Adjust the width and height as needed */}
     <Line data={data} options={options} />
   </div>
   );

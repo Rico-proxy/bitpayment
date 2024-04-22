@@ -21,6 +21,7 @@ import Trade from '../components/Trade';
 import Slide2 from '../components/Slide2';
 import StatusState from '../components/StatusState';
 const User = () => {
+  
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
@@ -66,10 +67,7 @@ const User = () => {
       <div  className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
-            <div className='flex flex-col'>
-                <h1 className="text-[16px] font-semibold text-white">Account Number</h1>
-                <h1 className="text-[16px] font-semibold text-white">{userInfo.accountNumber}</h1>
-            </div>
+          
             <div>
               <Slide/>
             </div>
@@ -97,27 +95,40 @@ const User = () => {
         </head>
         <div className="px-6">
         <body className='text-black space-y-3 pt-6 pb-20'>
-        <div className='flex flex-row justify-center'>
-                           <Link to="/transfer" className="flex flex-col items-center p-4 rounded-2xl">
+        <div className='flex flex-row justify-between items-center'>
+                      <div className='flex flex-col'>
+                              <h1 className="text-[26px] font-bold text-white">Account Number</h1>
+                              <h1 className="text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
+                          </div>
+                        <div className='flex flex-row'>
+                        <Link to="/usertransfer" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg">
                                     <AiOutlineArrowUp className="text-white md:text-3xl" />
                                   </div>
                                    <p className="text-[19px] md:text-xl font-light text-white">Transfer</p>
                             </Link>
-                            <Link to="/transfer" className="flex flex-col items-center p-4 rounded-2xl">
+                            <Link to="/withdraw" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg">
                                     <AiOutlineArrowDown className="text-white md:text-3xl" />
                                   </div>
                                    <p className="text-[19px] md:text-xl font-light text-white">Receive</p>
                             </Link>
-                            </div> 
+                        </div>
+                        <div className='flex flex-col'>
+                              <h1 className="text-[26px] font-bold text-white">Ledger</h1>
+                              <h2 className="text-[19px] font-semibold text-white">{userInfo.ledgerAccountNumber}</h2>
+                          </div>
+           </div> 
           <div className='flex flex-row items-center justify-between'>
-            <div className=''>
-              <Time/>
+            <div className='flex flex-row space-x-3 text-white items-center'>
+              <div>
+                <Time/>
+              </div>
+              <div className='text-2xl font-bold font'>
+              {userInfo.firstName}
+              </div>
             </div>
-            <div>
-             Ledger Account
-            </div>
+            
           </div>
             <div className='flex flex-row space-x-5'>
                 <div>
@@ -133,7 +144,7 @@ const User = () => {
             </div>
             <div className='flex flex-row space-x-6'>
                 <div className=' '>
-                  <Trade/>
+                  <RecentTransaction/>
                 </div>
                 <div>
                   <Chart/>

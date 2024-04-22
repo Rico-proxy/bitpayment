@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 
-function ChangeAccessCode() {
+function ChangeCryptoWallet() {
   const [isOpen, setIsOpen] = useState(false);
-  const [accessCode, setAccessCode] = useState('');
+  const [walletAddress, setWalletAddress] = useState('');
 
   function closeModal() {
     setIsOpen(false);
@@ -18,8 +18,8 @@ function ChangeAccessCode() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put('https://api.nuhu.xyz/api/Admin/edit-access-code', {
-        newAccessCode: accessCode
+      const response = await axios.put('https://api.nuhu.xyz/api/Admin/edit-crypto-wallet', {
+        address: walletAddress,
       });
       console.log(response.data);
       closeModal();
@@ -35,7 +35,7 @@ function ChangeAccessCode() {
         onClick={openModal}
         className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded"
       >
-        Change Access Code
+        Change Wallet Address
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -68,16 +68,16 @@ function ChangeAccessCode() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Enter New Access Code
+                    Enter New Wallet Address
                   </Dialog.Title>
                   <form onSubmit={handleSubmit} className="mt-4">
                     <input
                       type="text"
-                      name="newAccessCode"
+                      name="walletAddress"
                       className="w-full rounded border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                      placeholder="New Access Code"
-                      value={accessCode}
-                      onChange={(e) => setAccessCode(e.target.value)}
+                      placeholder="Wallet Address"
+                      value={walletAddress}
+                      onChange={(e) => setWalletAddress(e.target.value)}
                     />
                     <div className="mt-4">
                       <button
@@ -98,4 +98,5 @@ function ChangeAccessCode() {
   );
 }
 
-export default ChangeAccessCode;
+export default ChangeCryptoWallet;
+

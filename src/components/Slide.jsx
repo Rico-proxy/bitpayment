@@ -2,7 +2,7 @@ import React from 'react'
 import Marquee from "react-fast-marquee";
 const Slide = () => {
   return (
-    <div className='text-white font-bold font text-[14px] w-[480px]'>
+    <div className='text-white font-bold font text-[14px] '>
         <Marquee className='border-b border-t border-black flex flex-row '>
                 <span>
                     Welcome to Bitpayment systems Limited, 

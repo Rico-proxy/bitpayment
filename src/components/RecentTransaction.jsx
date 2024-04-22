@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { FaCaretDown } from 'react-icons/fa';
+import axios from 'axios';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-icons/md';
 
 const RecentTransaction = () => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const fetchTransactions = async () => {
+      const userId = sessionStorage.getItem('userId');
+      if (!userId) {
+        console.log('User ID not found in session storage.');
+        return;
+      }
       try {
-        // Retrieving the user ID from session storage
-        const userId = sessionStorage.getItem('userId');
-        if (!userId) {
-          console.log('User ID not found in session storage.');
-          return;
-        }
-        const response = await fetch(`http://152.42.139.53:4040/api/Wallet/get-transactions?userId=${userId}`);
-        const data = await response.json();
-        
-        if (data && data.transactions) {
-          setTransactions(data.transactions.map(transaction => ({
+        const response = await axios.get(`https://api.nuhu.xyz/api/Wallet/get-transactions?userId=${userId}`);
+        if (response.data && Array.isArray(response.data)) {
+          setTransactions(response.data.map(transaction => ({
             ...transaction,
+            icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)
           })));
         }
@@ -30,45 +30,50 @@ const RecentTransaction = () => {
     fetchTransactions();
   }, []);
 
+  const getStatusIcon = (status, type) => {
+    if (status === 'Successful') {
+      return <MdCheckCircle className='text-green-500'/>;
+    } else if (status === 'Reverted') {
+      return <MdCancel className='text-red-500'/>;
+    } else {
+      return type === 'Income' ? <MdArrowDownward /> : <MdArrowUpward />;
+    }
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'Successful':
-        return 'bg-green-500';
+        return 'text-green-500';
       case 'Reverted':
-        return 'bg-red-500';
+        return 'text-red-500';
       default:
-        return 'bg-yellow-400'; // Assuming other statuses are pending or similar
+        return 'text-yellow-400'; // Assuming other statuses are pending or similar
     }
   };
 
   return (
-    <div className="bg w-[800px] recent text-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Latest Transactions</h2>
-      <p className="mb-6">Below are your most recent transaction updates.</p>
-      <ul>
-        {transactions.map((transaction, index) => (
-          <li key={index} className="flex items-center justify-between py-3 border-b border-gray-700">
-            <div className="flex items-center">
-              {/* Placeholder for avatar, replace '/path-to-avatar.jpg' with your path or logic to handle avatars */}
-              <img className="h-12 w-12 rounded-full mr-4" src="/path-to-avatar.jpg" alt={`${transaction.name}`} />
-              <div>
-                <p className="font-semibold">{transaction.name}</p>
-                <p className="text-xs text-gray-400">{transaction.date}</p>
-              </div>
-            </div>
-            <div className="mr-4">
-              <p className="font-semibold">{transaction.amount}</p>
-              <p className="text-xs text-gray-400">{transaction.card}</p>
-            </div>
-            <div className={`flex items-center ${transaction.statusColor} text-xs font-semibold px-3 py-1 rounded-full`}>
-              {transaction.status}
-              <FaCaretDown className="h-4 w-4 ml-2" />
-            </div>
-            <FaCaretDown className="h-6 w-6" />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <TableContainer component={Paper} className="bg w-[800px] rounded-xl">
+      <Table>
+        <TableHead>
+          <TableRow className="text-white">
+            <TableCell className='text-white text-xl font-bold'>Amount</TableCell>
+            <TableCell className='text-white text-xl font-bold'>Status</TableCell>
+            <TableCell className='text-white text-xl font-bold'>Wallet Type</TableCell>
+            <TableCell className='text-white text-xl font-bold'>Type</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {transactions.map((transaction, index) => (
+            <TableRow key={index} className={`hover:bg-gray-600 ${transaction.statusColor}`}>
+              <TableCell className="text-white">{transaction.amount}</TableCell>
+              <TableCell className="text-white">{transaction.icon}</TableCell>
+              <TableCell className="text-white">{transaction.walletType}</TableCell>
+              <TableCell className="text-white">{transaction.type}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

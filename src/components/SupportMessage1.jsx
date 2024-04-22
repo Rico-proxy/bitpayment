@@ -39,53 +39,60 @@ function SupportMessage1() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg contact-form text-black">
-      { /* Input for Name */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaUser className='icon'/>
-          <input type="text" name="name" placeholder="Your name*" value={formData.name} onChange={handleChange} required />
-        </div>
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white p-5 shadow-lg">
+      {/* Input for Name */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <FaUser className="text-gray-700"/>
+          <input type="text" name="name" placeholder="Your name*" value={formData.name} onChange={handleChange} required
+                 className="flex-1 p-2 border border-gray-300 rounded outline-none" />
+        </label>
       </div>
 
-      { /* Input for Phone */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaPhone className='icon'/>
-          <input type="tel" name="phone" placeholder="Your phone*" value={formData.phone} onChange={handleChange} required />
-        </div>
+      {/* Input for Phone */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <FaPhone className="text-gray-700"/>
+          <input type="tel" name="phone" placeholder="Your phone*" value={formData.phone} onChange={handleChange} required
+                 className="flex-1 p-2 border border-gray-300 rounded outline-none" />
+        </label>
       </div>
 
-      { /* Input for Email */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaEnvelope className='icon'/>
-          <input type="email" name="email" placeholder="Your email*" value={formData.email} onChange={handleChange} required />
-        </div>
+      {/* Input for Email */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <FaEnvelope className="text-gray-700"/>
+          <input type="email" name="email" placeholder="Your email*" value={formData.email} onChange={handleChange} required
+                 className="flex-1 p-2 border border-gray-300 rounded outline-none" />
+        </label>
       </div>
 
-      { /* Select Option */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaListAlt className='icon'/>
-          <select name="option" value={formData.option} onChange={handleChange} required>
+      {/* Select Option */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <FaListAlt className="text-gray-700"/>
+          <select name="option" value={formData.option} onChange={handleChange} required
+                  className="flex-1 p-2 border border-gray-300 rounded outline-none bg-white">
             <option value="">Choose your option*</option>
             <option value="feedback">Feedback</option>
             <option value="inquiry">Inquiry</option>
             <option value="support">Support</option>
           </select>
-        </div>
+        </label>
       </div>
 
-      { /* Textarea for Message */}
-      <div className="form-group">
-        <div className="input-icon">
-          <FaPen className='icon'/>
-          <textarea name="message" placeholder="Your Message*" value={formData.message} onChange={handleChange} required></textarea>
-        </div>
+      {/* Textarea for Message */}
+      <div className="mb-4">
+        <label className="flex items-center space-x-2">
+          <FaPen className="text-gray-700"/>
+          <textarea name="message" placeholder="Your Message*" value={formData.message} onChange={handleChange} required
+                    className="flex-1 p-2 border border-gray-300 rounded outline-none" rows="5"></textarea>
+        </label>
       </div>
 
-      <button type="submit" className="submit-btn bg-[#0f1b39] text-white p-5">SEND MESSAGE</button>
+      <button type="submit" className="w-full py-3 px-5 bg-blue-500 hover:bg-blue-600 text-white rounded transition duration-200">
+        SEND MESSAGE
+      </button>
     </form>
   );
 }

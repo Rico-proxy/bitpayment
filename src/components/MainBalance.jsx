@@ -1,10 +1,40 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
-
+import axios from 'axios';
+import TotalBalance from './Total';
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const MainBalance = () => {
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+   // Retrieve user ID from session storage instead of local storage
+   const userId = sessionStorage.getItem('userId');
+    let intervalId = null;
+
+    const fetchUserData = () => {
+      if (userId) {
+        axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
+          .then(response => {
+            setUserInfo(response.data);
+          })
+          .catch(error => {
+            console.error('Error fetching user details:', error);
+          });
+      }
+    };
+
+    // Call fetchUserData immediately and then set up the interval
+    fetchUserData();
+    intervalId = setInterval(fetchUserData, 10000);
+
+    // Clear the interval when the component is unmounted
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []); // Empt
+
   const data = {
     labels: [''],
     datasets: [
@@ -56,7 +86,7 @@ const MainBalance = () => {
         <span>...</span>
       </div>
       <div style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
-        $ 98,452.44
+        <TotalBalance/>
       </div>
       <div style={{ height: '10px', marginBottom: '20px' }}>
         <Bar data={data} options={options} />

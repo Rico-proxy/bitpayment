@@ -79,6 +79,7 @@ const UserStatus = () => {
           <thead className="border-b bg-gray-300 text-black">
             <tr>
               <th className="px-6 py-3">Full Name</th>
+              <th className="px-6 py-3">Email</th>
               <th className="px-6 py-3">Active Status</th>
               <th className="px-6 py-3">Actions</th>
             </tr>
@@ -87,6 +88,7 @@ const UserStatus = () => {
             {filteredUsers.map((user) => (
               <tr key={user.id} className="border-b hover:bg-gray-50 hover:text-black">
                 <td className="px-6 py-4">{user.fullName}</td>
+                <td className="px-6 py-4">{user.email}</td>
                 <td className="px-6 py-4">
                   <span className={`relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight ${user.isActive ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700'}`}>
                     <span className="relative">{user.isActive ? 'Active' : 'Inactive'}</span>

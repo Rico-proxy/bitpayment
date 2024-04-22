@@ -43,7 +43,7 @@ import OwnAccount from '../components/OwnAccount';
                           />
                           <h1 className='text-2xl  italic text-blue-900 font-bold'>Payment System</h1>
                   </div> 
-                            <div className='pt-20 flex flex-col justify-center items-center text-center space-y-3 '>
+                            <div className='pt-20 flex flex-col   space-y-3 '>
                                 
                                     <WireTransfer/>
                                     <BitcoinAccount/>

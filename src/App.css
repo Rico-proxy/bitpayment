@@ -204,44 +204,7 @@ body{
   .font{
     font-style: italic;
   }
-  .contact-form {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .input-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #ccc;
-  }
-  
-  .icon {
-    color: #000;
-    margin-right: 10px;
-    min-width: 30px;
-    text-align: center;
-  }
-  
-  input, select, textarea {
-    width: 120%;
-    padding: 10px;
-    border: none;
-    outline: none;
-  }
-  
-  @media (max-width: 768px) {
-    .contact-form {
-      width: 100%;
-    }
-  }
-  
+ 
   .line {
     display: block; /* Display block to take up its own space */
     height: 2px; /* The thickness of your line */

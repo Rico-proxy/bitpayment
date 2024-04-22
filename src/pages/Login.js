@@ -34,54 +34,15 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Login error:', error.response || error);
-      if (error.response) {
-        const statusCode = error.response.status;
-        switch (statusCode) {
-          case 400:
-            toast.error('Check your login details', {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            break;
-          case 401:
-            toast.error('Your account is not activated', {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            break;
-          default:
-            toast.error('An unexpected error occurred', {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-        }
-      } else {
-        // Handle case when error does not come from server response
-        toast.error('Network or other error', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
+      toast.error('Incorrect login details', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 

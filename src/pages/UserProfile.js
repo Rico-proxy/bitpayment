@@ -23,8 +23,36 @@ import Profile1 from '../components/Profile1';
 import Circle5 from '../components/Circle5';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 import SpecificsComponent from '../components/SpecificsComponent';
+import User from './User';
 const UserProfile = () => {
+    const [userInfo, setUserInfo] = useState({});
+
+    useEffect(() => {
+     // Retrieve user ID from session storage instead of local storage
+     const userId = sessionStorage.getItem('userId');
+      let intervalId = null;
   
+      const fetchUserData = () => {
+        if (userId) {
+          axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
+            .then(response => {
+              setUserInfo(response.data);
+            })
+            .catch(error => {
+              console.error('Error fetching user details:', error);
+            });
+        }
+      };
+  
+      // Call fetchUserData immediately and then set up the interval
+      fetchUserData();
+      intervalId = setInterval(fetchUserData, 10000);
+  
+      // Clear the interval when the component is unmounted
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []); // Empt
   
 
   const [isOpen, setIsOpen] = useState(true);
@@ -83,10 +111,10 @@ const UserProfile = () => {
                                     <div className="p-2 flex space-x-12 items-center">
                                         <div className='flex flex-col'>
                                                 <h1>
-                                                    Main Balance
+                                                    Ledger Acc
                                                 </h1>
                                                 <span>
-                                                    $5,412
+                                                    $ {userInfo.ledgerAccountBalance}
                                                 </span>
                                         </div>
                                         <div className='flex flex-col'>
@@ -113,10 +141,10 @@ const UserProfile = () => {
                                     <div className="p-2 flex space-x-12 items-center">
                                         <div className='flex flex-col'>
                                                 <h1>
-                                                    Main Balance
+                                                    Usd Balance
                                                 </h1>
                                                 <span>
-                                                    $5,412
+                                                    $ {userInfo.usdAccountBalance}
                                                 </span>
                                         </div>
                                         <div className='flex flex-col'>
