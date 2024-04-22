@@ -4,18 +4,15 @@ const Slide = () => {
   return (
     <div className='text-white font-bold font text-[14px] '>
         <Marquee className='border-b border-t border-black flex flex-row '>
-                <span>
-                    Welcome to Bitpay Payment Systems Limited, 
-                </span>    
-                <span className='px-2'>
-                Create a Transfer pin on the Profile Page        
-                </span>    
-                <span className='px-2'>
-                  To start making Transactions,
-                </span>
-                <span className='pr-5'>
-                If not disregard this message.
-                </span>
+                <p className='pl-2'>
+                 Welcome to your Bitpay Payment Systems Limited personal dashboard.
+                </p>
+                <p className='px-2'>
+                Please, create a USER PIN authenticate all your transfers.
+                  </p>
+                  <p>
+                  You can do this by clicking on your PROFILE icon, then, SET PIN.
+                  </p>
         </Marquee>
     </div>
   )

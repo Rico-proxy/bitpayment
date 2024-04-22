@@ -34,11 +34,14 @@ const ThreeCards = () => {
       clearInterval(intervalId);
     };
   }, []); // Empt
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
+  };
   return (
    <card className=' flex flex-col space-y-3'>
             <div  className="bg  h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${userInfo.usdAccountBalance}</p>
+                <p className="text-2xl font-semibold">${formatCurrency(userInfo.usdAccountBalance)}</p>
                 <p className="text-sm">Usd Acount Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
@@ -51,7 +54,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${userInfo.walletBalance}</p>
+                <p className="text-2xl font-semibold">${formatCurrency(userInfo.walletBalance)}</p>
                 <p className="text-sm">Wallet Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
@@ -61,7 +64,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[20vh] w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${userInfo.ledgerAccountBalance}</p>
+                <p className="text-2xl font-semibold">${formatCurrency(userInfo.ledgerAccountBalance)}</p>
                 <p className="text-sm">Ledger Acc </p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>

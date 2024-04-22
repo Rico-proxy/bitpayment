@@ -37,10 +37,13 @@ const TotalBalance = () => {
       clearInterval(intervalId);
     };
   }, []); // Empty dependency array to run only on mount
-
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
+  };
   return (
     <div>
-       ${totalBalance.toFixed(2)}
+     
+       ${formatCurrency(totalBalance.toFixed(2))}
     </div>
   );
 };

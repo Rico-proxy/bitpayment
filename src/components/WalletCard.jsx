@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import { BsBellFill } from 'react-icons/bs'
-import { AiOutlineArrowUp } from "react-icons/ai";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import axios from 'axios';
 const WalletCard = () => {
         const [userInfo, setUserInfo] = useState({});
@@ -31,6 +31,9 @@ const WalletCard = () => {
       clearInterval(intervalId);
     };
   }, []); // Empt
+  const formatCurrency = (amount) => {
+        return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
+      };
   return (
     <div className='bg rounded-lg'>
         <div className='p-6 flex flex-col space-y-8'>
@@ -51,14 +54,14 @@ const WalletCard = () => {
                 <div className='flex flex-row justify-between'>
                         <div className='font flex flex-col text-start space-y-2'>
                         <p className="text-xl font-semibold text-white">Wallet Balance</p>
-                        <p className="text-xl text-white font-light">${userInfo.walletBalance}</p>
+                        <p className="text-xl text-white font-light">${formatCurrency(userInfo.walletBalance)}</p>
                         <p className="text-xs text-white">+0.5% than last month</p>
                        </div> 
                        <div className='flex flex-col'>
-                            <div className="bg-black p-3 rounded-lg text-white">
-                            <AiOutlineArrowUp  className="mx-auto hover:animate-bounce text-xl"/>
+                            <div className="bg-black p-3  rounded-lg text-white">
+                            <AiOutlineArrowDown  className="mx-auto hover:animate-bounce text-xl"/>
                             </div>
-                            <div className='pt-2 text-white font text-sm'>Transfer</div>
+                            <div className='pt-2 text-white font text-sm'>Withdraw</div>
                         </div>
                 </div>
         </div>
