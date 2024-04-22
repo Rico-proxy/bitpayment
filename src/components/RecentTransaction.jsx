@@ -65,7 +65,7 @@ const RecentTransaction = () => {
         <TableBody>
           {transactions.map((transaction, index) => (
             <TableRow key={index} className={`hover:bg-gray-600 ${transaction.statusColor}`}>
-              <TableCell className="text-white">${transaction.amount}</TableCell>
+              <TableCell className="text-white">${transaction.amount.toLocaleString()}</TableCell>
               <TableCell className="text-white">{transaction.icon}</TableCell>
               <TableCell className="text-white">{transaction.walletType}</TableCell>
               <TableCell className="text-white">{transaction.type}</TableCell>
