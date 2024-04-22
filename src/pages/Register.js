@@ -1,4 +1,3 @@
-
 import { FiMail } from 'react-icons/fi';
 import { RiLockPasswordLine } from "react-icons/ri";
 import axios from 'axios';
@@ -14,51 +13,61 @@ import { AiTwotoneMail } from "react-icons/ai";
 import { BsTelephone } from "react-icons/bs";
 import { MdPassword } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
+
+const accountTypeMap = {
+  1: 'Savings Account',
+  2: 'Current Account',
+  3: 'Fixed Deposit',
+  4: 'Recurring Deposit Account',
+  5: 'Checking Account',
+  6: 'Offshore Account',
+  7: 'Money Market Account',
+  8: 'Certificate of Deposit Account'
+};
+
 const Register = () => {
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState('');
 
   const countryOptions = countryCodes.customList(
-    'countryCode', 
+    'countryCode',
     '{countryNameEn} '
   );
+
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
   };
+
+  
   const handleSubmit = async (event) => {
-  event.preventDefault(); // Prevent the default form submit behavior
-  const form = event.target;
-  const notify = () => toast("Wow so easy!");
-  const formData = {
-      firstName: form.firstName.value,
+    event.preventDefault();
+    const form = event.target;
+    
+    // Prepare formData with numeric accountType for the API
+    const formData = {
+        // ...other form fields
+        firstName: form.firstName.value,
       lastName: form.lastName.value,
       middleName: form.middleName.value,
       email: form.email.value,
       password: form.password.value,
       confirmPassword: form.confirmPassword.value,
       phoneNumber: form.phoneNumber.value,
-      accountType: parseInt(form.accountType.value, 10), // Ensure accountType is an integer
-      address: form.address.value,
-      city: form.city.value,
-      state: form.state.value,
-      country: String(selectedCountry),
-  };
+        accountType: parseInt(form.accountType.value, 10), // Numeric value for backend
+        country: String(selectedCountry),
+        address: form.address.value,
+        city: form.city.value,
+        state: form.state.value,
+    };
 
-  const toastId = toast.loading("Registration is ongoing...");
+    const toastId = toast.loading("Registration is ongoing...");
 
-  // Wait for 3 seconds before proceeding with the registration
-  setTimeout(async () => {
     try {
       const response = await axios.post('https://api.nuhu.xyz/api/Auth/Register', formData);
-
-      if (response.status === 201 || response.status === 201) {
-        // Send an email using EmailJS
-        emailjs.sendForm('service_mc49zuo', 'template_we3gk1k', form, '0F2IGzYbKry9o2pkn')
-          .then((result) => {
-              console.log('Email sent:', result.text);
-          }, (error) => {
-              console.log('Failed to send email:', error.text);
-          });
+      
+      if (response.status === 201) {
+        // Assuming the account number is in the response data and accessible via response.data.accountNumber
+        const accountNumber = response.data.accountNumber; // Retrieve account number from response
 
         // Update the toast with a success message
         toast.update(toastId, {
@@ -69,10 +78,23 @@ const Register = () => {
           closeOnClick: true
         });
 
-        // Redirect to '/login' after showing the success message
-        setTimeout(() => navigate('/login'), 3000);
+        // Prepare data for EmailJS, including the account number
+        const emailData = {
+          ...formData,
+          accountType: accountTypeMap[formData.accountType], // String value for EmailJS
+          accountNumber: accountNumber // Include the account number
+        };
+
+        // Send the email with EmailJS using the updated emailData
+        emailjs.send('service_mc49zuo', 'template_we3gk1k', emailData, '0F2IGzYbKry9o2pkn')
+          .then((result) => {
+              console.log('Email sent:', result.text);
+          }, (error) => {
+              console.error('Failed to send email:', error.text);
+          });
+
+        navigate('/login');
       } else {
-        // Update the toast with an error message due to unexpected status code
         toast.update(toastId, {
           render: "Registration unsuccessful, please try again.",
           type: "error",
@@ -82,8 +104,6 @@ const Register = () => {
         });
       }
     } catch (error) {
-      // Update the toast with an error message in case of an exception
-      console.error('Registration error:', error.response?.data || error.message);
       toast.update(toastId, {
         render: "Registration unsuccessful, please try again.",
         type: "error",
@@ -91,10 +111,10 @@ const Register = () => {
         autoClose: 5000,
         closeOnClick: true
       });
+      console.error('Registration error:', error.response?.data || error.message);
     }
-  }, 3000); // 3-second delay
-};
-  
+  };
+
   return (
     <div style={{backgroundImage: "url('assets/3.jpg')",}} className='min-h-screen overflow-hidden bg-[#0f1b39]'>
     <ToastContainer position="top-center"/>

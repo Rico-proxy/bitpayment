@@ -99,7 +99,7 @@ const TransactionActivity = () => {
                       onClick={() => handleRevert(transaction.id)}
                       disabled={transaction.status === 'Reversed'}
                     >
-                      {transaction.status === 'Reversed' ? 'Reversed' : 'Revert'}
+                      {transaction.status === 'Reversed' ? 'Reversed' : 'Reverse'}
                     </button>
                   </td>
                 </tr>
