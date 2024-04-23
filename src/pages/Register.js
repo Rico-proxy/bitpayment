@@ -83,7 +83,6 @@ const Register = () => {
           ...formData,
           accountType: accountTypeMap[formData.accountType], // String value for EmailJS
           accountNumber: accountNumber, // Include the account number
-          country: String(selectedCountry)
         };
 
         // Send the email with EmailJS using the updated emailData
@@ -191,12 +190,18 @@ const Register = () => {
                   </div>
                   <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
                     <GrLocation className="text-black font-bold font-xl" />
-                    <select name="country" required className="pl-4 border-l-2 outline-none text-sm w-full">
-                      <option value="">Select your country</option>
-                      {Object.entries(countryOptions).map(([countryCode, countryDetails]) => (
-                        <option key={countryCode} value={countryDetails}>{countryDetails}</option>
-                      ))}
-                    </select>
+                    <select
+                            name="country"
+                            required
+                            value={selectedCountry}
+                            onChange={handleCountryChange}
+                            className="pl-4 border-l-2 outline-none text-sm w-full"
+                          >
+                            <option value="">Select your country</option>
+                            {Object.entries(countryOptions).map(([countryCode, countryDetails]) => (
+                              <option key={countryCode} value={countryDetails}>{countryDetails}</option>
+                            ))}
+                          </select>
                   </div>
                 </div>
               </div>

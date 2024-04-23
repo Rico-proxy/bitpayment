@@ -24,10 +24,14 @@ const Login = () => {
       const loginResponse = response.data.loginResponse;
 
       if (loginResponse && loginResponse.token) {
+        // Add this line in the Login component after successful login
+        sessionStorage.setItem('role', loginResponse.role);
+
         sessionStorage.setItem('authToken', loginResponse.token);
         sessionStorage.setItem('userId', loginResponse.id);
         sessionStorage.setItem('email', loginResponse.email);
         sessionStorage.setItem('pin', loginResponse.pin);
+       
         navigate(loginResponse.role === 'Admin' ? '/admin' : '/user');
         toast.success('Welcome! You have successfully logged in.', {
           position: "top-center",
