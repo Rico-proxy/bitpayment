@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRouteAdmin from './components/ProtectedRouteAdmin';
 import ProtectedRouteUser from './components/ProtectedRouteUser';
+import ProtectedRoute from './components/ProtectedRoute';
 import Access from './pages/Access';
 import Admin from './admin/Admin';
 import Login from './pages/Login';
@@ -33,15 +34,16 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Access />} />
-          <Route path="/website" element={<Website />} />
+          <Route path='/website' element={<ProtectedRoute><Website /></ProtectedRoute>} />
+         
           <Route path="/error" element={<Error />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/register2" element={<Register2 />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="/legal" element={<Legal />} />
-
+          <Route path="/login" element={<ProtectedRoute><Login /></ProtectedRoute>} />
+          <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+          <Route path="/register2" element={<ProtectedRoute><Register2 /></ProtectedRoute>} />
+          <Route path="/policy" element={<ProtectedRoute><Policy /></ProtectedRoute>} />
+          <Route path="/cookies" element={<ProtectedRoute><Cookies /></ProtectedRoute>} />
+          <Route path="/legal" element={<ProtectedRoute><Legal /></ProtectedRoute>} />
+            
           // Admin routes
           <Route path="/admin" element={<ProtectedRouteAdmin><Admin /></ProtectedRouteAdmin>} />
           <Route path="/activity" element={<ProtectedRouteAdmin><Activity /></ProtectedRouteAdmin>} />

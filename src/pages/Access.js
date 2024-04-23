@@ -26,6 +26,7 @@ const Access = () => {
                 loading: 'Verifying access code...',
                 success: (data) => {
                     console.log('Response', data.data);
+                    sessionStorage.setItem('isAccessGranted', 'true');
                     navigate('/website');
                     return 'Access Granted!';
                 },
