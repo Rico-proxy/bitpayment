@@ -93,7 +93,7 @@ body{
   .dropdown-content {
     display: none;
     position: absolute;
-    left: 5px;
+    left: -40px;
     background-color: rgb(1, 29, 84);
     min-width: 160px;
     color: white;
@@ -115,6 +115,7 @@ body{
   /* This will be applied when the dropdown is open */
   .dropdown .dropdown-content {
     display: block;
+    background-color: black;
   }
   /* Add this to your CSS file */
   .transition-width {

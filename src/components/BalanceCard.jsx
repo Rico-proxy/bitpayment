@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsArrowDownLeft, BsArrowDownRight } from "react-icons/bs";
+import { BsArrowDownLeft, BsArrowDownRight, BsArrowUpRight } from "react-icons/bs";
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -77,14 +77,14 @@ export default function BalanceSummaryCard() {
                 <BsArrowDownLeft className="hover:animate-bounce"/>
              </div>
             <div className='flex flex-col font-bold'>
-            <span>Income</span>
+            <span>TOTAL</span>
              <span><TotalBalance/></span>
             </div>
           
         </div>
         <div className="flex flex-row space-x-2 items-center">
              <div className="bg-black p-3 rounded-lg text-white">
-                <BsArrowDownLeft className="hover:animate-bounce"/>
+                <BsArrowUpRight className="hover:animate-bounce"/>
              </div>
             <div className='flex flex-col font-bold'>
             <span>Expense</span>

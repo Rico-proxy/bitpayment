@@ -40,7 +40,7 @@ const WalletCard = () => {
                 <div className='flex flex-row justify-between'>
                                 <img 
                         src="/assets/logo.png" 
-                        alt="Adam Joe" 
+                        alt="Bitpay Payment" 
                         className="rounded-full" 
                        height={30} width={70}
                         />

@@ -11,7 +11,7 @@ import ThreeCards from '../components/Three Cards';
 import RecentTransaction from '../components/RecentTransaction';
 import Chart from '../components/Chart';
 import ProgressBar from '../components/ProgressBar';
-import Slide from '../components/Slide';
+import Slide5 from '../components/Slide5';
 import axios from 'axios';
 import Time from '../components/Time';
 import WalletCard from '../components/WalletCard';
@@ -24,6 +24,7 @@ import Circle5 from '../components/Circle5';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 import SpecificsComponent from '../components/SpecificsComponent';
 import User from './User';
+import MovingLineChart from '../components/MovingLineChart';
 const UserProfile = () => {
     const [userInfo, setUserInfo] = useState({});
 
@@ -70,29 +71,27 @@ const UserProfile = () => {
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
-            <div className='flex flex-col'>
-                <h1 className="text-[16px] font-semibold text-white">Profile</h1>
-               
-            </div>
+           
             <div>
-              <Slide/>
+              <Slide5/>
             </div>
             <div className="flex flex-row items-center space-x-5 pr-6">
                 <div className="bg-black p-4 rounded-2xl text-white">
                 <BsBellFill className="hover:animate-bounce"/>
                 </div>
-                <div className="bg-black p-4 rounded-2xl text-white">
-                <TbMessage2Exclamation className="hover:animate-bounce"/>
-                </div>
+                
+
                 <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
                     <RiSettings4Line className="hover:animate-bounce text-2xl"/>
                 </button>
                 {Open && (
                     <div className="dropdown-content text-white">
-                    <a href="#profile">Profile</a>
+                    <a href="/profile
+">Profile</a>
                     <a href="#inbox">Inbox</a>
-                    <a href="#logout">Logout</a>
+                    <a href="/login
+">Logout</a>
                     </div>
                 )}
                 </div>
@@ -105,7 +104,7 @@ const UserProfile = () => {
                             <Profile1/>
                             </div>
                             <div className='flex flex-col space-x-4'>
-                                <cardmain className='flex flex-row space-x-4'>
+                                <cardmain className='flex flex-row space-x-4 pl-4'>
                                 <card className="bg h-[27vh]  w-[40vh] text-white p-4 rounded-xl flex flex-col space-y-4 items-center  shadow-lg">
                 
                                     <div className="p-2 flex space-x-12 items-center">
@@ -167,7 +166,8 @@ const UserProfile = () => {
                                     
                                     </card>
                                 </cardmain>
-                                 <div className='pt-16'>
+                                 <div className='pt-8'>
+                                 
                                  <SpecificsComponent/>
                                  </div>
                                

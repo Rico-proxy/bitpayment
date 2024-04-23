@@ -8,7 +8,7 @@ import { RiSettings4Line } from 'react-icons/ri';
 import BalanceCard from '../components/BalanceCard';
 import Card from '../components/Card';
 import ThreeCards from '../components/Three Cards';
-import RecentTransaction from '../components/RecentTransaction';
+import RecentTransaction2 from '../components/RecentTransaction2';
 import Chart from '../components/Chart';
 import ProgressBar from '../components/ProgressBar';
 import Slide from '../components/Slide';
@@ -86,9 +86,11 @@ const User = () => {
                 </button>
                 {Open && (
                     <div className="dropdown-content text-white">
-                    <a href="#profile">Profile</a>
+                    <a href="/profile
+">Profile</a>
                     <a href="#inbox">Inbox</a>
-                    <a href="#logout">Logout</a>
+                    <a href="/login
+">Logout</a>
                     </div>
                 )}
                 </div>
@@ -145,7 +147,7 @@ const User = () => {
             </div>
             <div className='flex flex-row space-x-6'>
                 <div className=' '>
-                  <RecentTransaction/>
+                  <RecentTransaction2/>
                 </div>
                 <div>
                   <Chart/>
@@ -154,7 +156,7 @@ const User = () => {
             <div className='px-10'>
               <ProgressBar/>
             </div>
-                <CurrencyConverter/>
+                
         </body>
         <footer className='pr-4  ' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>

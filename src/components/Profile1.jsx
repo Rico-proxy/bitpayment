@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import { FaPhone, FaEnvelope, FaGlobe, FaCreditCard, FaCalendarAlt, FaMoneyBillAlt } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaGlobe, FaCreditCard, FaCalendarAlt, FaMoneyBillAlt, FaClock } from 'react-icons/fa';
 import { IoMdDownload } from 'react-icons/io';
 import { GrLocation } from "react-icons/gr";
 import { BsGlobeAmericas } from "react-icons/bs";
@@ -8,6 +8,16 @@ import axios from 'axios';
 import TotalBalance from './Total';
 import StatusState from './StatusState';
 const Profile1 = () => {
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const currentTime = new Date().toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true // Use AM/PM; set to false for 24-hour format
+  });
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
@@ -36,12 +46,13 @@ const Profile1 = () => {
       clearInterval(intervalId);
     };
   }, []); // Empt
+ 
   return (
     <div className="bg text-white p-6 rounded-xl shadow-lg ">
       <div className="flex justify-between items-center">
         <div className='flexflex-col'>
         <span className="text-sm font-semibold">ID Details</span>
-        <div className="text-sm font-bold "># {userInfo.id}</div>
+        <div className="text-sm font-bold "># {userInfo.accountNumber}</div>
         </div>
         <SetPinComponent/>
       </div>
@@ -93,21 +104,14 @@ const Profile1 = () => {
        
       </div>
       <div className="flex flex-wrap justify-between text-xs mt-20">
-        <div className="flex items-center mt-2">
-          <FaCreditCard className="mr-2" />
-          <span>MasterCard 404</span>
-        </div>
+
         <div className="flex items-center mt-2">
           <FaCalendarAlt className="mr-2" />
-          <span>April 29, 2020</span>
+          <span>{currentDate}</span>
         </div>
         <div className="flex items-center mt-2">
-          <FaCalendarAlt className="mr-2" />
-          <span>June 5, 2020</span>
-        </div>
-        <div className="flex items-center mt-2">
-          <FaCalendarAlt className="mr-2" />
-          <span>June 4, 2020</span>
+          <FaClock className="mr-2" />
+          <span>{currentTime}</span>
         </div>
       </div>
     </div>

@@ -12,15 +12,16 @@ import { ImProfile } from "react-icons/im";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FcSupport } from "react-icons/fc";
 import { CgLogOut } from "react-icons/cg";
+import { MdContactSupport } from "react-icons/md";
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   // Define the menu items array
   const menus = [
     { name: "Dashboard", link: "/user", icon: MdSpaceDashboard },
     { name: "Balance", link: "/balance", icon: FaWallet },
-    { name: "Transfers ", link: "/usertransaction", icon: FiMessageSquare },
     { name: "Profile", link: "/profile", icon: ImProfile },
-    { name: "Support", link: "/support", icon: FcSupport },
-    {name: "Logout", link: "/logout", icon: CgLogOut}
+    { name: "Transfers ", link: "/usertransaction", icon: FiMessageSquare },
+    { name: "Support", link: "/support", icon: MdContactSupport},
+    {name: "Logout", link: "/login", icon: CgLogOut}
   ];
 
   return (

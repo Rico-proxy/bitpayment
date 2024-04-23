@@ -29,10 +29,7 @@ const Admin = () => {
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
-            <div className='flex flex-col'>
-                <h1 className="text-[16px] font-semibold text-white">User list</h1>
-               
-            </div>
+           
             <div>
               <Slide/>
             </div>
@@ -40,18 +37,19 @@ const Admin = () => {
                 <div className="bg-black p-4 rounded-2xl text-white">
                 <BsBellFill className="hover:animate-bounce"/>
                 </div>
-                <div className="bg-black p-4 rounded-2xl text-white">
-                <TbMessage2Exclamation className="hover:animate-bounce"/>
-                </div>
+                
+
                 <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
                     <RiSettings4Line className="hover:animate-bounce text-2xl"/>
                 </button>
                 {Open && (
                     <div className="dropdown-content text-white">
-                    <a href="#profile">Profile</a>
+                    <a href="/profile
+">Profile</a>
                     <a href="#inbox">Inbox</a>
-                    <a href="#logout">Logout</a>
+                    <a href="/login
+">Logout</a>
                     </div>
                 )}
                 </div>

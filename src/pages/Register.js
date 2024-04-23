@@ -54,10 +54,10 @@ const Register = () => {
       confirmPassword: form.confirmPassword.value,
       phoneNumber: form.phoneNumber.value,
         accountType: parseInt(form.accountType.value, 10), // Numeric value for backend
-        country: String(selectedCountry),
         address: form.address.value,
         city: form.city.value,
         state: form.state.value,
+        country: String(selectedCountry),
     };
 
     const toastId = toast.loading("Registration is ongoing...");
@@ -82,7 +82,8 @@ const Register = () => {
         const emailData = {
           ...formData,
           accountType: accountTypeMap[formData.accountType], // String value for EmailJS
-          accountNumber: accountNumber // Include the account number
+          accountNumber: accountNumber, // Include the account number
+          country: String(selectedCountry)
         };
 
         // Send the email with EmailJS using the updated emailData
