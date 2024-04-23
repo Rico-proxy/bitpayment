@@ -16,11 +16,13 @@ const RecentTransaction = () => {
       try {
         const response = await axios.get(`https://api.nuhu.xyz/api/Wallet/get-transactions?userId=${userId}`);
         if (response.data && Array.isArray(response.data)) {
-          setTransactions(response.data.map(transaction => ({
+          // Take only the last five transactions from the response
+          const lastFiveTransactions = response.data.slice(-13).map(transaction => ({
             ...transaction,
             icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)
-          })));
+          }));
+          setTransactions(lastFiveTransactions);
         }
       } catch (error) {
         console.error('Failed to fetch transactions:', error);
@@ -32,9 +34,9 @@ const RecentTransaction = () => {
 
   const getStatusIcon = (status, type) => {
     if (status === 'Successful') {
-      return <MdCheckCircle className='text-green-500'/>;
+      return <MdCheckCircle className='text-green-500' />;
     } else if (status === 'Reversed') {
-      return <MdCancel className='text-red-500'/>;
+      return <MdCancel className='text-red-500' />;
     } else {
       return type === 'Income' ? <MdArrowDownward /> : <MdArrowUpward />;
     }

@@ -63,6 +63,7 @@ const Activity = () => {
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='flex justify-center'>
                   Copyright © 2024 All rights reserved. Bitpay Payment Systems Limited.
+
                   </div>
                 </div>
           </footer>

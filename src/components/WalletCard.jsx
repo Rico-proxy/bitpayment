@@ -58,7 +58,7 @@ const WalletCard = () => {
                         <p className="text-xs text-white">+0.5% than last month</p>
                        </div> 
                        <div className='flex flex-col'>
-                            <div className="bg-black p-3  rounded-lg text-white">
+                            <div className="bg-black py-3 mx-1  rounded-lg text-white">
                             <AiOutlineArrowDown  className="mx-auto hover:animate-bounce text-xl"/>
                             </div>
                             <div className='pt-2 text-white font text-sm'>Withdraw</div>

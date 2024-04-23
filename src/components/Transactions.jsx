@@ -5,7 +5,7 @@ import { MdCheckCircle, MdCancel } from 'react-icons/md';
 
 const Transactions = () => {
   const [tabValue, setTabValue] = useState(0);
-  const [transactions, setTransactions] = useState({ completed: [], successful: [], Reversed: [] });
+  const [transactions, setTransactions] = useState({ completed: [], successful: [], reversed: [] });
 
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
@@ -14,8 +14,8 @@ const Transactions = () => {
         .then(response => {
           const completed = response.data;
           const successful = response.data.filter(transaction => transaction.status === 'Successful');
-          const Reversed = response.data.filter(transaction => transaction.status === 'Reversed');
-          setTransactions({ completed, successful, Reversed });
+          const reversed = response.data.filter(transaction => transaction.status === 'Reversed');
+          setTransactions({ completed, successful, reversed });
         })
         .catch(error => console.error('Error fetching transactions:', error));
     }
@@ -30,22 +30,22 @@ const Transactions = () => {
       <Tabs className='text-white' value={tabValue} onChange={handleChangeTab} aria-label="transaction tabs">
         <Tab label="Completed" className='text-white' />
         <Tab label="Successful" className='text-white' />
-        <Tab label="Reversed" className='text-white' />
+        <Tab label="reversed" className='text-white' />
       </Tabs>
       <TableContainer component={Paper} className='bg'>
         <Table>
           <TableHead>
             <TableRow className="text-white">
-              <TableCell>Date</TableCell>
-              <TableCell>Time</TableCell>
-              <TableCell>Details</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell className="text-white">Date</TableCell>
+              <TableCell className="text-white">Time</TableCell>
+              <TableCell className="text-white">Details</TableCell>
+              <TableCell className="text-white">Amount</TableCell>
+              <TableCell className="text-white">Type</TableCell>
+              <TableCell className="text-white">Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactions[tabValue === 0 ? 'completed' : tabValue === 1 ? 'successful' : 'Reversed'].map((transaction) => (
+            {transactions[tabValue === 0 ? 'completed' : tabValue === 1 ? 'successful' : 'reversed'].map((transaction) => (
               <TableRow key={transaction.id}>
                 <TableCell className="text-white">{new Date(transaction.timestamp).toLocaleDateString()}</TableCell>
                 <TableCell className="text-white">{new Date(transaction.timestamp).toLocaleTimeString()}</TableCell>

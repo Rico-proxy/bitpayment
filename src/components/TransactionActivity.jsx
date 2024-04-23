@@ -85,25 +85,35 @@ const TransactionActivity = () => {
               </tr>
             </thead>
             <tbody>
-              {transactions.map((transaction, index) => (
-                <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
-                  <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
-                  <td className="px-6 py-4">{transaction.amount}</td>
-                  <td className="px-6 py-4">{transaction.status}</td>
-                  <td className="px-6 py-4">{transaction.type}</td>
-                  <td className="px-6 py-4">{transaction.senderEmail}</td>
-                  <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
-                  <td className="px-6 py-4">
-                    <button
-                      className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleRevert(transaction.id)}
-                      disabled={transaction.status === 'Reversed'}
-                    >
-                      {transaction.status === 'Reversed' ? 'Reversed' : 'Reverse'}
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {transactions.map((transaction, index) => (
+  <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
+    <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
+    <td className="px-6 py-4">{transaction.amount}</td>
+    <td className="px-6 py-4">{transaction.status}</td>
+    <td className="px-6 py-4">{transaction.type}</td>
+    <td className="px-6 py-4">{transaction.senderEmail}</td>
+    <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
+    <td className="px-6 py-4">
+      {transaction.status === 'Reversed' ? (
+        <button
+          className="bg-gray-600 text-white font-bold py-2 px-4 rounded cursor-not-allowed"
+          disabled
+        >
+          Reversed
+        </button>
+      ) : (
+        <button
+          className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
+          onClick={() => handleRevert(transaction.id)}
+        >
+          Reverse
+        </button>
+      )}
+    </td>
+  </tr>
+))}
+
+
             </tbody>
           </table>
         </div>

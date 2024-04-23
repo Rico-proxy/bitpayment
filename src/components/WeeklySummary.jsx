@@ -54,7 +54,7 @@ const WeeklySummary = () => {
       borderRadius: '20px',
       padding: '20px',
       color: 'white',
-      width: '90%',
+      width: '100%',
       fontFamily: 'Arial, sans-serif',
       boxSizing: 'border-box',
     }}>

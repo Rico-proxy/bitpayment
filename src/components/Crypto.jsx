@@ -22,7 +22,7 @@ const CryptoPrices = () => {
       try {
         const response = await axios.get('https://api.coincap.io/v2/assets');
         // Initially fetch more data, we will slice it later based on the screen size
-        setCryptos(response.data.data.slice(0, 6));
+        setCryptos(response.data.data.slice(0, 7));
       } catch (error) {
         console.error('There was an error fetching the crypto prices:', error);
       }
@@ -35,7 +35,7 @@ const CryptoPrices = () => {
   const displayedCryptos = windowWidth < 640 ? cryptos.slice(0, 3) : cryptos;
 
   return (
-    <div className="flex flex-col items-center p-4 text-white">
+    <div className="flex flex-col items-center p-4 text-white bg rounded-lg h-full">
       <h1 className="text-2xl font-bold my-4">Cryptocurrency Prices</h1>
       <div className="w-full">
         {displayedCryptos.map(crypto => {

@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import Trade from '../components/Trade';
 import Slide2 from '../components/Slide2';
 import StatusState from '../components/StatusState';
+import CurrencyConverter from '../components/CryptoCurrencyConverter';
 const User = () => {
   
   const [userInfo, setUserInfo] = useState({});
@@ -153,12 +154,12 @@ const User = () => {
             <div className='px-10'>
               <ProgressBar/>
             </div>
-            
+                <CurrencyConverter/>
         </body>
         <footer className='pr-4  ' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='flex justify-center'>
-                  @2024 All rights reserved Bitpayment Systems Limited
+                  @2024 All rights reserved Bitpay Payment Systems Limited
                   </div>
                 </div>
         </footer>

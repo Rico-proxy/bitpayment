@@ -19,6 +19,9 @@ import MainBalance from '../components/MainBalance';
 import Three from '../components/Three';
 import PiChart from '../components/PiChart';
 import WeeklySummary from '../components/WeeklySummary';
+
+import CryptoCurrencyConverter from '../components/CryptoCurrencyConverter';
+import CryptoPrices from '../components/Crypto';
 const UserBalance = () => {
   
   
@@ -67,34 +70,34 @@ const UserBalance = () => {
             </div>
         </head>
         <div className='px-6'>
-            <body className='pb-20 grid min-h-screen grid-cols-2 gap-4'>
-                    <div>
+            <body className='pb-20  min-h-screen flex flex-row '>
+                    <div className=''>
                         <div className='grid grid-cols-2 '>
                             <div className='w-[40vh]'>
                                 <WalletCard/>
                             </div>
                             <div className='w-[60vh] pb-10'>
                                     <MainBalance/>
+                      
                             </div>
-                            <div style={{ background: 'linear-gradient(160deg, #7b7bea, #0006ff)',}} className='  w-[820px] '>
-                            <Three/>
-                            </div>
-                        
+                            
+                        <RecentTransaction/>
                         </div>
                     </div>
-                    <div className='pl-[260px]'>
+                    <div className='pl-[260px] flex flex-col space-y-5'>
                     <WeeklySummary/>      
-                      </div>
-                    <RecentTransaction/>
-                    <div className='pl-[300px]'>
-                      
+                    <div className=''>
+                      <CryptoPrices/>
                     </div>
+                      </div>
+                     
                   
+                   
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='flex justify-center'>
-                  @2024 All rights reserved Bitpayment Systems Limited
+                  @2024 All rights reserved Bitpay Payment Systems Limited
                   </div>
                 </div>
           </footer>

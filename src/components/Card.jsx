@@ -3,13 +3,30 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 const Card = () => {
-  const [data, setData] = useState({
-    labels: Array.from({ length: 12 }, (_, i) => i + 1),
+  // Function to generate random colors
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  const generateData = () => {
+    return Array.from({ length: 12 }, () => ({
+      amount: Math.floor(Math.random() * 1000),
+      color: getRandomColor(), // Assign a random color for each bar
+    }));
+  };
+
+  const [chartData, setChartData] = useState({
+    labels: Array.from({ length: 12 }, (_, i) => `Month ${i + 1}`),
     datasets: [
       {
         label: 'Your Balance',
-        data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 1000)),
-        backgroundColor: 'rgba(255, 255, 255, 255)',
+        data: generateData().map((d) => d.amount),
+        backgroundColor: generateData().map((d) => d.color),
         borderColor: 'rgba(255, 206, 86, 1)',
         borderWidth: 1,
       },
@@ -18,12 +35,14 @@ const Card = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setData({
-        ...data,
+      const newData = generateData();
+      setChartData({
+        labels: Array.from({ length: 12 }, (_, i) => `Month ${i + 1}`),
         datasets: [
           {
-            ...data.datasets[0],
-            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 1000)),
+            ...chartData.datasets[0],
+            data: newData.map((d) => d.amount),
+            backgroundColor: newData.map((d) => d.color),
           },
         ],
       });
@@ -60,11 +79,10 @@ const Card = () => {
 
   return (
     <div className="bg p-4">
-        <div  style={{ height: '370px', width: '300px' }}>
-        <Bar data={data} options={options} />
-         </div>
+      <div style={{ height: '370px', width: '300px' }}>
+        <Bar data={chartData} options={options} />
+      </div>
     </div>
-    
   );
 };
 
