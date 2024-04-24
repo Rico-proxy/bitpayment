@@ -11,10 +11,16 @@ const ProtectedRouteUser = ({ children }) => {
 
         const resetTimeout = () => {
             if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(() => navigate('/login'), 300000); // 300000 ms = 5 minutes
+            timeout = setTimeout(logout, 300000); // 300000 ms = 5 minutes
         };
 
-        let timeout = setTimeout(() => navigate('/login'), 300000); // Set initial timeout
+        const logout = () => {
+            sessionStorage.removeItem('authToken'); // Clear the authToken from session storage
+            sessionStorage.removeItem('role'); // Optionally clear other auth related session storage
+            navigate('/login', { replace: true }); // Redirect to login page
+        };
+
+        let timeout = setTimeout(logout, 300000); // Set initial timeout
         events.forEach(event => window.addEventListener(event, resetTimeout));
 
         return () => {
