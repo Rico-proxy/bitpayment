@@ -171,9 +171,7 @@ const User = () => {
                   <Chart/>
                 </div>
             </div>
-            <div className='md:px-10 px-4'>
-              <ProgressBar/>
-            </div>
+            
                 
         </body>
         <footer className='md:pr-4  pl-20' >

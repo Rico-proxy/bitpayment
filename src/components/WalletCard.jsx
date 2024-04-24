@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import { BsBellFill } from 'react-icons/bs'
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const WalletCard = () => {
         const [userInfo, setUserInfo] = useState({});
 
@@ -44,25 +45,25 @@ const WalletCard = () => {
                         className="rounded-full" 
                        height={30} width={70}
                         />
-                        <div className='flex flex-col'>
+                        <Link to='/usertransfer' className='flex flex-col'>
                             <div className="bg-black p-3 rounded-lg text-white">
                             <AiOutlineArrowUp  className="mx-auto hover:animate-bounce text-xl"/>
                             </div>
                             <div className='pt-2 text-white font text-sm'>Transfer</div>
-                        </div>
+                        </Link>
                 </div>
                 <div className='flex flex-row justify-between'>
                         <div className='font flex flex-col text-start space-y-2'>
                         <p className="text-xl font-semibold text-white">Wallet Balance</p>
-                        <p className="text-xl text-white font-light">${formatCurrency(userInfo.walletBalance)}</p>
+                        <p className="text-[22px] font-serif text-white">${formatCurrency(userInfo.walletBalance)}</p>
                         <p className="text-xs text-white">+0.5% than last month</p>
                        </div> 
-                       <div className='flex flex-col'>
+                       <Link to='/withdraw' className='flex flex-col'>
                             <div className="bg-black py-3 mx-1  rounded-lg text-white">
                             <AiOutlineArrowDown  className="mx-auto hover:animate-bounce text-xl"/>
                             </div>
                             <div className='pt-2 text-white font text-sm'>Withdraw</div>
-                        </div>
+                        </Link>
                 </div>
         </div>
     </div>

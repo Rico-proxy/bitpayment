@@ -12,6 +12,7 @@ import {
   Legend,
 } from 'chart.js';
 import TotalBalance from './Total';
+import AccountActivity from './AccountActivity';
 
 ChartJS.register(
   CategoryScale,
@@ -76,9 +77,9 @@ export default function BalanceSummaryCard() {
              <div className="bg-black p-3 rounded-lg text-white">
                 <BsArrowDownLeft className="hover:animate-bounce"/>
              </div>
-            <div className='flex flex-col font-bold'>
-            <span>TOTAL</span>
-             <span><TotalBalance/></span>
+            <div className='flex flex-col '>
+            <span className='font-bold'>Total Balance</span>
+             <span className='text-[18px] font-serif'><TotalBalance/></span>
             </div>
           
         </div>
@@ -86,9 +87,9 @@ export default function BalanceSummaryCard() {
              <div className="bg-black p-3 rounded-lg text-white">
                 <BsArrowUpRight className="hover:animate-bounce"/>
              </div>
-            <div className='flex flex-col font-bold'>
-            <span>Expense</span>
-             <span>$459,234.08</span>
+            <div className='flex flex-col '>
+            <span className='font-bold'>Expense</span>
+             <span className='text-[18px] font-serif'><AccountActivity/></span>
             </div>
           
         </div>

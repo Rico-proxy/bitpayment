@@ -50,9 +50,9 @@ const Profile1 = () => {
   return (
     <div className="bg text-white p-6 rounded-xl shadow-lg ">
       <div className="flex justify-between items-center">
-        <div className='flexflex-col'>
-        <span className="text-sm font-semibold">ID Details</span>
-        <div className="text-sm font-bold "># {userInfo.accountNumber}</div>
+        <div className='flex flex-row space-x-3'>
+        <span className="text-sm font-semibold">ID:</span>
+        <div className="text-sm font-bold ">{userInfo.accountNumber}</div>
         </div>
         <SetPinComponent/>
       </div>
@@ -65,22 +65,22 @@ const Profile1 = () => {
         </div>
         <div className="flex items-center ml-auto">
           <FaMoneyBillAlt className="mr-1" />
-          <span className='text-xl'><TotalBalance/></span>
+          <span className='text-xl font-serif'><TotalBalance/></span>
         </div>
       </div>
       <div className="flex flex-row space-x-14  justify-between items-center mt-6">
        <div className='flex flex-col'>
             <div className="bg-black flex items-center mt-2 bg p-4 rounded-lg">
                 <FaPhone className="mr-2 font-bold text-xl" />
-                <div className='flex flex-col '>
-                  <span className='pl-3'>Phone</span>
-                  <span className='text-sm'>+ {userInfo.phoneNumber}</span>
+                <div className='flex flex-col text-start'>
+                  <span className=''>Phone</span>
+                  <span className='text-sm'>+{userInfo.phoneNumber}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
                 <FaEnvelope className="mr-2 font-bold text-xl" />
-                <div className='flex flex-col '>
-                  <span className='pl-3'>Email</span>
+                <div className='flex flex-col text-start'>
+                  <span className=''>Email</span>
                   <span className='text-sm'>{userInfo.email}</span>
                 </div>
               </div>
@@ -88,15 +88,15 @@ const Profile1 = () => {
        <div className='flex flex-col'>
             <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
                 <GrLocation  className="mr-2 font-bold text-xl" />
-                <div className='flex flex-col '>
+                <div className='flex flex-col text-start'>
                   <span className=''>Address</span>
                   <span className='text-sm'>{userInfo.address}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
                 <BsGlobeAmericas  className="mr-2 font-bold text-xl" />
-                <div className='flex flex-col '>
-                  <span className='pl-3'>Status:</span>
+                <div className='flex flex-col text-start'>
+                  <span className=''>Status:</span>
                   <span className='text-sm'><StatusState/></span>
                 </div>
               </div>

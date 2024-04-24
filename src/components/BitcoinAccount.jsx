@@ -8,9 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const BitcoinAccount = () => {
   const navigate = useNavigate();
   const [userId] = useState(sessionStorage.getItem('userId') || '');
-  const [walletBalance] = useState(parseFloat(sessionStorage.getItem('walletBalance')) || 0);
-  const [usdAccountBalance] = useState(parseFloat(sessionStorage.getItem('usdAccountBalance')) || 0);
-  const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledgerAccountBalance')) || 0);
+  const [selectedBalance, setSelectedBalance] = useState(0);
   const [walletType, setWalletType] = useState('0');
   const [receiverWalletAddress, setReceiverWalletAddress] = useState('');
   const [details, setDetails] = useState('');
@@ -20,6 +18,39 @@ const BitcoinAccount = () => {
   const [crypto, setCrypto] = useState('');
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
+
+  const getAccountNameByType = (typeValue) => {
+    const accountTypes = {
+      '0': 'USD Account',
+      '1': 'Ledger Account',
+      '2': 'Wallet Balance'
+    };
+    return accountTypes[typeValue] || 'Unknown Account';
+  };
+
+  // Function to fetch the user balance
+  const fetchBalance = async () => {
+    try {
+      if (userId) {
+        const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+        // Extract balances from response
+        const balances = {
+          '0': response.data.usdAccountBalance, // replace with your actual response data
+          '1': response.data.ledgerAccountBalance, // replace with your actual response data
+          '2': response.data.walletBalance // replace with your actual response data
+        };
+        setSelectedBalance(balances[walletType]);
+      }
+    } catch (error) {
+      console.error('Error fetching user balance:', error);
+      toast.error('Failed to fetch account balance.');
+    }
+  };
+
+  // useEffect to fetch user balance when component mounts and when walletType changes
+  useEffect(() => {
+    fetchBalance();
+  }, [walletType]);
 
   const displayFormAfterToast = useCallback(() => {
     setShowForm(true);
@@ -155,28 +186,8 @@ const BitcoinAccount = () => {
     };
   }, []);
 
-  const getBalanceByType = (type) => {
-    switch (type) {
-      case '0': return usdAccountBalance;
-      case '1': return ledgerAccountBalance;
-      case '2': return walletBalance;
-      default: return 0;
-    }
-  };
-  const getAccountNameByType = (typeValue) => {
-    const accountTypes = {
-      '0': 'USD Account',
-      '1': 'Ledger Account',
-      '2': 'Wallet Balance'
-    };
-    return accountTypes[typeValue] || 'Unknown Account';
-  };
   
-
-  const [selectedBalance, setSelectedBalance] = useState(0);
-  useEffect(() => {
-    setSelectedBalance(getBalanceByType(walletType));
-  }, [walletType, usdAccountBalance, ledgerAccountBalance, walletBalance]);
+ 
 
   return (
     <div className="flex flex-col">
@@ -202,18 +213,18 @@ const BitcoinAccount = () => {
                 Bitcoin Transfer
               </div>
               <select 
-                value={walletType} 
-                onChange={(e) => setWalletType(e.target.value)} 
-                className="border border-gray-300 p-2 rounded"
-              >
-                <option value='0'>USD Account</option>
-                <option value='1'>Ledger Account</option>
-                <option value='2'>Wallet Balance</option>
-              </select>
+      value={walletType} 
+      onChange={(e) => setWalletType(e.target.value)} 
+      className="border border-gray-300 p-2 rounded"
+    >
+      <option value='0'>USD Account</option>
+      <option value='1'>Ledger Account</option>
+      <option value='2'>Wallet Balance</option>
+    </select>
 
-              <p className="text-right mt-2">
-                Balance: ${selectedBalance.toFixed(2)}
-              </p>
+    <p className="text-right mt-2">
+      Balance: ${selectedBalance.toFixed(2)}
+    </p>
               <input type="text" placeholder="Wallet Address" value={receiverWalletAddress} onChange={(e) => setReceiverWalletAddress(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <textarea placeholder="Description" value={details} onChange={(e) => setDetails(e.target.value)} className="border border-gray-300 p-2 rounded"></textarea>
               {/* <select 
@@ -225,8 +236,8 @@ const BitcoinAccount = () => {
                 <option value='ETH'>ETH</option>
                 <option value='LTC'>LTC</option>
               </select> */}
-              <input type="text" placeholder="crypto" value={crypto} onChange={(e) => setCrypto(e.target.value)} className="border border-gray-300 p-2 rounded" />
-              <input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="border border-gray-300 p-2 rounded" />
+              <input type="text" placeholder="Crypto" value={crypto} onChange={(e) => setCrypto(e.target.value)} className="border border-gray-300 p-2 rounded" />
+              <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <input type="text" placeholder="OTP" value={otp} onChange={(e) => setOtp(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <input type="password" placeholder="PIN" value={pin} onChange={(e) => setPin(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">

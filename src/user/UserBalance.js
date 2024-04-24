@@ -70,11 +70,11 @@ const UserBalance = () => {
         <div className='px-6'>
             <body className='pb-20  min-h-screen flex flex-row '>
                     <div className=''>
-                        <div className='grid grid-cols-2 '>
+                        <div className='grid grid-cols-2 gap-2'>
                             <div className='w-[40vh]'>
                                 <WalletCard/>
                             </div>
-                            <div className='w-[60vh] pb-10'>
+                            <div className='w-[60vh] pt-3'>
                                     <MainBalance/>
                       
                             </div>

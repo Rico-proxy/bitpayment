@@ -21,6 +21,7 @@ import PiChart from '../components/PiChart';
 import WeeklySummary from '../components/WeeklySummary';
 import Profile1 from '../components/Profile1';
 import Circle5 from '../components/Circle5';
+import { Link } from 'react-router-dom';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 import SpecificsComponent from '../components/SpecificsComponent';
 import User from './User';
@@ -116,23 +117,20 @@ const UserProfile = () => {
                                                     $ {userInfo.ledgerAccountBalance}
                                                 </span>
                                         </div>
-                                        <div className='flex flex-col'>
+                                        <Link to='/usertransfer' className='flex flex-col'>
                                             <div className="bg-black p-3 rounded-lg text-white">
                                             <AiOutlineArrowUp  className="mx-auto hover:animate-bounce text-xl"/>
                                             </div>
                                             <div className='pt-2 text-white font text-sm'>Transfer</div>
-                                        </div>                                
+                                        </Link>                                
                                     </div>
                                     <div className='flex items-center space-x-12'>
-                                        <div className='flex flex-col'>
-                                            <h1 className='text-sm font font-light'>VALID THRU</h1>
-                                            <span>08/21</span>
-                                        </div>
-                                        <div className='flex flex-col'>
-                                            <h1 className='text-sm font font-light'>CARD HOLDER</h1>
-                                            <span>Thmas Khun</span>
-                                        </div>
-                                    </div>
+                                       
+                                       <div className='flex flex-col'>
+                                           <h1 className='text-sm font font-light'>ACCOUNT HOLDER</h1>
+                                           <span>{userInfo.fullName}</span>
+                                       </div>
+                                   </div>
                                     
                                     </card>  
                                     <card className="bg h-[27vh]  w-[40vh] text-white p-4 rounded-xl flex flex-col space-y-4 items-center  shadow-lg">
@@ -140,33 +138,30 @@ const UserProfile = () => {
                                     <div className="p-2 flex space-x-12 items-center">
                                         <div className='flex flex-col'>
                                                 <h1>
-                                                    Usd Balance
+                                                    USD Balance
                                                 </h1>
                                                 <span>
                                                     $ {userInfo.usdAccountBalance}
                                                 </span>
                                         </div>
-                                        <div className='flex flex-col'>
+                                        <Link to='/usertransfer' className='flex flex-col'>
                                             <div className="bg-black p-3 rounded-lg text-white">
                                             <AiOutlineArrowUp  className="mx-auto hover:animate-bounce text-xl"/>
                                             </div>
                                             <div className='pt-2 text-white font text-sm'>Transfer</div>
-                                        </div>                                
+                                        </Link>                                
                                     </div>
                                     <div className='flex items-center space-x-12'>
+                                       
                                         <div className='flex flex-col'>
-                                            <h1 className='text-sm font font-light'>VALID THRU</h1>
-                                            <span>08/21</span>
-                                        </div>
-                                        <div className='flex flex-col'>
-                                            <h1 className='text-sm font font-light'>CARD HOLDER</h1>
-                                            <span>Thmas Khun</span>
+                                            <h1 className='text-sm font font-light'>ACCOUNT HOLDER</h1>
+                                            <span>{userInfo.fullName}</span>
                                         </div>
                                     </div>
                                     
                                     </card>
                                 </cardmain>
-                                 <div className='pt-8'>
+                                 <div className='pt-5'>
                                  
                                  <SpecificsComponent/>
                                  </div>

@@ -3,9 +3,16 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import axios from 'axios';
 import TotalBalance from './Total';
+import { FaCalendarAlt } from 'react-icons/fa';
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const MainBalance = () => {
+
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
@@ -81,28 +88,28 @@ const MainBalance = () => {
       fontSize: '18px',
       boxSizing: 'border-box', // Ensures padding is included in width
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-        <span>Main Balance</span>
+      <div className='' style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+        <span>Total Balance</span>
         <span>...</span>
       </div>
-      <div style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
+      <div className='text-[32px] font-serif' >
         <TotalBalance/>
       </div>
       <div style={{ height: '10px', marginBottom: '20px' }}>
         <Bar data={data} options={options} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', fontSize: '14px' }}>
-        <div>
-          <div>VALID THRU</div>
-          <div>08/21</div>
+      <div className="flex items-center mt-2">
+          <FaCalendarAlt className="mr-2" />
+          <span>{currentDate}</span>
         </div>
         <div>
-          <div>CARD HOLDER</div>
-          <div>Adam Joe</div>
+          <div>ACCOUNT HOLDER</div>
+          <div>{userInfo.fullName}</div>
         </div>
         <div>
-          <div>NUMBER</div>
-          <div>**** **** **** 1234</div>
+          <div>ACCOUNT NUMBER</div>
+          <div>{userInfo.accountNumber}</div>
         </div>
       </div>
     </div>

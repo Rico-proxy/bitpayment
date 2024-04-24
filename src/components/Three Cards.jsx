@@ -41,7 +41,7 @@ const ThreeCards = () => {
    <card className=' flex flex-col space-y-2 pl-6 md:pl-0'>
             <div  className="bg h-[26vh] w-[45vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${formatCurrency(userInfo.usdAccountBalance)}</p>
+                <p className="text-[22px] font-serif">${formatCurrency(userInfo.usdAccountBalance)}</p>
                 <p className="text-sm">USD Acount Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
@@ -54,7 +54,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[26vh] w-[45vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${formatCurrency(userInfo.walletBalance)}</p>
+                <p className="text-[22px] font-serif">${formatCurrency(userInfo.walletBalance)}</p>
                 <p className="text-sm">Wallet Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
@@ -64,7 +64,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[26vh] w-[45vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-2xl font-semibold">${formatCurrency(userInfo.ledgerAccountBalance)}</p>
+                <p className="text-[22px] font-serif">${formatCurrency(userInfo.ledgerAccountBalance)}</p>
                 <p className="text-sm">Ledger Acc </p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>

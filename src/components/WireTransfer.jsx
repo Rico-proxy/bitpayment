@@ -7,13 +7,9 @@ import emailjs from 'emailjs-com';
 import { useNavigate } from 'react-router-dom';
 const WireTransfer = () => {
   const navigate = useNavigate();
-  
-  // Retrieve the user ID from session storage directly on state initialization
   const [userId] = useState(sessionStorage.getItem('userId') || '');
-  const [walletBalance] = useState(parseFloat(sessionStorage.getItem('walletBalance')) || 0);
-const [usdAccountBalance] = useState(parseFloat(sessionStorage.getItem('usdAccountBalance')) || 0);
-const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledgerAccountBalance')) || 0);
-  const [walletType, setWalletType] = useState('0'); // default to 'Usd Account'
+  const [selectedBalance, setSelectedBalance] = useState(0);
+  const [walletType, setWalletType] = useState('0');
   const [receiverWalletAddress, setReceiverWalletAddress] = useState('');
   const [details, setDetails] = useState('');
   const [amount, setAmount] = useState('');
@@ -21,7 +17,27 @@ const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledge
   const [pin, setPin] = useState('');
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
-
+  const fetchBalance = async () => {
+    try {
+      if (userId) {
+        const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+        // Extract balances from response based on the selected walletType
+        const balances = {
+          '0': response.data.usdAccountBalance, // For USD Account
+          '1': response.data.ledgerAccountBalance, // For Ledger Account
+          '2': response.data.walletBalance // For Wallet Balance
+        };
+        setSelectedBalance(balances[walletType]);
+      }
+    } catch (error) {
+      console.error('Error fetching user balance:', error);
+      toast.error('Failed to fetch account balance.');
+    }
+  };
+  
+  useEffect(() => {
+    fetchBalance();
+  }, [userId, walletType]);
   const displayFormAfterToast = useCallback(() => {
     setShowForm(true);
   }, []);
@@ -165,14 +181,7 @@ const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledge
     };
   }, []);
 
-  const getBalanceByType = (type) => {
-    switch (type) {
-      case '0': return usdAccountBalance;
-      case '1': return ledgerAccountBalance;
-      case '2': return walletBalance;
-      default: return 0;
-    }
-  };
+
 
   const getAccountNameByType = (typeValue) => {
     const accountTypes = {
@@ -182,12 +191,6 @@ const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledge
     };
     return accountTypes[typeValue] || 'Unknown Account';
   };
-
-  const [selectedBalance, setSelectedBalance] = useState(0);
-  useEffect(() => {
-    setSelectedBalance(getBalanceByType(walletType));
-  }, [walletType, usdAccountBalance, ledgerAccountBalance, walletBalance]);
-    
 
   return (
     <div className="flex flex-col">
