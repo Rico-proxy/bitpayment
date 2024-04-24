@@ -113,7 +113,7 @@ const UserProfile = () => {
                                     <div className="p-2 flex space-x-12 items-center">
                                         <div className='flex flex-col'>
                                                 <h1>
-                                                    Ledger Acc
+                                                    Ledger Account
                                                 </h1>
                                                 <span>
                                                 ${formatCurrency(userInfo.ledgerAccountBalance)}
@@ -143,7 +143,7 @@ const UserProfile = () => {
                                                     USD Balance
                                                 </h1>
                                                 <span>
-                                                    $ {userInfo.usdAccountBalance}
+                                                ${formatCurrency(userInfo.usdAccountBalance)}
                                                 </span>
                                         </div>
                                         <Link to='/usertransfer' className='flex flex-col'>
