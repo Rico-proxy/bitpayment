@@ -87,7 +87,7 @@ const Profile1 = () => {
               </div>
        </div> 
        <div className='flex flex-col'>
-            <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
+            <div className="bg-black  flex flex-row items-center mt-2 bg p-4 rounded-lg">
                 <GrLocation  className="mr-2 font-bold text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
                   <span className=''>Address</span>

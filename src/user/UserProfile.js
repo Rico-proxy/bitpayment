@@ -26,6 +26,8 @@ import { AiOutlineArrowUp } from 'react-icons/ai';
 import SpecificsComponent from '../components/SpecificsComponent';
 import User from './User';
 import MovingLineChart from '../components/MovingLineChart';
+import LiveClock from '../components/Clock';
+import CryptoPrice2 from '../components/CryptoPrice2';
 const UserProfile = () => {
     const [userInfo, setUserInfo] = useState({});
 
@@ -164,8 +166,8 @@ const UserProfile = () => {
                                     </card>
                                 </cardmain>
                                  <div className='pt-5'>
-                                 
-                                 <SpecificsComponent/>
+                                <CryptoPrice2/>
+                               
                                  </div>
                                
                              </div>
