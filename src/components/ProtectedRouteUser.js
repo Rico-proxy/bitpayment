@@ -7,7 +7,7 @@ const ProtectedRouteUser = ({ children }) => {
     const userRole = sessionStorage.getItem('role');
 
     if (!authToken || userRole !== 'User') {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/error" replace />;
     }
 
     return children;
