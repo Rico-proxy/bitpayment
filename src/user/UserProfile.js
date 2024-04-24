@@ -65,7 +65,9 @@ const UserProfile = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
+  };
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
@@ -114,7 +116,7 @@ const UserProfile = () => {
                                                     Ledger Acc
                                                 </h1>
                                                 <span>
-                                                    $ {userInfo.ledgerAccountBalance}
+                                                ${formatCurrency(userInfo.ledgerAccountBalance)}
                                                 </span>
                                         </div>
                                         <Link to='/usertransfer' className='flex flex-col'>

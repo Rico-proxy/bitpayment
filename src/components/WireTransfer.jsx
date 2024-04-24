@@ -181,7 +181,7 @@ const WireTransfer = () => {
     };
   }, []);
 
-
+ 
 
   const getAccountNameByType = (typeValue) => {
     const accountTypes = {

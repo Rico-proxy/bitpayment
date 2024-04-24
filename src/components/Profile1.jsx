@@ -8,6 +8,7 @@ import axios from 'axios';
 import TotalBalance from './Total';
 import StatusState from './StatusState';
 const Profile1 = () => {
+ 
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -50,7 +51,7 @@ const Profile1 = () => {
   return (
     <div className="bg text-white p-6 rounded-xl shadow-lg ">
       <div className="flex justify-between items-center">
-        <div className='flex flex-row space-x-3'>
+        <div className='flex flex-row space-x-1'>
         <span className="text-sm font-semibold">ID:</span>
         <div className="text-sm font-bold ">{userInfo.accountNumber}</div>
         </div>
