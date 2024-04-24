@@ -1,14 +1,33 @@
-// src/components/ProtectedRoute.js
-
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
-  // Replace 'isAccessGranted' with the key you use to store access status in session storage
   const isAccessGranted = sessionStorage.getItem('isAccessGranted') === 'true';
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const events = ['load', 'mousemove', 'mousedown', 'click', 'scroll', 'keypress'];
+
+    const resetTimeout = () => {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(logout, 300000); // 300000 ms = 5 minutes
+    };
+
+    const logout = () => {
+      sessionStorage.removeItem('isAccessGranted'); // Clear the access status from session storage
+      navigate('/', { replace: true }); // Redirect to login page
+    };
+
+    let timeout = setTimeout(logout, 300000); // Set initial timeout
+    events.forEach(event => window.addEventListener(event, resetTimeout));
+
+    return () => {
+      clearTimeout(timeout); // Clear timeout on component unmount
+      events.forEach(event => window.removeEventListener(event, resetTimeout));
+    };
+  }, [navigate]);
 
   if (!isAccessGranted) {
-    // If the user has not been granted access, redirect them to the '/' page
     return <Navigate to="/" replace />;
   }
 

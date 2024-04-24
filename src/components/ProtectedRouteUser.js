@@ -30,7 +30,7 @@ const ProtectedRouteUser = ({ children }) => {
     }, [navigate]);
 
     if (!authToken || userRole !== 'User') {
-        return <Navigate to="/error" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     return children;
