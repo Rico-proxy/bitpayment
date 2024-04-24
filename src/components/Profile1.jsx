@@ -72,14 +72,14 @@ const Profile1 = () => {
       <div className="flex flex-row space-x-14  justify-between items-center mt-6">
        <div className='flex flex-col'>
             <div className="bg-black flex items-center mt-2 bg p-4 rounded-lg">
-                <FaPhone className="mr-2 font-bold text-xl" />
-                <div className='flex flex-col text-start'>
+                <FaPhone className="mr-1 font-bold text-xl" />
+                <div className='flex flex-row  space-x-2 items-center text-center'>
                   <span className=''>Phone</span>
                   <span className='text-sm'>+{userInfo.phoneNumber}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
-                <FaEnvelope className="mr-2 font-bold text-xl" />
+                <FaEnvelope className="mr-1 font-bold text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
                   <span className=''>Email</span>
                   <span className='text-sm'>{userInfo.email}</span>
@@ -88,14 +88,14 @@ const Profile1 = () => {
        </div> 
        <div className='flex flex-col'>
             <div className="bg-black  flex flex-row items-center mt-2 bg p-4 rounded-lg">
-                <GrLocation  className="mr-2 font-bold text-xl" />
+                <GrLocation  className="mr-1 font-bold text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
                   <span className=''>Address</span>
                   <span className='text-sm'>{userInfo.address}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
-                <BsGlobeAmericas  className="mr-2 font-bold text-xl" />
+                <BsGlobeAmericas  className="mr-1 font-bold text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
                   <span className=''>Status</span>
                   <span className='text-sm'><StatusState/></span>
