@@ -54,23 +54,23 @@ const RecentTransaction = () => {
   };
 
   return (
-    <TableContainer component={Paper} className="bg w-[800px] rounded-xl">
+    <TableContainer component={Paper} className="bg w-[300px] ml-5 md:ml-0 md:w-[880px] rounded-xl overflow-x-auto">
       <Table>
         <TableHead>
           <TableRow className="text-white">
-            <TableCell className='text-white text-xl font-bold'>Amount</TableCell>
-            <TableCell className='text-white text-xl font-bold'>Status</TableCell>
-            <TableCell className='text-white text-xl font-bold'>Wallet Type</TableCell>
-            <TableCell className='text-white text-xl font-bold'>Type</TableCell>
+            <TableCell className='text-white md:text-xl font-bold'>Amount</TableCell>
+            <TableCell className='text-white md:text-xl font-bold'>Status</TableCell>
+            <TableCell className='text-white md:text-xl font-bold'>Wallet Type</TableCell>
+            <TableCell className='text-white md:text-xl font-bold'>Type</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {transactions.map((transaction, index) => (
             <TableRow key={index} className={`hover:bg-gray-600 ${transaction.statusColor}`}>
-              <TableCell className="text-white">${transaction.amount.toLocaleString()}</TableCell>
-              <TableCell className="text-white">{transaction.icon}</TableCell>
-              <TableCell className="text-white">{transaction.walletType}</TableCell>
-              <TableCell className="text-white">{transaction.type}</TableCell>
+              <TableCell className="text-white text-[13px]">${transaction.amount.toLocaleString()}</TableCell>
+              <TableCell className="text-white text-[13px]">{transaction.icon}</TableCell>
+              <TableCell className="text-white text-[13px]">{transaction.walletType}</TableCell>
+              <TableCell className="text-white text-[13px]">{transaction.type}</TableCell>
             </TableRow>
           ))}
         </TableBody>

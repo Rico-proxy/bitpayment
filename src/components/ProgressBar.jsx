@@ -24,7 +24,7 @@ const Progress = () => {
   const tags = [
     '#teamwork',
     '#design',
-    '#projectmanagement',
+    '#project',
     '16+',
   ];
 

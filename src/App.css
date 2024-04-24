@@ -71,6 +71,7 @@ body{
   .dropdown {
     position: relative;
     display: inline-block;
+    
   }
   
   .dropdown-button {
@@ -149,14 +150,33 @@ body{
   }
   /* BalanceSummaryCard.css */
   .balance-summary-card {
-    background: transparent; /* Purple background */
+    background: transparent;
     border-radius: 20px;
     color: white;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 560px; /* Set a fixed width or make it responsive */
-  
-  }
+    width: 560px; /* Default width for larger screens */
+    margin: auto; /* Center align the card if needed */
+}
+
+/* Adjust styles for tablets */
+@media (max-width: 768px) {
+    .balance-summary-card {
+        width: 90%; /* Make width responsive to the screen size */
+        padding: 15px; /* Slightly reduce padding */
+    }
+}
+
+/* Adjust styles for mobile phones */
+@media (max-width: 480px) {
+    .balance-summary-card {
+        width: 90%; /* Increase width to take up more of the small screen */
+        padding: 20px; /* Further reduce padding for small screens */
+        font-size: 0.9em; /* Optionally adjust font size */
+        height: 100%; /* Optionally adjust height */
+    }
+}
+
   
   .header {
     display: flex;

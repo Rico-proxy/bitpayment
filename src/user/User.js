@@ -21,7 +21,10 @@ import Trade from '../components/Trade';
 import Slide2 from '../components/Slide2';
 import StatusState from '../components/StatusState';
 import CurrencyConverter from '../components/CryptoCurrencyConverter';
+import SmallScreenSidebar from '../components/SmallScreenSidebar';
 const User = () => {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
   
   const [userInfo, setUserInfo] = useState({});
 
@@ -63,17 +66,18 @@ const User = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div  className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
-        <head className="flex flex-row space-x-6 justify-between py-4 items-center">
-          
+        <head className="flex flex-col md:flex md:flex-row md:space-x-6 md:justify-between md:py-4 md:items-center">
+       
             <div>
               <Slide/>
             </div>
-            <div className="flex flex-row items-center space-x-5 pr-6">
-                <div className="bg-black p-4 rounded-2xl text-white">
+           
+            <div className="hidden justify-end md:flex flex-row items-center space-x-2 md:space-x-5 md:pr-6">
+                <div className="p-2 bg-black md:p-4 rounded-lg text-white">
                 <BsBellFill className="hover:animate-bounce"/>
                 </div>
                 
@@ -97,13 +101,13 @@ const User = () => {
             </div>
         </head>
         <div className="px-6">
-        <body className='text-black space-y-3 pt-6 pb-20'>
-        <div className='flex flex-row justify-between items-center'>
+        <body className='text-black space-y-3 pt-6 pb-20 pl-10 md:pl-0'>
+        <div className='flex flex-row justify-between  items-center'>
                       <div className='flex flex-col'>
-                              <h1 className="text-[26px] font-bold text-white">Account Number</h1>
-                              <h1 className="text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
+                              <h1 className="md:text-[26px] font-bold text-white">Account Number</h1>
+                              <h1 className="md:text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
                           </div>
-                        <div className='flex flex-row'>
+                        <div className='hidden md:flex flex-row'>
                         <Link to="/usertransfer" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg">
                                     <AiOutlineArrowUp className="text-white md:text-3xl" />
@@ -118,10 +122,24 @@ const User = () => {
                             </Link>
                         </div>
                         <div className='flex flex-col'>
-                              <h1 className="text-[26px] font-bold text-white">Ledger</h1>
-                              <h2 className="text-[19px] font-semibold text-white">{userInfo.ledgerAccountNumber}</h2>
+                              <h1 className="md:text-[26px] font-bold text-white">Ledger</h1>
+                              <h2 className="md:text-[19px] font-semibold text-white">ledger acc no</h2>
                           </div>
            </div> 
+           <div className='flex flex-row justify-center md:hidden'>
+                        <Link to="/usertransfer" className="flex flex-col items-center p-4 rounded-2xl">
+                                  <div className="p-3 rounded-full bg">
+                                    <AiOutlineArrowUp className="text-white md:text-3xl" />
+                                  </div>
+                                   <p className="text-[19px] md:text-xl font-light text-white">Transfer</p>
+                            </Link>
+                            <Link to="/withdraw" className="flex flex-col items-center p-4 rounded-2xl">
+                                  <div className="p-3 rounded-full bg">
+                                    <AiOutlineArrowDown className="text-white md:text-3xl" />
+                                  </div>
+                                   <p className="text-[19px] md:text-xl font-light text-white">Receive</p>
+                            </Link>
+                        </div>
           <div className='flex flex-row items-center justify-between'>
             <div className='flex flex-row space-x-3 text-white items-center'>
               <div>
@@ -133,11 +151,11 @@ const User = () => {
             </div>
             
           </div>
-            <div className='flex flex-row space-x-5'>
+            <div className='flex flex-col  space-y-4 md:flex md:flex-row md:space-x-5 '>
                 <div>
                 <BalanceCard/>
                 </div>
-                <div className='flex flex-col'>
+                <div>
                     <ThreeCards/>
                 </div>
                 <div><Card/></div>
@@ -145,7 +163,7 @@ const User = () => {
             <div className='pb-5 pt-5'>
               <Slide2/>
             </div>
-            <div className='flex flex-row space-x-6'>
+            <div className='flex flex-col space-y-3 md:flex md:flex-row md:justify-between space-x-6'>
                 <div className=' '>
                   <RecentTransaction2/>
                 </div>
@@ -153,14 +171,14 @@ const User = () => {
                   <Chart/>
                 </div>
             </div>
-            <div className='px-10'>
+            <div className='md:px-10 px-4'>
               <ProgressBar/>
             </div>
                 
         </body>
-        <footer className='pr-4  ' >
-                <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
-                  <div className='flex justify-center'>
+        <footer className='md:pr-4  pl-20' >
+                <div className='bg md:p-3  text-white rounded-tl-xl rounded-tr-xl'>
+                  <div className='flex md:justify-center text-sm md:text-xl p-4 md:p-0'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
                   </div>
                 </div>

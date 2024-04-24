@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 const Card = () => {
-  // Function to generate random colors
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -16,7 +15,7 @@ const Card = () => {
   const generateData = () => {
     return Array.from({ length: 12 }, () => ({
       amount: Math.floor(Math.random() * 1000),
-      color: getRandomColor(), // Assign a random color for each bar
+      color: getRandomColor(),
     }));
   };
 
@@ -51,11 +50,28 @@ const Card = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const [containerStyle, setContainerStyle] = useState({ height: '370px', width: '300px' });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { // Example breakpoint at 768px
+        setContainerStyle({ height: '250px', width: '200px' });
+      } else {
+        setContainerStyle({ height: '380px', width: '300px' });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial size
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
-      duration: 2000, // Animation duration in milliseconds
+      duration: 2000,
     },
     scales: {
       x: {
@@ -78,8 +94,8 @@ const Card = () => {
   };
 
   return (
-    <div className="bg p-4">
-      <div style={{ height: '370px', width: '300px' }}>
+    <div className="bg rounded-lg mx-8 p-4 md:p-0 md:mx-0">
+      <div style={containerStyle}>
         <Bar data={chartData} options={options} />
       </div>
     </div>
