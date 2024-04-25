@@ -78,7 +78,7 @@ export default function BalanceSummaryCard() {
                 <BsArrowDownLeft className="hover:animate-bounce"/>
              </div>
             <div className='flex flex-col '>
-            <span className='font-bold'>Total Balance</span>
+            <span className='font-bold text-sm md:text-xl'>Total Balance</span>
              <span className='text-[18px] font-serif'><TotalBalance/></span>
             </div>
           
@@ -88,7 +88,7 @@ export default function BalanceSummaryCard() {
                 <BsArrowUpRight className="hover:animate-bounce"/>
              </div>
             <div className='flex flex-col '>
-            <span className='font-bold'>Expense</span>
+            <span className='font-bold text-sm md:text-xl'>Expense</span>
              <span className='text-[18px] font-serif'><AccountActivity/></span>
             </div>
           
