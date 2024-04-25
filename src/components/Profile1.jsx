@@ -58,18 +58,18 @@ const Profile1 = () => {
         <SetPinComponent/>
       </div>
       
-      <div className="flex justify-between items-center pt-10">
-        <img className="h-20 w-20 rounded-full mr-3" src="assets/logo.png" alt="Bitpayemnt Systems Limited" />
+      <div className="space-y-3 text-center md:text-start md:flex md:justify-between md:items-center pt-10">
+        <img className="h-20 w-20 rounded-full md:mr-3 mx-auto md:mx-2" src="assets/logo.png" alt="Bitpayemnt Systems Limited" />
         <div>
           <div className="font-bold text-xl">{userInfo.fullName}</div>
           <div className="text-purple-300">{userInfo.email}</div>
         </div>
-        <div className="flex items-center ml-auto">
+        <div className="flex fex-row items-center justify-center md:flex md:items-center ml-auto">
           <FaMoneyBillAlt className="mr-1" />
           <span className='text-xl font-serif'><TotalBalance/></span>
         </div>
       </div>
-      <div className="flex flex-row space-x-14  justify-between items-center mt-6">
+      <div className="  md:flex md:flex-row md:space-x-14  md:justify-between md:items-center mt-6">
        <div className='flex flex-col'>
             <div className="bg-black flex items-center mt-2 bg p-4 rounded-lg">
                 <FaPhone className="mr-1 font-bold text-xl" />

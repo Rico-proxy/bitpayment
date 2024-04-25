@@ -104,7 +104,7 @@ const UserProfile = () => {
         </head>
         <div className='px-6'>
             <body className='pb-20  min-h-screen '>
-                    <div className='flex flex-row justify-around'>
+                    <div className='md:flex md:flex-row md:justify-around'>
                            <div>
                             <Profile1/>
                             </div>

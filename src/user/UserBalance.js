@@ -20,7 +20,7 @@ import MainBalance2 from '../components/MainBalance2';
 import Three from '../components/Three';
 import PiChart from '../components/PiChart';
 import WeeklySummary from '../components/WeeklySummary';
-
+import StatusState from '../components/StatusState';
 import CryptoCurrencyConverter from '../components/CryptoCurrencyConverter';
 import CryptoPrices from '../components/Crypto';
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
@@ -38,39 +38,42 @@ const UserBalance = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
-        <head className="flex flex-row space-x-6 justify-between py-4 items-center">
+        <head className="flex flex-col md:flex md:flex-row md:space-x-6 md:justify-between md:py-4 md:items-center">
+       
+       <div>
+         <Slide3/>
+       </div>
+      
+       <div className="hidden justify-end md:flex flex-row items-center space-x-2 md:space-x-5 md:pr-6">
+           <div className="p-2 bg-black md:p-4 rounded-lg text-white">
+           <BsBellFill className="hover:animate-bounce"/>
+           </div>
            
-            <div>
-              <Slide3/>
-            </div>
-            <div className="flex flex-row items-center space-x-5 pr-6">
-                <div className="bg-black p-4 rounded-2xl text-white">
-                <BsBellFill className="hover:animate-bounce"/>
-                </div>
-                
-
-                <div className="dropdown">
-                <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
-                    <RiSettings4Line className="hover:animate-bounce text-2xl"/>
-                </button>
-                {Open && (
-                    <div className="dropdown-content text-white">
-                    <a href="/profile
+           <div>
+             <StatusState/>
+           </div>
+           <div className="dropdown">
+           <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
+               <RiSettings4Line className="hover:animate-bounce text-2xl"/>
+           </button>
+           {Open && (
+               <div className="dropdown-content text-white">
+               <a href="/profile
 ">Profile</a>
-                    <a href="#inbox">Inbox</a>
-                    <a href="/login
+               <a href="#inbox">Inbox</a>
+               <a href="/login
 ">Logout</a>
-                    </div>
-                )}
-                </div>
-            </div>
-        </head>
-        <div className='px-6'>
-            <body className='pb-20  min-h-screen md:flex md:flex-row '>
+               </div>
+           )}
+           </div>
+       </div>
+   </head>
+        <div className='mx-14 md:mx-6'>
+            <body className='pb-20 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
                     <div className=''>
                         <div className='md:grid md:grid-cols-2 md:gap-2'>
                             <div className='w-[36vh] md:w-[40vh]'>
@@ -93,7 +96,7 @@ const UserBalance = () => {
                        
                         </div>
                     </div>
-                    <div className='pl-[260px] flex flex-col space-y-5'>
+                    <div className='pt-5 md:pt-0 md:pl-[260px] flex flex-col space-y-5'>
                     <WeeklySummary/>      
                     <div className=''>
                       <CryptoPrices/>
