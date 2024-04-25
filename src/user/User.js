@@ -23,6 +23,7 @@ import StatusState from '../components/StatusState';
 import CurrencyConverter from '../components/CryptoCurrencyConverter';
 import SmallScreenSidebar from '../components/SmallScreenSidebar';
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
+import Copier from '../components/Copier'
 const User = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
@@ -124,7 +125,7 @@ const User = () => {
                         </div>
                         <div className='flex flex-col'>
                               <h1 className="text-[14px] md:text-[26px] font-bold text-white">Ledger</h1>
-                              <h2 className="text-[14px] md:text-[19px] font-medium md:font-semibold text-white">ledger acc no</h2>
+                              <h2 className="text-[14px] md:text-[19px] font-medium md:font-semibold text-white"><Copier/></h2>
                           </div>
            </div> 
            <div className='flex flex-row justify-center md:hidden'>
