@@ -79,7 +79,7 @@ export default function BalanceSummaryCard() {
              </div>
             <div className='flex flex-col '>
             <span className='font-bold text-sm md:text-xl'>Total Balance</span>
-             <span className='text-[18px] font-serif'><TotalBalance/></span>
+             <span className='text-[12px] md:text-[18px] font-serif'><TotalBalance/></span>
             </div>
           
         </div>
@@ -89,7 +89,7 @@ export default function BalanceSummaryCard() {
              </div>
             <div className='flex flex-col '>
             <span className='font-bold text-sm md:text-xl'>Expense</span>
-             <span className='text-[18px] font-serif'><AccountActivity/></span>
+             <span className='text-[12px] md:text-[18px] font-serif'><AccountActivity/></span>
             </div>
           
         </div>
