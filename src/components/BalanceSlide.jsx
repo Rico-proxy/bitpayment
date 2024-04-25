@@ -11,10 +11,10 @@ const BalanceSlide = () => {
                 <div >
                     <CryptoSlide/>
                 </div>
-                <div className='px-3'>
+                <div className='px-1'>
                     <CryptoSlide2/>
                 </div>
-                <div className='px-3'>
+                <div className='px-1'>
                     <CryptoSlide3/>
                 </div>
                

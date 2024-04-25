@@ -33,8 +33,12 @@ const WalletCard = () => {
     };
   }, []); // Empt
   const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
-      };
+    return new Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      minimumFractionDigits: 2, // Always display at least two decimal places
+      maximumFractionDigits: 2  // Never display more than two decimal places
+    }).format(amount);
+  };
   return (
     <div className='bg rounded-lg'>
         <div className='p-6 flex flex-col space-y-8'>

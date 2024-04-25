@@ -50,7 +50,7 @@ function App() {
          
           <Route path="/error" element={<Error />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<ProtectedRoute><Register /></ProtectedRoute>} />
+          <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<ProtectedRoute><Register2 /></ProtectedRoute>} />
           <Route path="/policy" element={<ProtectedRoute><Policy /></ProtectedRoute>} />
           <Route path="/cookies" element={<ProtectedRoute><Cookies /></ProtectedRoute>} />
