@@ -92,7 +92,7 @@ const MainBalance2 = () => {
         <span>Total Balance</span>
         <span>...</span>
       </div>
-      <div className='text-[32px] font-serif' >
+      <div className='text-[14px] font-serif' >
         <TotalBalance/>
       </div>
       <div style={{ height: '10px', marginBottom: '20px' }}>

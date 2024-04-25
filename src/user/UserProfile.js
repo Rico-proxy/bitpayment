@@ -29,6 +29,7 @@ import MovingLineChart from '../components/MovingLineChart';
 import LiveClock from '../components/Clock';
 import CryptoPrice2 from '../components/CryptoPrice2';
 import StatusState from '../components/StatusState';
+import Slide2 from '../components/Slide2';
 const UserProfile = () => {
     const [userInfo, setUserInfo] = useState({});
 
@@ -173,13 +174,16 @@ const UserProfile = () => {
                                     
                                     </card>
                                 </cardmain>
-                                 <div className='pt-2'>
+                                 <div className=''>
                                 <CryptoPrice2/>
                                
                                  </div>
                                
                              </div>
                     </div>
+                    <div className='hidden md:block'>
+                    <Slide2/>
+                      </div>
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>

@@ -11,7 +11,7 @@ const ProtectedRouteUser = ({ children }) => {
 
         const resetTimeout = () => {
             if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(logout, 300000); // 300000 ms = 5 minutes
+            timeout = setTimeout(logout, 1800000); // 1800000 ms = 30 minutes
         };
 
         const logout = () => {
@@ -20,7 +20,7 @@ const ProtectedRouteUser = ({ children }) => {
             navigate('/login', { replace: true }); // Redirect to login page
         };
 
-        let timeout = setTimeout(logout, 300000); // Set initial timeout
+        let timeout = setTimeout(logout, 1800000); // Set initial timeout to 30 minutes
         events.forEach(event => window.addEventListener(event, resetTimeout));
 
         return () => {
