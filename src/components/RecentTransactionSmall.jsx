@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-icons/md';
 
-const RecentTransaction2 = () => {
+const RecentTransactionSmall = () => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const RecentTransaction2 = () => {
         const response = await axios.get(`https://api.nuhu.xyz/api/Wallet/get-transactions?userId=${userId}`);
         if (response.data && Array.isArray(response.data)) {
           // Take only the last five transactions from the response
-          const lastFiveTransactions = response.data.slice(-7).map(transaction => ({
+          const lastFiveTransactions = response.data.slice(-5).map(transaction => ({
             ...transaction,
             icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)
@@ -54,7 +54,7 @@ const RecentTransaction2 = () => {
   };
 
   return (
-    <TableContainer component={Paper} className="bg w-[300px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
+    <TableContainer component={Paper} className="bg w-[240px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
       <Table>
         <TableHead>
           <TableRow className="text-white">
@@ -79,4 +79,4 @@ const RecentTransaction2 = () => {
   );
 };
 
-export default RecentTransaction2;
+export default RecentTransactionSmall;

@@ -6,7 +6,7 @@ import TotalBalance from './Total';
 import { FaCalendarAlt } from 'react-icons/fa';
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-const MainBalance = () => {
+const MainBalance2 = () => {
 
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
@@ -82,12 +82,11 @@ const MainBalance = () => {
       borderRadius: '15px',
       color: 'white',
       
-      width: '160%', // Use 100% to fill the container or set a specific width
+      width: '60%', // Use 100% to fill the container or set a specific width
       maxWidth: '500px', // Set a max-width for larger screens
       fontFamily: 'Arial',
       fontSize: '18px',
       boxSizing: 'border-box', // Ensures padding is included in width
-      
     }}>
       <div className='' style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
         <span>Total Balance</span>
@@ -99,7 +98,7 @@ const MainBalance = () => {
       <div style={{ height: '10px', marginBottom: '20px' }}>
         <Bar data={data} options={options} />
       </div>
-      <div className='flex flex-col md:flex md:flex-row justify-between' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', fontSize: '14px' }}>
+      <div className='flex flex-col space-y-2 md:flex md:flex-row justify-between' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', fontSize: '14px' }}>
       <div className="flex items-center mt-2">
           <FaCalendarAlt className="mr-2" />
           <span>{currentDate}</span>
@@ -117,4 +116,4 @@ const MainBalance = () => {
   );
 };
 
-export default MainBalance;
+export default MainBalance2;

@@ -16,12 +16,14 @@ import axios from 'axios';
 import Time from '../components/Time';
 import WalletCard from '../components/WalletCard';
 import MainBalance from '../components/MainBalance';
+import MainBalance2 from '../components/MainBalance2';
 import Three from '../components/Three';
 import PiChart from '../components/PiChart';
 import WeeklySummary from '../components/WeeklySummary';
 
 import CryptoCurrencyConverter from '../components/CryptoCurrencyConverter';
 import CryptoPrices from '../components/Crypto';
+import RecentTransactionSmall from '../components/RecentTransactionSmall';
 const UserBalance = () => {
   
   
@@ -68,18 +70,27 @@ const UserBalance = () => {
             </div>
         </head>
         <div className='px-6'>
-            <body className='pb-20  min-h-screen flex flex-row '>
+            <body className='pb-20  min-h-screen md:flex md:flex-row '>
                     <div className=''>
-                        <div className='grid grid-cols-2 gap-2'>
-                            <div className='w-[40vh]'>
+                        <div className='md:grid md:grid-cols-2 md:gap-2'>
+                            <div className='w-[36vh] md:w-[40vh]'>
                                 <WalletCard/>
                             </div>
-                            <div className='w-[60vh] pt-3'>
+                            <div className='w-[60vh] pt-3 hidden md:block'>
                                     <MainBalance/>
                       
                             </div>
-                            
-                        <RecentTransaction/>
+                            <div className='w-[60vh] pt-3  md:hidden pb-10'>
+                                    <MainBalance2/>
+                      
+                            </div>
+                         <div className='hidden md:block'>
+                         <RecentTransaction/>
+                          </div>
+                          <div className=' md:hidden'>
+                            <RecentTransactionSmall/>
+                            </div>   
+                       
                         </div>
                     </div>
                     <div className='pl-[260px] flex flex-col space-y-5'>

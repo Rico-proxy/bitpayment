@@ -54,9 +54,9 @@ const WalletCard = () => {
                 </div>
                 <div className='flex flex-row justify-between'>
                         <div className='font flex flex-col text-start space-y-2'>
-                        <p className="text-xl font-semibold text-white">Wallet Balance</p>
-                        <p className="text-[22px] font-serif text-white">${formatCurrency(userInfo.walletBalance)}</p>
-                        <p className="text-xs text-white">+0.5% than last month</p>
+                        <p className="text-[14px] md:text-xl font-semibold text-white">Wallet Balance</p>
+                        <p className="text-[14px] md:text-[22px] font-serif text-white">${formatCurrency(userInfo.walletBalance)}</p>
+                        <p className="text-[10px] md:text-xs text-white">+0.5% than last month</p>
                        </div> 
                        <Link to='/withdraw' className='flex flex-col'>
                             <div className="bg-black py-3 mx-1  rounded-lg text-white">

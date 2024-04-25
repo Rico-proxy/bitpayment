@@ -22,6 +22,7 @@ import Slide2 from '../components/Slide2';
 import StatusState from '../components/StatusState';
 import CurrencyConverter from '../components/CryptoCurrencyConverter';
 import SmallScreenSidebar from '../components/SmallScreenSidebar';
+import RecentTransactionSmall from '../components/RecentTransactionSmall';
 const User = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
@@ -164,8 +165,11 @@ const User = () => {
               <Slide2/>
             </div>
             <div className='flex flex-col space-y-3 md:flex md:flex-row md:justify-between space-x-6'>
-                <div className=' '>
+                <div className='hidden md:block '>
                   <RecentTransaction2/>
+                </div>
+                <div>
+                  <RecentTransactionSmall/>
                 </div>
                 <div>
                   <Chart/>
