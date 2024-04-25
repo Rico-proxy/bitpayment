@@ -67,7 +67,12 @@ const RecentTransactionSmall = () => {
         <TableBody>
           {transactions.map((transaction, index) => (
             <TableRow key={index} className={`hover:bg-gray-600 ${transaction.statusColor}`}>
-              <TableCell className="text-white text-[13px]">${transaction.amount.toLocaleString()}</TableCell>
+              <TableCell className="text-white text-[13px]">
+  ${transaction.amount.toLocaleString('en-US', { 
+    minimumFractionDigits: 2, 
+    maximumFractionDigits: 2 
+  })}
+</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.icon}</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.walletType}</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.type}</TableCell>

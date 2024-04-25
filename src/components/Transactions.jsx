@@ -50,7 +50,12 @@ const Transactions = () => {
                 <TableCell className="text-white">{new Date(transaction.timestamp).toLocaleDateString()}</TableCell>
                 <TableCell className="text-white">{new Date(transaction.timestamp).toLocaleTimeString()}</TableCell>
                 <TableCell className="text-white">{transaction.details}</TableCell>
-                <TableCell className="text-white">${transaction.amount.toLocaleString()}</TableCell> {/* Updated this line */}
+                <TableCell className="text-white text-[13px]">
+  ${transaction.amount.toLocaleString('en-US', { 
+    minimumFractionDigits: 2, 
+    maximumFractionDigits: 2 
+  })}
+</TableCell>
                 <TableCell className="text-white">{transaction.type}</TableCell>
                 <TableCell>
                   {transaction.status === 'Completed' ?

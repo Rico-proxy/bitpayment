@@ -34,14 +34,21 @@ const ThreeCards = () => {
       clearInterval(intervalId);
     };
   }, []); // Empt
+
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
-  };
+  return new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 2, // Always display at least two decimal places
+    maximumFractionDigits: 2  // Never display more than two decimal places
+  }).format(amount);
+};
+
   return (
    <card className=' flex flex-col space-y-2 pl-6 md:pl-0'>
             <div  className="bg h-[20vh] w-[37vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-[22px] font-serif">${formatCurrency(userInfo.usdAccountBalance)}</p>
+            <p className="text-[22px] font-serif">${formatCurrency(userInfo.usdAccountBalance)}</p>
+
                 <p className="text-sm">USD Acount Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>

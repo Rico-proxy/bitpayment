@@ -49,7 +49,7 @@ const Profile1 = () => {
   }, []); // Empt
  
   return (
-    <div className="bg text-white px-2 md:px-0 md:p-6 rounded-xl shadow-lg ">
+    <div className="bg text-white px-2 md:px-10 md:p-6 rounded-xl shadow-lg ">
       <div className="flex justify-between items-center">
         <div className='flex flex-row space-x-1'>
         <span className="text-sm font-semibold">ID:</span>
