@@ -104,8 +104,8 @@ const User = () => {
         <body className='text-black space-y-3 pt-6 pb-20 pl-10 md:pl-0'>
         <div className='flex flex-row justify-between  items-center'>
                       <div className='flex flex-col'>
-                              <h1 className="md:text-[26px] font-bold text-white">Account Number</h1>
-                              <h1 className="md:text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
+                              <h1 className="text-[14px] md:text-[26px] font-bold text-white">Account Number</h1>
+                              <h1 className="text-[14px] md:text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
                           </div>
                         <div className='hidden md:flex flex-row'>
                         <Link to="/usertransfer" className="flex flex-col items-center p-4 rounded-2xl">
