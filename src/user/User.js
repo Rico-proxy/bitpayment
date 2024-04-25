@@ -105,25 +105,25 @@ const User = () => {
         <div className='flex flex-row justify-between  items-center'>
                       <div className='flex flex-col'>
                               <h1 className="text-[14px] md:text-[26px] font-bold text-white">Account Number</h1>
-                              <h1 className="text-[14px] md:text-[19px] font-semibold text-white">{userInfo.accountNumber}</h1>
+                              <h1 className="text-[14px] md:text-[19px] font-medium md:font-semibold text-white">{userInfo.accountNumber}</h1>
                           </div>
                         <div className='hidden md:flex flex-row'>
                         <Link to="/usertransfer" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg">
                                     <AiOutlineArrowUp className="text-white md:text-3xl" />
                                   </div>
-                                   <p className="text-[19px] md:text-xl font-light text-white">Transfer</p>
+                                   <p className="text-[14px] md:text-xl font-light text-white">Transfer</p>
                             </Link>
                             <Link to="/withdraw" className="flex flex-col items-center p-4 rounded-2xl">
                                   <div className="p-3 rounded-full bg">
                                     <AiOutlineArrowDown className="text-white md:text-3xl" />
                                   </div>
-                                   <p className="text-[19px] md:text-xl font-light text-white">Receive</p>
+                                   <p className="text-[14px] md:text-xl font-light text-white">Receive</p>
                             </Link>
                         </div>
                         <div className='flex flex-col'>
-                              <h1 className="md:text-[26px] font-bold text-white">Ledger</h1>
-                              <h2 className="md:text-[19px] font-semibold text-white">ledger acc no</h2>
+                              <h1 className="text-[14px] md:text-[26px] font-bold text-white">Ledger</h1>
+                              <h2 className="text-[14px] md:text-[19px] font-medium md:font-semibold text-white">ledger acc no</h2>
                           </div>
            </div> 
            <div className='flex flex-row justify-center md:hidden'>
