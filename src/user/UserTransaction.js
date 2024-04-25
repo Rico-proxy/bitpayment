@@ -56,7 +56,7 @@ const UserTransaction = () => {
                <div className="dropdown-content text-white">
                <a href="/profile
 ">Profile</a>
-               <a href="#inbox">Inbox</a>
+               <a href="/support">Support</a>
                <a href="/login
 ">Logout</a>
                </div>
