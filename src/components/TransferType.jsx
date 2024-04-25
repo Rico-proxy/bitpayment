@@ -27,7 +27,7 @@ import OwnAccount from '../components/OwnAccount';
   }, []);
   
     return (
-      <div className=' flex  justify-center'>
+      <div className=' md:flex  md:justify-center'>
           
           
             <main className='  flex flex-col px-10 '>

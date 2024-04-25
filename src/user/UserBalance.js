@@ -23,6 +23,7 @@ import WeeklySummary from '../components/WeeklySummary';
 import StatusState from '../components/StatusState';
 import CryptoCurrencyConverter from '../components/CryptoCurrencyConverter';
 import CryptoPrices from '../components/Crypto';
+
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
 const UserBalance = () => {
   

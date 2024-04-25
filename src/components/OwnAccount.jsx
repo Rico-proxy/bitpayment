@@ -181,7 +181,7 @@ const OwnAccount = () => {
       <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[150px] rounded-lg p-8 border-2'>
         <div className='flex flex-row space-x-2'>
           <div>
-            <CiBadgeDollar className='text-2xl'/>
+            <CiBadgeDollar className='md:text-2xl'/>
           </div>
           <div>
             <h1>Top Up</h1>

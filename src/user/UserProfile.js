@@ -28,6 +28,7 @@ import User from './User';
 import MovingLineChart from '../components/MovingLineChart';
 import LiveClock from '../components/Clock';
 import CryptoPrice2 from '../components/CryptoPrice2';
+import StatusState from '../components/StatusState';
 const UserProfile = () => {
     const [userInfo, setUserInfo] = useState({});
 
@@ -75,33 +76,36 @@ const UserProfile = () => {
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
-        <head className="flex flex-row space-x-6 justify-between py-4 items-center">
+        <head className="flex flex-col md:flex md:flex-row md:space-x-6 md:justify-between md:py-4 md:items-center">
+       
+       <div>
+         <Slide5/>
+       </div>
+      
+       <div className="hidden justify-end md:flex flex-row items-center space-x-2 md:space-x-5 md:pr-6">
+           <div className="p-2 bg-black md:p-4 rounded-lg text-white">
+           <BsBellFill className="hover:animate-bounce"/>
+           </div>
            
-            <div>
-              <Slide5/>
-            </div>
-            <div className="flex flex-row items-center space-x-5 pr-6">
-                <div className="bg-black p-4 rounded-2xl text-white">
-                <BsBellFill className="hover:animate-bounce"/>
-                </div>
-                
-
-                <div className="dropdown">
-                <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
-                    <RiSettings4Line className="hover:animate-bounce text-2xl"/>
-                </button>
-                {Open && (
-                    <div className="dropdown-content text-white">
-                    <a href="/profile
+           <div>
+             <StatusState/>
+           </div>
+           <div className="dropdown">
+           <button onClick={toggleDropdown} className="dropdown-button rounded-2xl">
+               <RiSettings4Line className="hover:animate-bounce text-2xl"/>
+           </button>
+           {Open && (
+               <div className="dropdown-content text-white">
+               <a href="/profile
 ">Profile</a>
-                    <a href="#inbox">Inbox</a>
-                    <a href="/login
+               <a href="#inbox">Inbox</a>
+               <a href="/login
 ">Logout</a>
-                    </div>
-                )}
-                </div>
-            </div>
-        </head>
+               </div>
+           )}
+           </div>
+       </div>
+   </head>
         <div className='px-6 pl-20 md:pl-0'>
             <body className='pb-20  min-h-screen '>
                     <div className='md:flex md:flex-row md:justify-around'>

@@ -30,7 +30,7 @@ const Withdraw = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
@@ -63,7 +63,7 @@ const Withdraw = () => {
         </head>
         <div className='px-20'>
             <body className='text-black space-y-8  min-h-screen'>
-            <main className='pt-10 ml-20 flex flex-col px-10 '>
+            <main className='pt-10 md:ml-20 flex flex-col md:px-10 '>
              
               <section className='pt-10 '>
               <div className='flex flex-col items-center'>
