@@ -71,7 +71,7 @@ const UserProfile = () => {
     return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
   };
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
@@ -102,14 +102,14 @@ const UserProfile = () => {
                 </div>
             </div>
         </head>
-        <div className='px-6'>
+        <div className='px-6 pl-20 md:pl-0'>
             <body className='pb-20  min-h-screen '>
                     <div className='md:flex md:flex-row md:justify-around'>
                            <div>
                             <Profile1/>
                             </div>
                             <div className='flex flex-col space-x-4'>
-                                <cardmain className='flex flex-row space-x-4 pl-4'>
+                                <cardmain className='pt-10 md:pt-0 space-y-3 md:flex md:flex-row md:space-x-4 md:pl-4'>
                                 <card className="bg h-[27vh]  w-[40vh] text-white p-4 rounded-xl flex flex-col space-y-4 items-center  shadow-lg">
                 
                                     <div className="p-2 flex space-x-12 items-center">

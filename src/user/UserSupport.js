@@ -22,7 +22,7 @@ const UserSupport = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'pl-20' : 'pl-44'}`}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
@@ -53,7 +53,7 @@ const UserSupport = () => {
                 </div>
             </div>
         </head>
-        <div className='px-20'>
+        <div className='md:px-20 pl-14'>
             <body className='text-black space-y-8 pt-24 pb-20 min-h-screen'>
                  <SupportMessage1/>
             </body>
