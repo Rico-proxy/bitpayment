@@ -58,10 +58,10 @@ const RecentTransaction = () => {
       <Table>
         <TableHead>
           <TableRow className="text-white">
-            <TableCell className='text-white md:text-xl font-bold'>Amount</TableCell>
-            <TableCell className='text-white md:text-xl font-bold'>Status</TableCell>
-            <TableCell className='text-white md:text-xl font-bold'>Wallet Type</TableCell>
-            <TableCell className='text-white md:text-xl font-bold'>Type</TableCell>
+            <TableCell className='text-white text-[14px] md:text-xl font-bold'>Amount</TableCell>
+            <TableCell className='text-white text-[14px] md:text-xl font-bold'>Status</TableCell>
+            <TableCell className='text-white text-[14px] md:text-xl font-bold'>Wallet Type</TableCell>
+            <TableCell className='text-white text-[14px] md:text-xl font-bold'>Type</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
