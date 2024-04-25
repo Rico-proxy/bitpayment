@@ -27,9 +27,21 @@ import Register2 from './pages/Register2';
 import Status from './admin/Status';
 import UserTransfer from './user/UserTransfer';
 import Error from './pages/Error';
+import CacheBuster from 'react-cache-buster';
+import packageFile from '../package.json';
+import CacheLoading from './CacheLoading';
 
 function App() {
+  const version = packageFile.version;
+  const isProduction = process.env.NODE_ENV === 'production';
   return (
+    <CacheBuster
+      currentVersion={version}
+      isEnabled={isProduction} //If false, the library is disabled.
+      isVerboseMode={false} //If true, the library writes verbose logs to console.
+      loadingComponent={<CacheLoading />} //If not pass, nothing appears at the time of new version check.
+      metaFileDirectory={'.'} //If public assets are hosted somewhere other than root on your server.
+    >
     <StyledEngineProvider injectFirst>
       <Router>
         <Routes>
@@ -62,6 +74,7 @@ function App() {
         </Routes>
       </Router>
     </StyledEngineProvider>
+    </CacheBuster>
   );
 }
 

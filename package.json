@@ -21,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "history": "^5.3.0",
     "react": "^18.2.0",
+    "react-cache-buster": "^0.1.8",
     "react-calendar": "^4.8.0",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
@@ -40,9 +41,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run generate-meta-tag && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-meta-tag": "node ./node_modules/react-cache-buster/dist/generate-meta-tag.js"
   },
   "eslintConfig": {
     "extends": [
