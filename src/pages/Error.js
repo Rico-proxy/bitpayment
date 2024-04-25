@@ -3,6 +3,7 @@ import { ImEyeBlocked } from "react-icons/im";
 function Error() {
   return (
     <div className="min-h-screen flex items-center justify-center" style={{backgroundImage: "url('assets/3.jpg')"}}>
+       
       <div className="h-[100vh] text-center font-extrabold bg-black/70
  backdrop-brightness-75 w-full pt-[20vh]">
         <h1 className="text-[150px] font-bold text-white">403</h1>
