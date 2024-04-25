@@ -168,7 +168,7 @@ const User = () => {
                 <div className='hidden md:block '>
                   <RecentTransaction2/>
                 </div>
-                <div>
+                <div className='md:hidden'>
                   <RecentTransactionSmall/>
                 </div>
                 <div>
