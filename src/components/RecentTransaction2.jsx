@@ -54,7 +54,7 @@ const RecentTransaction = () => {
   };
 
   return (
-    <TableContainer component={Paper} className="bg w-[300px] ml-5 md:ml-0 md:w-[880px] rounded-xl overflow-x-auto">
+    <TableContainer component={Paper} className="bg w-[300px]  md:ml-0 md:w-[880px] rounded-xl overflow-x-auto">
       <Table>
         <TableHead>
           <TableRow className="text-white">
