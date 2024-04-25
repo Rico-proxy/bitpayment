@@ -76,7 +76,7 @@ const UserBalance = () => {
    </head>
         <div className='mx-14 md:mx-6'>
             <body className='pb-20 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
-                    <div className='md:flex flex-col justify-between'>
+                    <div className='md:flex flex-col '>
                         <div className='md:grid md:grid-cols-2 md:gap-2'>
                             <div className='w-[36vh] md:w-[40vh]'>
                                 <WalletCard/>
@@ -97,7 +97,7 @@ const UserBalance = () => {
                             </div>   
                        
                         </div>
-                        <div className=' hidden md:block'>
+                        <div className=' hidden md:block pt-20'>
                           <BalanceSlide/>
                         </div>
                     </div>

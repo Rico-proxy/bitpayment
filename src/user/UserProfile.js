@@ -69,7 +69,11 @@ const UserProfile = () => {
     setIsOpen(!isOpen);
   };
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount);
+    return new Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      minimumFractionDigits: 2, // Always display at least two decimal places
+      maximumFractionDigits: 2  // Never display more than two decimal places
+    }).format(amount);
   };
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
