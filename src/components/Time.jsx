@@ -28,7 +28,7 @@ const TimeBasedGreeting = () => {
   }, []);
 
   return (
-    <h1 className='font-semibold text-xl  text-white'>
+    <h1 className='font-semibold text-[12px] md:text-xl  text-white'>
       {greeting} <span className="animate-pulse ">{emoji}</span>
     </h1>
   );

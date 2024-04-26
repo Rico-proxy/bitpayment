@@ -149,7 +149,7 @@ const User = () => {
               <div>
                 <Time/>
               </div>
-              <div className='text-2xl font-bold font'>
+              <div className='text-[12px] md:text-2xl font-bold font'>
               {userInfo.firstName}
               </div>
             </div>
