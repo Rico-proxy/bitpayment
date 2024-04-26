@@ -174,7 +174,7 @@ const UserProfile = () => {
                                     
                                     </card>
                                 </cardmain>
-                                 <div className=''>
+                                 <div className='pt-4 md:pt-0'>
                                 <CryptoPrice2/>
                                
                                  </div>
