@@ -34,7 +34,7 @@ const Button2 = () => {
         ref={drawerRef}
         className={`fixed top-0 left-0 h-full bg-[#0f1b39] p-8 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-40`}
       >
-        <nav className="mt-20 flex flex-col space-y-12">
+        <nav className="mt-20 flex flex-col space-y-12 text-white">
           <Link to="/login" className="flex items-center space-x-3 border-b border-gray-700 pb-2">
             <span className='text-xl'>Client Login</span>
           </Link>
