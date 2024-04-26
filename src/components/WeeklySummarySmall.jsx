@@ -5,7 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearSca
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
-const WeeklySummary = () => {
+const WeeklySummarySmall = () => {
   const doughnutData = {
     labels: ['Income', 'Expense', 'Unknown'],
     datasets: [
@@ -52,14 +52,13 @@ const WeeklySummary = () => {
     <div className='bg' style={{
      
       borderRadius: '20px',
-      padding: '20px',
+      padding: '10px',
       color: 'white',
-      width: '97%',
-      height: '120%',
+      width: '110%',
       fontFamily: 'Arial, sans-serif',
       boxSizing: 'border-box',
     }}>
-      <h2 style={{ marginTop: 20 }}>Weekly Summary</h2>
+      <h2 style={{ marginTop: 0 }}>Weekly Summary</h2>
       <Doughnut data={doughnutData} />
       <ul style={{ listStyle: 'none', padding: 0, display: 'flex', justifyContent: 'space-around' }}>
         {doughnutData.labels.map((label, index) => (
@@ -80,4 +79,4 @@ const WeeklySummary = () => {
   );
 };
 
-export default WeeklySummary;
+export default WeeklySummarySmall;

@@ -17,7 +17,7 @@ const RecentTransaction2 = () => {
         const response = await axios.get(`https://api.nuhu.xyz/api/Wallet/get-transactions?userId=${userId}`);
         if (response.data && Array.isArray(response.data)) {
           // Take only the last five transactions from the response
-          const lastFiveTransactions = response.data.slice(-7).map(transaction => ({
+          const lastFiveTransactions = response.data.slice(-5).map(transaction => ({
             ...transaction,
             icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)

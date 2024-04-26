@@ -6,6 +6,8 @@ import emailjs from 'emailjs-com';
 const TransactionActivity = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Number of items per page
 
   useEffect(() => {
     fetchTransactions();
@@ -65,6 +67,15 @@ const TransactionActivity = () => {
     }
   };
 
+  // Define paginate function
+  const paginate = (items, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return items.slice(startIndex, startIndex + itemsPerPage);
+  };
+
+  // Paginate transactions
+  const paginatedTransactions = paginate(transactions, currentPage, itemsPerPage);
+
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Transaction Log</h2>
@@ -73,6 +84,7 @@ const TransactionActivity = () => {
       ) : (
         <div className="overflow-x-auto bg-[#0f1b39] text-white">
           <table className="min-w-full table-auto text-left">
+            {/* Table headers */}
             <thead className="border-b bg-gray-300 text-black">
               <tr>
                 <th className="px-6 py-3">Timestamp</th>
@@ -84,43 +96,53 @@ const TransactionActivity = () => {
                 <th className="px-6 py-3">Action</th>
               </tr>
             </thead>
+            {/* Table body */}
             <tbody>
-            {transactions.map((transaction, index) => (
-  <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
-    <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
-    <td className="px-6 py-4">
-  ${Number(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-</td>
-
-    <td className="px-6 py-4">{transaction.status}</td>
-    <td className="px-6 py-4">{transaction.type}</td>
-    <td className="px-6 py-4">{transaction.senderEmail}</td>
-    <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
-    <td className="px-6 py-4">
-      {transaction.status === 'Reversed' ? (
-        <button
-          className="bg-gray-600 text-white font-bold py-2 px-4 rounded cursor-not-allowed"
-          disabled
-        >
-          Reversed
-        </button>
-      ) : (
-        <button
-          className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-          onClick={() => handleRevert(transaction.id)}
-        >
-          Reverse
-        </button>
-      )}
-    </td>
-  </tr>
-))}
-
-
+              {paginatedTransactions.map((transaction, index) => (
+                <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
+                  <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
+                  <td className="px-6 py-4">
+                    ${Number(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </td>
+                  <td className="px-6 py-4">{transaction.status}</td>
+                  <td className="px-6 py-4">{transaction.type}</td>
+                  <td className="px-6 py-4">{transaction.senderEmail}</td>
+                  <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
+                  <td className="px-6 py-4">
+                    {transaction.status === 'Reversed' ? (
+                      <button
+                        className="bg-gray-600 text-white font-bold py-2 px-4 rounded cursor-not-allowed"
+                        disabled
+                      >
+                        Reversed
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => handleRevert(transaction.id)}
+                      >
+                        Reverse
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       )}
+      {/* Pagination */}
+      <div className="flex justify-center items-center mt-4">
+        {Array.from({ length: Math.ceil(transactions.length / itemsPerPage) }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

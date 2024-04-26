@@ -26,18 +26,33 @@ import CryptoPrices from '../components/Crypto';
 import Slide2 from '../components/Slide2';
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
 import BalanceSlide from '../components/BalanceSlide';
+import LoadingSpinner from '../components/LoadingSpinner';
+import WeeklySummarySmall from '../components/WeeklySummarySmall';
 const UserBalance = () => {
-  
-  
-
   const [isOpen, setIsOpen] = useState(true);
   const [Open, Close] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
+  // Fetch data here with useEffect
+  useEffect(() => {
+    // Simulate data fetching with setTimeout
+    // Replace this with your actual data fetching logic
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Data has finished loading
+    }, 3000); // Simulate a 3 second loading time
+    
+    return () => clearTimeout(timer); // Cleanup the timer when the component unmounts
+  }, []);
 
   const toggleDropdown = () => Close(!Open);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  if (isLoading) {
+    return <LoadingSpinner />; // Show the loading spinner while data is loading
+  }
+
 
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
@@ -76,7 +91,7 @@ const UserBalance = () => {
    </head>
         <div className='mx-14 md:mx-6'>
             <body className=''>
-              <div className='pb-20 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
+              <div className='pb-20 pl-10 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
                     <div className='md:flex flex-col justify-between'>
                         <div className='md:grid md:grid-cols-2 md:gap-2'>
                             <div className=''>
@@ -101,8 +116,12 @@ const UserBalance = () => {
                        
                     </div>
                     <div className='pt-5 md:pt-0 md:pl-[50px] flex flex-col space-y-5'>
-                    <WeeklySummary/>      
-                  
+                    <div className='hidden md:block'>
+                    <WeeklySummary/>
+                      </div>      
+                  <div className=' md:hidden'>
+                    <WeeklySummarySmall/>
+                  </div>
                       </div>
                      
                   

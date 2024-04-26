@@ -16,18 +16,29 @@ import axios from 'axios';
 import Time from '../components/Time';
 import Transactions from '../components/Transactions';
 import StatusState from '../components/StatusState';
+import LoadingSpinner from '../components/LoadingSpinner';
 const UserTransaction = () => {
-  
-  
-
   const [isOpen, setIsOpen] = useState(true);
   const [Open, Close] = useState(false);
-
-
+  const [isLoading, setIsLoading] = useState(true); // Add this loading state
   const toggleDropdown = () => Close(!Open);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  useEffect(() => {
+    // Here you should fetch the actual transaction data
+    // For now, we will simulate fetching data with setTimeout
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Simulate data fetching completion
+    }, 3000); // This simulates a fetch taking 3 seconds
+
+    return () => clearTimeout(timer); // Clean up the timeout if the component unmounts
+  }, []);
+
+  // Early return if data is still loading
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>

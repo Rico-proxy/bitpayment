@@ -7,16 +7,18 @@ const LoadingSpinner = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      backgroundColor: '#4c4cfe' /* Adjust the background color as needed */
+      backgroundColor: 'white' // Set background to white
     }}>
-      <div style={{
-        border: '5px solid #f3f3f3', /* Light grey */
-        borderTop: '5px solid #3498db', /* Blue */
-        borderRadius: '50%',
-        width: '50px',
-        height: '50px',
-        animation: 'spin 2s linear infinite'
-      }} />
+      <img
+        src="/assets/logo.png"
+        alt="Adam Joe"
+        className="rounded-full mx-auto"
+        style={{
+          width: '50px',
+          height: '50px',
+          animation: 'spin 2s linear infinite'
+        }}
+      />
       <style>
         {`@keyframes spin {
           0% { transform: rotate(0deg); }

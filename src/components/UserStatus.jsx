@@ -6,6 +6,8 @@ const UserStatus = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5); // Number of items per page
 
   useEffect(() => {
     fetchUsers();
@@ -75,9 +77,14 @@ const UserStatus = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredUsers = users.filter(user => 
-    user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Define paginate function
+  const paginate = (items, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return items.slice(startIndex, startIndex + itemsPerPage);
+  };
+
+  // Paginate users
+  const paginatedUsers = paginate(users, currentPage, itemsPerPage);
 
   if (loading) return <div>Loading...</div>;
 
@@ -93,6 +100,7 @@ const UserStatus = () => {
       />
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto text-left">
+          {/* Table headers */}
           <thead className="border-b bg-gray-300 text-black">
             <tr>
               <th className="px-6 py-3">Full Name</th>
@@ -101,8 +109,9 @@ const UserStatus = () => {
               <th className="px-6 py-3">Actions</th>
             </tr>
           </thead>
+          {/* Table body */}
           <tbody>
-            {filteredUsers.map((user) => (
+            {paginatedUsers.map((user) => (
               <tr key={user.id} className="border-b hover:bg-gray-50 hover:text-black">
                 <td className="px-6 py-4">{user.fullName}</td>
                 <td className="px-6 py-4">{user.email}</td>
@@ -132,6 +141,18 @@ const UserStatus = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center items-center mt-4">
+        {Array.from({ length: Math.ceil(users.length / itemsPerPage) }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
     </div>
   );

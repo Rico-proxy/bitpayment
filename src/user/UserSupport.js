@@ -9,18 +9,33 @@ import Slide6 from '../components/Slide6';
 import SupportMessage1 from '../components/SupportMessage1';
 import Message from '../components/Message';
 import StatusState from '../components/StatusState';
+import LoadingSpinner from '../components/LoadingSpinner';
 const UserSupport = () => {
-  
-  
-
   const [isOpen, setIsOpen] = useState(true);
   const [Open, Close] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Initialize isLoading to true
 
+  useEffect(() => {
+    // Simulate fetching data with a delay
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false); // After data is 'fetched', set isLoading to false
+    }, 3000); // Replace with your actual data fetching logic
 
+    return () => clearTimeout(timeoutId); // Clean up the timeout
+  }, []);
+
+  // Toggle dropdown
   const toggleDropdown = () => Close(!Open);
+
+  // Toggle sidebar
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  // If isLoading is true, show the spinner instead of the content
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>

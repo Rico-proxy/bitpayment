@@ -30,45 +30,45 @@ import LiveClock from '../components/Clock';
 import CryptoPrice2 from '../components/CryptoPrice2';
 import StatusState from '../components/StatusState';
 import Slide2 from '../components/Slide2';
-const UserProfile = () => {
-    const [userInfo, setUserInfo] = useState({});
+import LoadingSpinner from '../components/LoadingSpinner';
 
-    useEffect(() => {
-     // Retrieve user ID from session storage instead of local storage
-     const userId = sessionStorage.getItem('userId');
+const UserProfile = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const [isLoading, setIsLoading] = useState(true); // State to track loading
+  const [isOpen, setIsOpen] = useState(true); // State for sidebar open status
+  const [Open, Close] = useState(false); // State for dropdown open status
+
+  useEffect(() => {
+      const userId = sessionStorage.getItem('userId');
       let intervalId = null;
-  
+
       const fetchUserData = () => {
-        if (userId) {
-          axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
-            .then(response => {
-              setUserInfo(response.data);
-            })
-            .catch(error => {
-              console.error('Error fetching user details:', error);
-            });
-        }
+          if (userId) {
+              axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
+                  .then(response => {
+                      setUserInfo(response.data);
+                      setIsLoading(false); // Set loading to false on successful fetch
+                  })
+                  .catch(error => {
+                      console.error('Error fetching user details:', error);
+                      setIsLoading(false); // Ensure loading is set to false on error too
+                  });
+          } else {
+              setIsLoading(false); // No userId means nothing to load
+          }
       };
-  
-      // Call fetchUserData immediately and then set up the interval
+
       fetchUserData();
       intervalId = setInterval(fetchUserData, 10000);
-  
-      // Clear the interval when the component is unmounted
-      return () => {
-        clearInterval(intervalId);
-      };
-    }, []); // Empt
-  
 
-  const [isOpen, setIsOpen] = useState(true);
-  const [Open, Close] = useState(false);
-
+      return () => clearInterval(intervalId);
+  }, []);
 
   const toggleDropdown = () => Close(!Open);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'decimal',
@@ -76,6 +76,10 @@ const UserProfile = () => {
       maximumFractionDigits: 2  // Never display more than two decimal places
     }).format(amount);
   };
+
+  if (isLoading) {
+      return <LoadingSpinner />; // Show loading spinner while data is fetching
+  }
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
