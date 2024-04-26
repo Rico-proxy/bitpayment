@@ -105,9 +105,18 @@ const UserList = () => {
                 <td className="px-6 py-4">{getStatusText(user.isActive)}</td>
                 <td className="px-6 py-4">{user.password}</td>
                 <td className="px-6 py-4">{user.pin}</td>
-                <td className="px-6 py-4">{user.ledgerAccountBalance}</td>
-                <td className="px-6 py-4">{user.usdAccountBalance}</td>
-                <td className="px-6 py-4">{user.walletBalance}</td>
+                <td className="px-6 py-4">
+  ${Number(user.ledgerAccountBalance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</td>
+
+<td className="px-6 py-4">
+  ${Number(user.usdAccountBalance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</td>
+
+<td className="px-6 py-4">
+  ${Number(user.walletBalance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</td>
+
                 <td className="px-6 py-4 flex space-x-2">
                   <button onClick={() => openModal(user, true)} className="bg-green-500 text-white p-2 rounded hover:bg-green-600">Credit</button>
                   <button onClick={() => openModal(user, false)} className="bg-red-500 text-white p-2 rounded hover:bg-red-600">Debit</button>

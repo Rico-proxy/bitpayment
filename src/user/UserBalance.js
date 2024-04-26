@@ -75,13 +75,14 @@ const UserBalance = () => {
        </div>
    </head>
         <div className='mx-14 md:mx-6'>
-            <body className='pb-20 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
+            <body className=''>
+              <div className='pb-20 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
                     <div className='md:flex flex-col justify-between'>
                         <div className='md:grid md:grid-cols-2 md:gap-2'>
-                            <div className='w-[36vh] md:w-[40vh]'>
+                            <div className=''>
                                 <WalletCard/>
                             </div>
-                            <div className='w-[60vh] pt-3 hidden md:block'>
+                            <div className='w-[60vh] pt-3 hidden md:block '>
                                     <MainBalance/>
                       
                             </div>
@@ -97,17 +98,18 @@ const UserBalance = () => {
                             </div>   
                        
                         </div>
-                        <div className=' hidden md:block pt-20'>
-                          <BalanceSlide/>
-                        </div>
+                       
                     </div>
-                    <div className='pt-5 md:pt-0 md:pl-[190px] flex flex-col space-y-5'>
+                    <div className='pt-5 md:pt-0 md:pl-[50px] flex flex-col space-y-5'>
                     <WeeklySummary/>      
                   
                       </div>
                      
                   
-                   
+                      </div>  
+                      <div className='hidden md:block'>
+                        <BalanceSlide/>
+                        </div> 
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>

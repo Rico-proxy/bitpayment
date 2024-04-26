@@ -24,41 +24,38 @@ import CurrencyConverter from '../components/CryptoCurrencyConverter';
 import SmallScreenSidebar from '../components/SmallScreenSidebar';
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
 import Copier from '../components/Copier'
+import LoadingSpinner from '../components/LoadingSpinner';
 const User = () => {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
-
-  
+  const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({});
+  const [isOpen, setIsOpen] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-   // Retrieve user ID from session storage instead of local storage
-   const userId = sessionStorage.getItem('userId');
-    let intervalId = null;
+    const userId = sessionStorage.getItem('userId');
 
-    const fetchUserData = () => {
+    const fetchUserData = async () => {
       if (userId) {
-        axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
-          .then(response => {
-            setUserInfo(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching user details:', error);
-          });
+        try {
+          const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+          setUserInfo(response.data);
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
       }
     };
 
-    // Call fetchUserData immediately and then set up the interval
     fetchUserData();
-    intervalId = setInterval(fetchUserData, 10000);
 
-    // Clear the interval when the component is unmounted
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []); // Empt
-  
+    // Set a timeout to stop loading after 100 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000); // 5 seconds
 
-  const [isOpen, setIsOpen] = useState(true);
+    return () => clearTimeout(timer); // Clear the timeout if the component unmounts
+  }, []);
+
+
   const [Open, Close] = useState(false);
 
 
@@ -67,6 +64,11 @@ const User = () => {
     setIsOpen(!isOpen);
   };
 
+
+  // If isLoading is true, show the loading spinner
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />

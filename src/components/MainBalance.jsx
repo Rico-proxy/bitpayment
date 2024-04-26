@@ -81,8 +81,8 @@ const MainBalance = () => {
       padding: '20px',
       borderRadius: '15px',
       color: 'white',
-      
-      width: '160%', // Use 100% to fill the container or set a specific width
+      height: '100%', // Use 100% to fill the container or set a specific height
+      width: '110%', // Use 100% to fill the container or set a specific width
       maxWidth: '500px', // Set a max-width for larger screens
       fontFamily: 'Arial',
       fontSize: '18px',
@@ -99,7 +99,7 @@ const MainBalance = () => {
       <div style={{ height: '10px', marginBottom: '20px' }}>
         <Bar data={data} options={options} />
       </div>
-      <div className='flex flex-col md:flex md:flex-row justify-between' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', fontSize: '14px' }}>
+      <div className=' flex flex-col md:flex md:flex-row justify-between md:items-center' style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', fontSize: '14px' }}>
       <div className="flex items-center mt-2">
           <FaCalendarAlt className="mr-2" />
           <span>{currentDate}</span>

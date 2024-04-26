@@ -71,7 +71,7 @@ function CryptoSlide3() {
         </div>
          
         </div>
-      <p className="text-xs opacity-75 text-white">BitPayment Systems</p>
+      <p className="text-xs opacity-75 text-white">Bitpay Payment Systems</p>
     </div>
   );
 }

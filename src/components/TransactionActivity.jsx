@@ -88,7 +88,10 @@ const TransactionActivity = () => {
             {transactions.map((transaction, index) => (
   <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
     <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
-    <td className="px-6 py-4">{transaction.amount}</td>
+    <td className="px-6 py-4">
+  ${Number(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</td>
+
     <td className="px-6 py-4">{transaction.status}</td>
     <td className="px-6 py-4">{transaction.type}</td>
     <td className="px-6 py-4">{transaction.senderEmail}</td>

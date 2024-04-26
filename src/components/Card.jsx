@@ -57,7 +57,7 @@ const Card = () => {
       if (window.innerWidth < 768) { // Example breakpoint at 768px
         setContainerStyle({ height: '250px', width: '200px' });
       } else {
-        setContainerStyle({ height: '380px', width: '300px' });
+        setContainerStyle({ height: '410px', width: '300px' });
       }
     };
 

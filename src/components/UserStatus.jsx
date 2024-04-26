@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 
 const UserStatus = () => {
   const [users, setUsers] = useState([]);
@@ -30,12 +31,28 @@ const UserStatus = () => {
     );
   };
 
+  const sendActivationEmail = (email, status) => {
+    const templateParams = {
+      email: email,
+      status: status ? 'Active' : 'Inactive'
+    };
+
+    emailjs.send('service_mc49zuo', 'template_40d63x9', templateParams, '0F2IGzYbKry9o2pkn')
+      .then(response => {
+        console.log('Email successfully sent!', response.status, response.text);
+      }, error => {
+        console.log('Failed to send email:', error);
+      });
+  };
+
   const handleActivate = async (userId) => {
     try {
       const response = await axios.put(`https://api.nuhu.xyz/api/Admin/activate-user/${userId}`);
       if (response.status === 200) {
         console.log(`User ${userId} activated.`);
         updateUserInState(userId, true);
+        const user = users.find(user => user.id === userId);
+        sendActivationEmail(user.email, true);
       }
     } catch (error) {
       console.error('Failed to activate user:', error);
