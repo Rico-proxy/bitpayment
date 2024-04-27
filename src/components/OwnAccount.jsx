@@ -5,12 +5,12 @@ import { CiBadgeDollar } from "react-icons/ci";
 import { IoSendSharp } from "react-icons/io5";
 import emailjs from 'emailjs-com';
 import { useNavigate } from 'react-router-dom';
+
 const OwnAccount = () => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const [userId] = useState(sessionStorage.getItem('userId') || '');
-  const [walletBalance] = useState(parseFloat(sessionStorage.getItem('walletBalance')) || 0);
-  const [usdAccountBalance] = useState(parseFloat(sessionStorage.getItem('usdAccountBalance')) || 0);
-  const [ledgerAccountBalance] = useState(parseFloat(sessionStorage.getItem('ledgerAccountBalance')) || 0);
+  const [selectedBalance, setSelectedBalance] = useState(0);
+  const [toSelectedBalance, setToSelectedBalance] = useState(0);
   const [walletType, setWalletType] = useState('0');
   const [toWalletType, setToWalletType] = useState('0');
   const [amount, setAmount] = useState('');
@@ -19,79 +19,87 @@ const OwnAccount = () => {
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
 
+  const fetchBalance = async () => {
+    try {
+      if (userId) {
+        const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+        // Extract balances from response based on the selected walletType
+        const balances = {
+          '0': response.data.usdAccountBalance, // For USD Account
+          '1': response.data.ledgerAccountBalance, // For Ledger Account
+          '2': response.data.walletBalance // For Wallet Balance
+        };
+        setSelectedBalance(balances[walletType]);
+        setToSelectedBalance(balances[toWalletType]); // Set this if you want to display balances for toWalletType too
+      }
+    } catch (error) {
+      console.error('Error fetching user balance:', error);
+      toast.error('Failed to fetch account balances.');
+    }
+  };
+
+  useEffect(() => {
+    fetchBalance();
+  }, [userId, walletType, toWalletType]);
 
   const displayFormAfterToast = useCallback(() => {
     setShowForm(true);
   }, []);
 
   const sendReceiptEmail = (receiptData) => {
-    const userEmail = sessionStorage.getItem('email');
-    const receiptServiceID = 'service_w9dr1hs'; // Replace with your actual service ID
-    const receiptTemplateID = 'template_tt6y84v'; // Replace with your actual template ID
-    const receiptUserID = '0F2IGzYbKry9o2pkn'; // Replace with your actual EmailJS user ID
-  
+    const receiptServiceID = 'service_w9dr1hs';
+    const receiptTemplateID = 'template_tt6y84v';
+    const receiptUserID = '0F2IGzYbKry9o2pkn';
     emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
       .then(response => {
         console.log('Receipt email successfully sent!', response);
       })
       .catch(err => {
-        console.error('There has been an error sending the receipt email:', err);
+        console.error('Error sending receipt email:', err);
       });
   };
-  
+
   const sendEmailWithOTP = (otpCode) => {
-    const userEmail = sessionStorage.getItem('email');
     const serviceID = 'service_w9dr1hs';
     const templateID = 'template_6rbm698';
     const userID = '0F2IGzYbKry9o2pkn';
-
     const templateParams = {
       message: otpCode,
-      email: userEmail
+      email: sessionStorage.getItem('email')
     };
-
     emailjs.send(serviceID, templateID, templateParams, userID)
       .then(response => {
         console.log('Email successfully sent!', response);
       })
       .catch(err => {
-        console.error('There has been an error. Here are some thoughts on the error that occured:', err);
+        console.error('Error sending email:', err);
       });
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const requestBody = {
-      userId: userId,
+      userId,
       amount: parseFloat(amount),
-      pin: pin,
       fromWalletType: parseInt(walletType, 10),
       toWalletType: parseInt(toWalletType, 10),
-      otp: otp,
+      otp,
+      pin,
     };
 
     try {
       const response = await axios.post('https://api.nuhu.xyz/api/Wallet/topUp-wallet', requestBody);
       if (response.status === 200) {
         toast.success('Transfer successful!');
-  
-        // Prepare receipt data
-        // Prepare receipt data
-          const receiptData = {
-            email: sessionStorage.getItem('email'), // Fetch user email from session storage
-            transfer_type: 'Top Up Transfer', // This can be dynamic if there are other types
-            fromWalletType: getAccountNameByType(walletType), // Converts '0', '1', '2' to account names
-            toWalletType: getAccountNameByType(toWalletType), // Converts '0', '1', '2' to account names
-            amount: amount, // Already being set in state
-          };
-
-  
-        // Send the receipt email
+        const receiptData = {
+          email: sessionStorage.getItem('email'),
+          transfer_type: 'Top Up Transfer',
+          fromWalletType: getAccountNameByType(walletType),
+          toWalletType: getAccountNameByType(toWalletType),
+          amount
+        };
         sendReceiptEmail(receiptData);
-        
         resetFormState();
-
         navigate('/user');
       } else {
         toast.error('Transfer not successful, please try again.');
@@ -100,34 +108,31 @@ const OwnAccount = () => {
       toast.error(`Transfer failed: ${error.response?.data?.message || error.message}`);
     }
   };
+
   const resetFormState = () => {
+    setWalletType('0');
+    setToWalletType('0');
     setAmount('');
     setPin('');
     setShowForm(false);
     setOtp('');
-    setWalletType('0');
-    setToWalletType('0');
   };
 
   const handleTransferClick = () => {
     const userId = sessionStorage.getItem('userId');
-    const requestBody = {
-      userId: userId,
-    };
-
+    const requestBody = { userId };
     toast.promise(
       axios.post('https://api.nuhu.xyz/api/Wallet/initiate-transfer', requestBody)
-      .then(response => {
-        if (response.status === 200) {
-          console.log(response.data);
-          displayFormAfterToast();
-          sendEmailWithOTP(response.data.otp);
-          return 'Transfer code sent successfully!';
-        }
-      })
-      .catch(error => {
-        throw new Error('Failed to send transfer code.');
-      }),
+        .then(response => {
+          if (response.status === 200) {
+            displayFormAfterToast();
+            sendEmailWithOTP(response.data.otp);
+            return 'Transfer code sent successfully!';
+          }
+        })
+        .catch(error => {
+          throw new Error('Failed to send transfer code.');
+        }),
       {
         loading: 'Sending transfer code to your email...',
         success: 'Transfer code sent successfully!',
@@ -149,14 +154,6 @@ const OwnAccount = () => {
     };
   }, []);
 
-  const getBalanceByType = (type) => {
-    switch (type) {
-      case '0': return usdAccountBalance;
-      case '1': return ledgerAccountBalance;
-      case '2': return walletBalance;
-      default: return 0;
-    }
-  };
   const getAccountNameByType = (typeValue) => {
     const accountTypes = {
       '0': 'USD Account',
@@ -165,28 +162,19 @@ const OwnAccount = () => {
     };
     return accountTypes[typeValue] || 'Unknown Account';
   };
-  
 
-  const [selectedBalance, setSelectedBalance] = useState(0);
-  const [toSelectedBalance, setToSelectedBalance] = useState(0);
-  useEffect(() => {
-    setSelectedBalance(getBalanceByType(walletType));
-  }, [walletType, usdAccountBalance, ledgerAccountBalance, walletBalance]);
-  useEffect(() => {
-    setToSelectedBalance(getBalanceByType(toWalletType));
-  }, [toWalletType, usdAccountBalance, ledgerAccountBalance, walletBalance]);
   return (
     <div className="flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
       <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[150px] rounded-lg p-8 border-2'>
-        <div className='flex flex-row space-x-2'>
+        <div className='flex flex-row space-x-2 text-[14px]'>
           <div>
-            <CiBadgeDollar className='md:text-2xl'/>
+            <CiBadgeDollar className='text-2xl'/>
           </div>
           <div>
             <h1>Top Up</h1>
           </div>
-        </div> 
+        </div>
         <div>
           <IoSendSharp/>
         </div>
@@ -194,7 +182,7 @@ const OwnAccount = () => {
       {showForm && (
         <div className="fixed inset-0 bg-[#0f1b39] z-50 flex justify-center items-center">
           <div ref={formRef} className="bg-white shadow-2xl p-6 rounded w-[400px] text-[16px]">
-          <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
+            <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
               <div className='font-bold text-[#0f1b39]'>
                 Top Up Wallet
               </div>
