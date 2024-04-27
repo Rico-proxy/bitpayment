@@ -122,7 +122,7 @@ const UserProfile = () => {
                             <Profile1/>
                             </div>
                             <div className='flex flex-col space-x-4'>
-                                <cardmain className='pt-10 md:pt-0 space-y-3 md:flex md:flex-row md:items-center md:space-x-4 md:pl-4 '>
+                                <cardmain className='pt-10 md:pt-0 space-y-3 md:flex md:flex-row md:items-center  md:pl-4 '>
                                 <card className=" bg h-[27vh]  w-[40vh] text-white p-4 rounded-xl flex flex-col space-y-4 items-center  shadow-lg">
                 
                                     <div className="p-2 flex space-x-12 items-center">

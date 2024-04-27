@@ -7,7 +7,7 @@ const LoadingSpinner = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      backgroundColor: 'white' // Set background to white
+      backgroundColor: 'lightblue' // Set background to light blue
     }}>
       <img
         src="/assets/logo.png"
