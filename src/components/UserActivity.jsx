@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Define paginate function
-const paginate = (items, currentPage, itemsPerPage) => {
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  return items.slice(startIndex, startIndex + itemsPerPage);
-};
-
 const ActivityLog = () => {
+  const paginate = (items, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return items.slice(startIndex, startIndex + itemsPerPage);
+  };
+  
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(20); // Number of items per page
+  const itemsPerPage = 10; // Display only 20 items per page
 
   useEffect(() => {
     fetchActivities();
-  }, []);
+  }, [currentPage]); // Fetch activities whenever page changes
 
   const fetchActivities = async () => {
     setLoading(true);
     try {
       const response = await axios.get('https://api.nuhu.xyz/api/Admin/activities');
-      setActivities(response.data);
+      // Get only the last 20 activities from the response data
+      const last20Activities = response.data.slice(-20);
+      setActivities(last20Activities);
     } catch (error) {
       console.error('Failed to fetch activities:', error);
     } finally {
@@ -35,15 +36,11 @@ const ActivityLog = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  // Paginate activities
-  const paginatedActivities = paginate(activities, currentPage, itemsPerPage);
-
   return (
     <div className=" p-4 ">
       <h2 className="text-2xl font-bold mb-4">Activity Log</h2>
       <div className="overflow-hidden bg-[#0f1b39] text-white">
         <table className="min-w-full table-auto text-left">
-          {/* Table headers */}
           <thead className="border-b bg-gray-300 text-black">
             <tr>
               <th className="px-6 py-3">User ID</th>
@@ -53,9 +50,8 @@ const ActivityLog = () => {
               <th className="px-6 py-3">Details</th>
             </tr>
           </thead>
-          {/* Table body */}
           <tbody>
-            {paginatedActivities.map(activity => (
+            {paginate(activities, currentPage, itemsPerPage).map(activity => (
               <tr key={activity.userId} className="border-b hover:bg-gray-50 hover:text-black">
                 <td className="px-6 py-4">{activity.userId}</td>
                 <td className="px-6 py-4">{activity.userEmail}</td>

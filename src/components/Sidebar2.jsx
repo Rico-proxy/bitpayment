@@ -21,7 +21,7 @@ const Sidebar2 = ({ isOpen, toggleSidebar }) => {
   const menus = [
     { name: "List", link: "/admin", icon: HiOutlineViewList },
     { name: "History", link: "/activity", icon: BsClockHistory },
-    { name: "Revert ", link: "/transaction", icon: GrRevert },
+    { name: "Reverse ", link: "/transaction", icon: GrRevert },
     {name: "Status", link: "/status", icon: CgToggleOff},
     {name: "Logout", link: "/login", icon: CgLogOut}
     
