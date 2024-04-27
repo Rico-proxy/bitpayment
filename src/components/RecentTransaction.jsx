@@ -4,6 +4,13 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-icons/md';
 
 const RecentTransaction2 = () => {
+  const formatTransactionType = (type) => {
+    // Insert a space before all caps
+    return type.replace(/([A-Z])/g, ' $1')
+      // Remove the first space if the string starts with a capital letter
+      .replace(/^ /, '');
+  };
+  
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -19,6 +26,7 @@ const RecentTransaction2 = () => {
           // Take only the last five transactions from the response
           const lastFiveTransactions = response.data.slice(-5).map(transaction => ({
             ...transaction,
+            type: formatTransactionType(transaction.type), // Add this line
             icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)
           }));

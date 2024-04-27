@@ -5,7 +5,13 @@ import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-i
 
 const RecentTransaction = () => {
   const [transactions, setTransactions] = useState([]);
-
+  const formatTransactionType = (type) => {
+    // Insert a space before all caps
+    return type.replace(/([A-Z])/g, ' $1')
+      // Remove the first space if the string starts with a capital letter
+      .replace(/^ /, '');
+  };
+  
   useEffect(() => {
     const fetchTransactions = async () => {
       const userId = sessionStorage.getItem('userId');
@@ -19,6 +25,7 @@ const RecentTransaction = () => {
           // Take only the last five transactions from the response
           const lastFiveTransactions = response.data.slice(-7).map(transaction => ({
             ...transaction,
+            type: formatTransactionType(transaction.type), // Add this line
             icon: getStatusIcon(transaction.status, transaction.type),
             statusColor: getStatusColor(transaction.status)
           }));
