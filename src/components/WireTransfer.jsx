@@ -71,7 +71,7 @@ const WireTransfer = () => {
   const sendReceiptEmail = (receiptData) => {
     const userEmail = sessionStorage.getItem('email');
     const receiptServiceID = 'service_mc49zuo'; // Replace with your actual service ID
-    const receiptTemplateID = 'template_6lk3uak'; // Replace with your actual template ID
+    const receiptTemplateID = 'template_eih7px7'; // Replace with your actual template ID
     const receiptUserID = '0F2IGzYbKry9o2pkn'; // Replace with your actual EmailJS user ID
   
     emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
