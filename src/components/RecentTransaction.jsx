@@ -43,7 +43,7 @@ const RecentTransaction2 = () => {
   const getStatusIcon = (status, type) => {
     if (status === 'Successful') {
       return <MdCheckCircle className='text-green-500' />;
-    } else if (status === 'Reversed') {
+    } else if (status === 'AutoReversed') {
       return <MdCancel className='text-red-500' />;
     } else {
       return type === 'Income' ? <MdArrowDownward /> : <MdArrowUpward />;

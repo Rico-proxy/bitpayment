@@ -4,6 +4,17 @@ import { toast } from 'react-toastify';
 import emailjs from 'emailjs-com';
 
 const TransactionActivity = () => {
+  const formatTransactionType = (type) => {
+    // Check if the type is exactly 'USD' and return it as is
+    if (type === 'USD') {
+      return type;
+    }
+  
+    // Insert a space before all caps for other types
+    return type.replace(/([A-Z])/g, ' $1')
+      // Remove the first space if the string starts with a capital letter
+      .replace(/^ /, '');
+  }; 
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,10 +127,10 @@ const TransactionActivity = () => {
                 <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
                   <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
                   <td className="px-6 py-4">${Number(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                  <td className="px-6 py-4">{transaction.status}</td>
-                  <td className="px-6 py-4">{transaction.type}</td>
+                  <td className="px-6 py-4">{formatTransactionType(transaction.status)}</td>
+                  <td className="px-6 py-4">{formatTransactionType(transaction.type)}</td>
                   <td className="px-6 py-4">{transaction.senderEmail}</td>
-                  <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
+                  <td className="px-6 py-4">{transaction.walletType ? formatTransactionType(transaction.walletType) : 'N/A'}</td>
                   <td className="px-6 py-4">
                     {autoReversalIds.has(transaction.senderId) ? (
                       <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={() => toggleAutoReverse(transaction.senderId)}>

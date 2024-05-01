@@ -4,6 +4,12 @@ import { Tabs, Tab, Table, TableBody, TableCell, TableContainer, TableHead, Tabl
 import { MdCheckCircle, MdCancel } from 'react-icons/md';
 
 const Transactions = () => {
+  const formatTransactionType = (type) => {
+    // Insert a space before all caps
+    return type.replace(/([A-Z])/g, ' $1')
+      // Remove the first space if the string starts with a capital letter
+      .replace(/^ /, '');
+  };
   const [tabValue, setTabValue] = useState(0);
   const [transactions, setTransactions] = useState({ completed: [], successful: [], reversed: [] });
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +22,7 @@ const Transactions = () => {
         .then(response => {
           const completed = response.data;
           const successful = response.data.filter(transaction => transaction.status === 'Successful');
-          const reversed = response.data.filter(transaction => transaction.status === 'Reversed');
+          const reversed = response.data.filter(transaction => transaction.status === 'AutoReversed');
           setTransactions({ completed, successful, reversed });
         })
         .catch(error => console.error('Error fetching transactions:', error));
@@ -71,7 +77,7 @@ const Transactions = () => {
                     maximumFractionDigits: 2 
                   })}
                 </TableCell>
-                <TableCell className="text-white">{transaction.type}</TableCell>
+                <TableCell className="text-white">{formatTransactionType(transaction.type)}</TableCell>
                 <TableCell>
                   {transaction.status === 'Completed' || transaction.status === 'Successful' ?
                     <MdCheckCircle className='text-green-500'/> :

@@ -25,6 +25,7 @@ import SmallScreenSidebar from '../components/SmallScreenSidebar';
 import RecentTransactionSmall from '../components/RecentTransactionSmall';
 import Copier from '../components/Copier'
 import LoadingSpinner from '../components/LoadingSpinner';
+import PreventBackNavigation from '../components/PreventBackNavigation';
 const User = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({});
@@ -71,6 +72,7 @@ const User = () => {
   }
   return (
     <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
+      <PreventBackNavigation />
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div  className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
