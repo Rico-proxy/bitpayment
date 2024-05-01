@@ -100,7 +100,7 @@ const OwnAccount = () => {
 
   const sendReceiptEmail = (receiptData) => {
     const receiptServiceID = 'service_w9dr1hs';
-    const receiptTemplateID = 'template_tt6y84v';
+    const receiptTemplateID = 'template_80nchpl';
     const receiptUserID = '0F2IGzYbKry9o2pkn';
     emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
       .then(response => {
