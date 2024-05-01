@@ -7,6 +7,32 @@ import emailjs from 'emailjs-com';
 import { useNavigate } from 'react-router-dom';
 const WireTransfer = () => {
   const navigate = useNavigate();
+  const handleAmountChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, '');
+    value = value.replace(/^0+/, ''); // Remove leading zeros
+
+    if (value) {
+      value = parseInt(value, 10).toString(); // Convert to integer to standardize
+      let formattedValue = `$${value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`; // Add commas and dollar sign
+      setAmount(formattedValue);
+    } else {
+      setAmount('$'); // Keep dollar sign when empty
+    }
+  };
+
+  const handleFocus = (e) => {
+    if (e.target.value === '$') {
+      setAmount(''); // Clear dollar sign when focused and empty
+    }
+  };
+
+  const handleBlur = (e) => {
+    if (e.target.value === '') {
+      setAmount('$'); // Re-add dollar sign when blurred and empty
+    }
+  };
+
+
   const [userId] = useState(sessionStorage.getItem('userId') || '');
   const [selectedBalance, setSelectedBalance] = useState(0);
   const [walletType, setWalletType] = useState('0');
@@ -82,10 +108,10 @@ const WireTransfer = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const cleanAmount = parseFloat(amount.replace(/[,$]/g, ''));
     const requestBody = {
       userId: userId,
-      amount: parseFloat(amount),
+      amount: cleanAmount, // Use the cleaned and parsed amount here
       details: details,
       receiverWalletAddress: receiverWalletAddress,
       walletType: parseInt(walletType, 10),
@@ -102,7 +128,7 @@ const WireTransfer = () => {
             email: sessionStorage.getItem('email'), // Fetch user email from session storage
             transfer_type: 'Wire Transfer', // This can be dynamic if there are other types
             wallet_type: getAccountNameByType(walletType), // Converts '0', '1', '2' to account names
-            amount: amount, // Already being set in state
+            amount: `$${cleanAmount.toLocaleString()}`, // Format the amount for display in the email
             wallet_address: receiverWalletAddress, // Already being set in state
             description: details, // Already being set in state
           };
@@ -229,11 +255,19 @@ const WireTransfer = () => {
 
   
   <p className="text-right mt-2">
-    Balance: ${selectedBalance.toFixed(2)}
-  </p>
+    Balance: ${selectedBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</p>
               <input type="text" placeholder="Wallet Address" value={receiverWalletAddress} onChange={(e) => setReceiverWalletAddress(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <textarea placeholder="Description" value={details} onChange={(e) => setDetails(e.target.value)} className="border border-gray-300 p-2 rounded"></textarea>
-              <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="border border-gray-300 p-2 rounded" />
+              <input
+      type="text"
+      placeholder="Enter amount"
+      value={amount}
+      onChange={handleAmountChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className="border border-gray-300 p-2 rounded"
+    />
               <input type="text" placeholder="OTP" value={otp} onChange={(e) => setOtp(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <input type="password" placeholder="PIN" value={pin} onChange={(e) => setPin(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">

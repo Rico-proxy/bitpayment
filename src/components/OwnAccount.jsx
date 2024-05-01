@@ -8,6 +8,58 @@ import { useNavigate } from 'react-router-dom';
 
 const OwnAccount = () => {
   const navigate = useNavigate();
+  
+ 
+ 
+  const handleAmountChange = (e) => {
+    let value = e.target.value.replace(/[^0-9.]/g, ''); // Allow digits and decimal point
+    if (!value) {
+      setAmount('$');
+    } else {
+      // Prevent multiple decimals
+      const parts = value.split('.');
+      if (parts.length > 2) {
+        value = parts[0] + '.' + parts[1].slice(0, 2).join('');
+      } else if (parts[1]) {
+        parts[1] = parts[1].substring(0, 2); // Limit decimal places to two
+        value = parts.join('.');
+      }
+
+      // Format the integer part with commas
+      const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      let formattedValue = `$${integerPart}`;
+      if (parts.length > 1 && parts[1]) {
+        formattedValue += `.${parts[1]}`;
+      }
+      setAmount(formattedValue);
+    }
+  };
+
+  const handleFocus = (e) => {
+    // Remove formatting for editing: strip out dollar sign and commas
+    const plainNumber = e.target.value.replace(/[$,]/g, '');
+    setAmount(plainNumber);
+  };
+
+  const handleBlur = (e) => {
+    // On blur, format the number again if it's not empty
+    let value = e.target.value.replace(/[$,]/g, '');
+    if (!value) {
+      setAmount('$');
+    } else {
+      // Format the value as currency on blur
+      const parts = value.split('.');
+      const numericValue = parseFloat(value);
+      if (!isNaN(numericValue)) {
+        const formattedValue = `$${parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+        if (parts.length > 1 && parts[1]) {
+          formattedValue += `.${parts[1]}`;
+        }
+        setAmount(formattedValue);
+      }
+    }
+  };
+
   const [userId] = useState(sessionStorage.getItem('userId') || '');
   const [selectedBalance, setSelectedBalance] = useState(0);
   const [toSelectedBalance, setToSelectedBalance] = useState(0);
@@ -78,9 +130,10 @@ const OwnAccount = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const cleanAmount = parseFloat(amount.replace(/[,$]/g, ''));
     const requestBody = {
       userId,
-      amount: parseFloat(amount),
+      amount: cleanAmount, // Use the cleaned and parsed amount here
       fromWalletType: parseInt(walletType, 10),
       toWalletType: parseInt(toWalletType, 10),
       otp,
@@ -196,9 +249,18 @@ const OwnAccount = () => {
                 <option value='2'>Wallet Balance</option>
               </select>
               <p className="text-right mt-2">
-                Balance: ${selectedBalance.toFixed(2)}
-              </p>
-              <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="border border-gray-300 p-2 rounded" />
+    Balance: ${selectedBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</p>
+
+<input
+      type="text"
+      value={amount}
+      onChange={handleAmountChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      placeholder="Enter amount"
+      className="border border-gray-300 p-2 rounded"
+    />
               <select 
                 value={toWalletType} 
                 onChange={(e) => setToWalletType(e.target.value)} 
@@ -209,8 +271,9 @@ const OwnAccount = () => {
                 <option value='2'>Wallet Balance</option>
               </select>
               <p className="text-right mt-2">
-                To Balance: ${toSelectedBalance.toFixed(2)}
-              </p>
+    To Balance: ${toSelectedBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+</p>
+
               <input type="text" placeholder="OTP" value={otp} onChange={(e) => setOtp(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <input type="password" placeholder="PIN" value={pin} onChange={(e) => setPin(e.target.value)} className="border border-gray-300 p-2 rounded" />
               <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700">

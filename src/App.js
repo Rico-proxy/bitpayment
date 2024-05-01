@@ -30,6 +30,7 @@ import Error from './pages/Error';
 import CacheBuster from 'react-cache-buster';
 import packageFile from '../package.json';
 import CacheLoading from './CacheLoading';
+import Stop from './admin/Stop';
 
 function App() {
   const version = packageFile.version;
@@ -61,7 +62,7 @@ function App() {
           <Route path="/activity" element={<ProtectedRouteAdmin><Activity /></ProtectedRouteAdmin>} />
           <Route path="/transaction" element={<ProtectedRouteAdmin><Transaction /></ProtectedRouteAdmin>} />
           <Route path="/status" element={<ProtectedRouteAdmin><Status /></ProtectedRouteAdmin>} />
-
+          <Route path='/stop' element={<ProtectedRouteAdmin><Stop /></ProtectedRouteAdmin>} />
           // User routes
           <Route path="/user" element={<ProtectedRouteUser><User /></ProtectedRouteUser>} />
           <Route path="/dashboard" element={<ProtectedRouteUser><Dashboard /></ProtectedRouteUser>} />

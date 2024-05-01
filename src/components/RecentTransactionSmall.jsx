@@ -5,11 +5,16 @@ import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-i
 
 const RecentTransactionSmall = () => {
   const formatTransactionType = (type) => {
-    // Insert a space before all caps
+    // Check if the type is exactly 'USD' and return it as is
+    if (type === 'USD') {
+      return type;
+    }
+  
+    // Insert a space before all caps for other types
     return type.replace(/([A-Z])/g, ' $1')
       // Remove the first space if the string starts with a capital letter
       .replace(/^ /, '');
-  };
+  }; 
   
   const [transactions, setTransactions] = useState([]);
 
@@ -82,7 +87,7 @@ const RecentTransactionSmall = () => {
   })}
 </TableCell>
               <TableCell className="text-white text-[13px]">{transaction.icon}</TableCell>
-              <TableCell className="text-white text-[13px]">{transaction.walletType}</TableCell>
+              <TableCell className="text-white text-[13px]">{transaction.walletType ? formatTransactionType(transaction.walletType) : 'N/A'}</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.type}</TableCell>
             </TableRow>
           ))}

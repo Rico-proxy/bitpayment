@@ -9,9 +9,16 @@ const RecentTransaction = () => {
   const [senderEmail, setSenderEmail] = useState('');
 
   const formatTransactionType = (type) => {
-    return type.replace(/([A-Z])/g, ' $1').replace(/^ /, '');
-  };
-
+    // Check if the type is exactly 'USD' and return it as is
+    if (type === 'USD') {
+      return type;
+    }
+  
+    // Insert a space before all caps for other types
+    return type.replace(/([A-Z])/g, ' $1')
+      // Remove the first space if the string starts with a capital letter
+      .replace(/^ /, '');
+  }; 
   useEffect(() => {
     const fetchTransactions = async () => {
       const userId = sessionStorage.getItem('userId');
@@ -104,7 +111,7 @@ const RecentTransaction = () => {
                 })}
               </TableCell>
               <TableCell className="text-white text-[13px]">{transaction.icon}</TableCell>
-              <TableCell className="text-white text-[13px]">{transaction.walletType}</TableCell>
+              <TableCell className="text-white text-[13px]">{transaction.walletType ? formatTransactionType(transaction.walletType) : 'N/A'}</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.type}</TableCell>
             </TableRow>
           ))}

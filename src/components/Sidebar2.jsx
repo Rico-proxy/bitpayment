@@ -16,11 +16,15 @@ import { HiOutlineViewList } from "react-icons/hi";
 import { BsClockHistory } from "react-icons/bs";
 import { GrRevert } from "react-icons/gr";
 import { CgToggleOff } from "react-icons/cg";
+import { VscDebugReverseContinue } from "react-icons/vsc";
+
+
 const Sidebar2 = ({ isOpen, toggleSidebar }) => {
   // Define the menu items array
   const menus = [
     { name: "List", link: "/admin", icon: HiOutlineViewList },
     { name: "History", link: "/activity", icon: BsClockHistory },
+    { name: "Stop ", link: "/stop", icon: VscDebugReverseContinue },
     { name: "Reverse ", link: "/transaction", icon: GrRevert },
     {name: "Status", link: "/status", icon: CgToggleOff},
     {name: "Logout", link: "/login", icon: CgLogOut}
