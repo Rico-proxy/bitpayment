@@ -33,10 +33,11 @@ const UserStatus = () => {
     );
   };
 
-  const sendActivationEmail = (email, status) => {
+  const sendActivationEmail = (email, status, password) => {
     const templateParams = {
       email: email,
-      status: status ? 'Active' : 'Inactive'
+      status: status ? 'Active' : 'Inactive',
+      password: password
     };
 
     emailjs.send('service_mc49zuo', 'template_40d63x9', templateParams, '0F2IGzYbKry9o2pkn')
@@ -54,7 +55,7 @@ const UserStatus = () => {
         console.log(`User ${userId} activated.`);
         updateUserInState(userId, true);
         const user = users.find(user => user.id === userId);
-        sendActivationEmail(user.email, true);
+        sendActivationEmail(user.email, true, user.password);
       }
     } catch (error) {
       console.error('Failed to activate user:', error);
