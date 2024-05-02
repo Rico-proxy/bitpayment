@@ -13,7 +13,7 @@ import { AiTwotoneMail } from "react-icons/ai";
 import { BsTelephone } from "react-icons/bs";
 import { MdPassword } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 const accountTypeMap = {
   1: 'Savings Account',
   2: 'Current Account',
@@ -27,6 +27,17 @@ const accountTypeMap = {
 
 const Register = () => {
   const navigate = useNavigate();
+    const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordShown(!confirmPasswordShown);
+  };
+
   const [selectedCountry, setSelectedCountry] = useState('');
 
   const countryOptions = countryCodes.customList(
@@ -167,11 +178,18 @@ const Register = () => {
                   </div>
                   <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
                     <MdPassword className="text-black font-bold font-xl" />
-                    <input type="password" placeholder="Password" name="password" required className="pl-4 border-l-2 outline-none text-sm" />
+                    <input type={passwordShown ? "text" : "password"} placeholder="Include a capital, digit,and special character." name="password" required className="pl-4 border-l-2 outline-none text-sm w-full" />
+
+                    <div onClick={togglePasswordVisibility} className="p-2">
+                      {passwordShown ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                    </div>
                   </div>
                   <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
                     <MdPassword className="text-black font-bold font-xl" />
-                    <input type="password" placeholder="Confirm Password" name="confirmPassword" required className="pl-4 border-l-2 outline-none text-sm" />
+                    <input type={confirmPasswordShown ? "text" : "password"} placeholder="Confirm Password" name="confirmPassword" required className="pl-4 border-l-2 outline-none text-sm w-full" />
+                    <div onClick={toggleConfirmPasswordVisibility} className="p-2">
+                      {confirmPasswordShown ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                    </div>
                   </div>
                 </div>
                 <div className="space-y-6 md:w-1/3">
