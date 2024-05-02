@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import emailjs from 'emailjs-com';
 
 const TransactionActivity = () => {
-  const formatTransactionType = (type) => {
-    if (type === 'USD') {
-      return type;
-    }
-    return type.replace(/([A-Z])/g, ' $1').replace(/^ /, '');
-  };
-
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(10);
+  const [autoReversalSettings, setAutoReversalSettings] = useState(() => {
+    const savedSettings = sessionStorage.getItem('autoReversalSettings');
+    return savedSettings ? JSON.parse(savedSettings) : {};
+  });
 
   useEffect(() => {
     fetchTransactions();
   }, []);
 
+  useEffect(() => {
+    transactions.forEach(transaction => {
+      const settings = autoReversalSettings[transaction.senderId];
+      if (settings && settings.enabled && new Date(transaction.timestamp) > new Date(settings.timestamp) && transaction.status !== 'Reversed') {
+        handleRevert(transaction.id);
+      }
+    });
+  }, [transactions, autoReversalSettings]);
+
   const fetchTransactions = async () => {
     try {
       const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
       setTransactions(response.data);
-      console.log(response.data);
       setLoading(false);
     } catch (error) {
       console.error('Failed to fetch transactions:', error);
@@ -35,24 +41,46 @@ const TransactionActivity = () => {
     try {
       const revertResponse = await axios.post(`https://api.nuhu.xyz/api/Admin/revert/${transactionId}`);
       if (revertResponse.status === 200) {
-        toast.success("Transaction Reversed successfully.");
-        fetchTransactions();  // Refresh transaction list
+        const reversedTransaction = transactions.find(t => t.id === transactionId);
+        if (reversedTransaction) {
+          sendRevertEmail(reversedTransaction);
+          toast.success("Transaction Reversed successfully.");
+          fetchTransactions();
+        }
       }
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Failed to revert transaction.");
-      }
+      toast.error("Failed to revert transaction.");
     }
   };
 
-  const paginate = (items, currentPage, itemsPerPage) => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return items.slice(startIndex, startIndex + itemsPerPage);
+  const sendRevertEmail = (transactionDetails) => {
+    const emailParams = {
+      email: transactionDetails.senderEmail,
+      type: transactionDetails.type,
+      status: 'Reversed',
+      amount: transactionDetails.amount.toString(),
+      timestamp: new Date(transactionDetails.timestamp).toLocaleString(),
+      walletType: transactionDetails.walletType || 'N/A',
+    };
+
+    emailjs.send('service_w9dr1hs', 'template_ksvy25u', emailParams, '0F2IGzYbKry9o2pkn')
+      .then((result) => {
+        console.log('Email successfully sent!', result.text);
+      }, (error) => {
+        console.error('Failed to send email:', error);
+      });
   };
 
-  const paginatedTransactions = paginate(transactions, currentPage, itemsPerPage);
+  const toggleAutoReverse = (senderId) => {
+    const newSettings = { ...autoReversalSettings };
+    if (newSettings[senderId] && newSettings[senderId].enabled) {
+      newSettings[senderId].enabled = false;
+    } else {
+      newSettings[senderId] = { enabled: true, timestamp: new Date().toISOString() };
+    }
+    setAutoReversalSettings(newSettings);
+    sessionStorage.setItem('autoReversalSettings', JSON.stringify(newSettings));
+  };
 
   return (
     <div className="p-4">
@@ -70,28 +98,22 @@ const TransactionActivity = () => {
                 <th className="px-6 py-3">Type</th>
                 <th className="px-6 py-3">Sender Email</th>
                 <th className="px-6 py-3">Wallet Type</th>
-                <th className="px-6 py-3">Action</th>
+                <th className="px-6 py-3">Auto-Reversal</th>
               </tr>
             </thead>
             <tbody>
-              {paginatedTransactions.map((transaction, index) => (
+              {transactions.map((transaction, index) => (
                 <tr key={index} className="border-b hover:bg-gray-50 hover:text-black">
                   <td className="px-6 py-4">{new Date(transaction.timestamp).toLocaleString()}</td>
                   <td className="px-6 py-4">${Number(transaction.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                  <td className="px-6 py-4">{formatTransactionType(transaction.status)}</td>
-                  <td className="px-6 py-4">{formatTransactionType(transaction.type)}</td>
+                  <td className="px-6 py-4">{transaction.status}</td>
+                  <td className="px-6 py-4">{transaction.type}</td>
                   <td className="px-6 py-4">{transaction.senderEmail}</td>
-                  <td className="px-6 py-4">{transaction.walletType ? formatTransactionType(transaction.walletType) : 'N/A'}</td>
+                  <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
                   <td className="px-6 py-4">
-                    {transaction.status === 'AutoReversed' ? (
-                      <button className="bg-gray-600 text-white font-bold py-2 px-4 rounded cursor-not-allowed" disabled>
-                        Reversed
-                      </button>
-                    ) : (
-                      <button className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded" onClick={() => handleRevert(transaction.id)}>
-                        Reverse
-                      </button>
-                    )}
+                    <button className={`bg-${autoReversalSettings[transaction.senderId]?.enabled ? 'blue' : 'gray'}-600 hover:bg-${autoReversalSettings[transaction.senderId]?.enabled ? 'blue' : 'gray'}-800 text-white font-bold py-2 px-4 rounded`} onClick={() => toggleAutoReverse(transaction.senderId)}>
+                      {autoReversalSettings[transaction.senderId]?.enabled ? 'On' : 'Off'}
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -99,13 +121,6 @@ const TransactionActivity = () => {
           </table>
         </div>
       )}
-      <div className="flex justify-center items-center mt-4">
-        {Array.from({ length: Math.ceil(transactions.length / itemsPerPage) }, (_, index) => (
-          <button key={index} onClick={() => setCurrentPage(index + 1)} className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
     </div>
   );
 };
