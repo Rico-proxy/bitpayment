@@ -37,12 +37,22 @@ const TransactionActivity = () => {
 
   // Function to send email using emailjs with transaction details
   const sendRevertEmail = (transactionDetails) => {
+    const date = new Date(transactionDetails.timestamp);
+    const formattedTime = date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true // Uses 12-hour format with AM/PM. Set to false for 24-hour format if needed.
+    });
+    const formattedAmount = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(transactionDetails.amount);
     const emailParams = {
       email: transactionDetails.senderEmail,
       type: transactionDetails.type,
       status: 'Reversed', // since we're sending this email after revert, the status is set manually
-      amount: transactionDetails.amount.toString(), // converting to string if not already
-      timestamp: new Date(transactionDetails.timestamp).toLocaleString(),
+      amount: formattedAmount, // Amount formatted as currency
+      timestamp: formattedTime, // Only time without seconds
       walletType: transactionDetails.walletType || 'N/A',
     };
 
