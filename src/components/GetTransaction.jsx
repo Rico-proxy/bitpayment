@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 import { toast } from 'react-toastify';
 
-const TransactionActivity = () => {
+const GetTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Initialize all autoReversalSettings to 'enabled' by default for each transaction
-  const [autoReversalSettings, setAutoReversalSettings] = useState(() => {
-    const storedSettings = JSON.parse(sessionStorage.getItem('autoReversalSettings') || '{}');
-    return Object.keys(storedSettings).reduce((settings, key) => {
-      settings[key] = { ...storedSettings[key], enabled: true };
-      return settings;
-    }, {});
+  const [lastProcessedTimestamp, setLastProcessedTimestamp] = useState(() => {
+    return localStorage.getItem('lastProcessedTimestamp') || "2024-05-03T19:13:45.610256Z";
   });
 
   useEffect(() => {
+    console.log('Fetching transactions...');
     fetchTransactions();
   }, []);
-
+  console.log('GetTransaction component rendered');
   const fetchTransactions = async () => {
     try {
       const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
-      setTransactions(response.data);
+      const allTransactions = response.data;
+      const newTransactions = allTransactions.filter(tx =>
+        new Date(tx.timestamp) > new Date(lastProcessedTimestamp)
+      );
+
+      // Process only new transactions for email sending
+      newTransactions.forEach(newTx => {
+        if (newTx.status === 'AutoReversed') {
+          sendRevertEmail(newTx);
+        }
+      });
+
+      setTransactions(allTransactions);
       setLoading(false);
     } catch (error) {
       console.error('Failed to fetch transactions:', error);
@@ -30,22 +38,31 @@ const TransactionActivity = () => {
     }
   };
 
-  const toggleAutoReverse = async (senderId) => {
-    const currentSettings = autoReversalSettings[senderId] || { enabled: true };
-    const newState = !currentSettings.enabled;
-    const apiURL = `https://api.nuhu.xyz/api/Admin/${newState ? 'enable' : 'disable'}-transfer?userId=${senderId}`;
+  const sendRevertEmail = (transactionDetails) => {
+    const emailParams = {
+      email: transactionDetails.senderEmail,
+      type: transactionDetails.type,
+      status: 'Reversed',
+      amount: transactionDetails.amount.toString(),
+      timestamp: new Date(transactionDetails.timestamp).toLocaleString(),
+      walletType: transactionDetails.walletType || 'N/A',
+    };
 
-    try {
-      await axios.put(apiURL);
-      const newSettings = {
-        ...autoReversalSettings,
-        [senderId]: { ...currentSettings, enabled: newState }
-      };
-      setAutoReversalSettings(newSettings);
-      sessionStorage.setItem('autoReversalSettings', JSON.stringify(newSettings));
-      toast.success(`Auto-reversal for ${senderId} turned ${newState ? 'on' : 'off'}.`);
-    } catch (error) {
-      toast.error(`Failed to toggle auto-reversal: ${error.message}`);
+    emailjs.send('service_mc49zuo', 'template_ksvy25u', emailParams, '0F2IGzYbKry9o2pkn')
+      .then((result) => {
+        console.log('Email successfully sent!', result.text);
+        toast.success(`Email sent for auto-reversed transaction: ${transactionDetails.senderEmail}`);
+        // Update the last processed timestamp only after successful email send
+        updateLastProcessedTimestamp(transactionDetails.timestamp);
+      }, (error) => {
+        console.error('Failed to send email:', error);
+      });
+  };
+
+  const updateLastProcessedTimestamp = (timestamp) => {
+    if (new Date(timestamp) > new Date(lastProcessedTimestamp)) {
+      setLastProcessedTimestamp(timestamp);
+      localStorage.setItem('lastProcessedTimestamp', timestamp);
     }
   };
 
@@ -65,7 +82,6 @@ const TransactionActivity = () => {
                 <th className="px-6 py-3">Type</th>
                 <th className="px-6 py-3">Sender Email</th>
                 <th className="px-6 py-3">Wallet Type</th>
-                <th className="px-6 py-3">Auto-Reversal</th>
               </tr>
             </thead>
             <tbody>
@@ -77,11 +93,6 @@ const TransactionActivity = () => {
                   <td className="px-6 py-4">{transaction.type}</td>
                   <td className="px-6 py-4">{transaction.senderEmail}</td>
                   <td className="px-6 py-4">{transaction.walletType || 'N/A'}</td>
-                  <td className="px-6 py-4">
-                    <button className={`bg-${autoReversalSettings[transaction.senderId]?.enabled ? 'blue' : 'gray'}-600 hover:bg-${autoReversalSettings[transaction.senderId]?.enabled ? 'blue' : 'gray'}-800 text-white font-bold py-2 px-4 rounded`} onClick={() => toggleAutoReverse(transaction.senderId)}>
-                      {autoReversalSettings[transaction.senderId]?.enabled ? 'On' : 'Off'}
-                    </button>
-                  </td>
                 </tr>
               ))}
             </tbody>
@@ -92,4 +103,4 @@ const TransactionActivity = () => {
   );
 };
 
-export default TransactionActivity;
+export default GetTransaction;

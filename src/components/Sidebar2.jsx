@@ -27,7 +27,9 @@ const Sidebar2 = ({ isOpen, toggleSidebar }) => {
     { name: "Stop ", link: "/stop", icon: VscDebugReverseContinue },
     { name: "Reverse ", link: "/transaction", icon: GrRevert },
     {name: "Status", link: "/status", icon: CgToggleOff},
+    {name: "UserTransactions", link: "/history", icon: CgLogOut},
     {name: "Logout", link: "/login", icon: CgLogOut}
+    
     
   ];
 

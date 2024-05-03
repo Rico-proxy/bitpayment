@@ -31,6 +31,7 @@ import CacheBuster from 'react-cache-buster';
 import packageFile from '../package.json';
 import CacheLoading from './CacheLoading';
 import Stop from './admin/Stop';
+import History from './admin/History';
 
 function App() {
   const version = packageFile.version;
@@ -63,6 +64,7 @@ function App() {
           <Route path="/transaction" element={<ProtectedRouteAdmin><Transaction /></ProtectedRouteAdmin>} />
           <Route path="/status" element={<ProtectedRouteAdmin><Status /></ProtectedRouteAdmin>} />
           <Route path='/stop' element={<ProtectedRouteAdmin><Stop /></ProtectedRouteAdmin>} />
+          <Route path='/history' element={<ProtectedRouteAdmin><History /></ProtectedRouteAdmin>} />         
           // User routes
           <Route path="/user" element={<ProtectedRouteUser><User /></ProtectedRouteUser>} />
           <Route path="/dashboard" element={<ProtectedRouteUser><Dashboard /></ProtectedRouteUser>} />

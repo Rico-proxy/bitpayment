@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import emailjs from 'emailjs-com';
 
 const UserStop = () => {
   const formatTransactionType = (type) => {
@@ -32,39 +30,11 @@ const UserStop = () => {
     }
   };
 
-  const sendRevertEmail = (transactionDetails) => {
-    const emailParams = {
-      email: transactionDetails.senderEmail,
-      type: transactionDetails.type,
-      status: 'Reversed',
-      amount: new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(transactionDetails.amount),
-      timestamp: new Date(transactionDetails.timestamp).toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-      }),
-      walletType: transactionDetails.walletType || 'N/A',
-    };
-    emailjs.send('service_w9dr1hs', 'template_ksvy25u', emailParams, '0F2IGzYbKry9o2pkn')
-    .then((result) => {
-      console.log('Email successfully sent!', result.text);
-    }, (error) => {
-      console.error('Failed to send email:', error);
-    });
-  };
-
   const handleRevert = async (transactionId) => {
     try {
       const revertResponse = await axios.post(`https://api.nuhu.xyz/api/Admin/revert/${transactionId}`);
       if (revertResponse.status === 200) {
         toast.success("Transaction Reversed successfully.");
-        const reversedTransaction = transactions.find(t => t.id === transactionId);
-        if (reversedTransaction) {
-          sendRevertEmail(reversedTransaction);
-        }
         fetchTransactions();  // Refresh transaction list
       }
     } catch (error) {
