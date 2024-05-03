@@ -15,6 +15,8 @@ const TransactionActivity = () => {
 
   useEffect(() => {
     fetchTransactions();
+    const interval = setInterval(fetchTransactions, 2 * 60 * 1000); // Fetch transactions every 2 minutes
+    return () => clearInterval(interval); // Cleanup function to clear the interval on unmount
   }, []);
 
   useEffect(() => {
