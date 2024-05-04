@@ -42,7 +42,7 @@ const GetTransaction = () => {
       }
     };
 
-    const intervalId = setInterval(fetchTransactions, 5000);
+    const intervalId = setInterval(fetchTransactions, 120000);
     return () => clearInterval(intervalId);
   }, [latestTimestamp, isFirstLoad]);
 
