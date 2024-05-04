@@ -6,10 +6,11 @@ import { toast } from 'react-toastify';
 const GetTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isFirstLoad, setIsFirstLoad] = useState(true); // Track if it's the first component load
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [latestTimestamp, setLatestTimestamp] = useState('');
 
   useEffect(() => {
+    // Function to fetch transactions
     const fetchTransactions = async () => {
       try {
         const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
@@ -17,17 +18,15 @@ const GetTransaction = () => {
 
         if (allTransactions.length > 0) {
           if (isFirstLoad) {
-            // On first load, mark all transactions as old by updating the latest timestamp
-            // to the most recent transaction's timestamp
+            // Mark all transactions as old on the first load
             setLatestTimestamp(allTransactions[0].timestamp);
             setIsFirstLoad(false);
           } else {
-            const newTransactions = allTransactions.filter(tx => 
+            // Filter and process only new transactions
+            const newTransactions = allTransactions.filter(tx =>
               new Date(tx.timestamp) > new Date(latestTimestamp)
             );
-
             if (newTransactions.length > 0) {
-              // Update the latest timestamp to the newest transaction's timestamp
               setLatestTimestamp(newTransactions[0].timestamp);
               processNewTransactions(newTransactions);
             }
@@ -42,8 +41,12 @@ const GetTransaction = () => {
       }
     };
 
-    const intervalId = setInterval(fetchTransactions, 120000);
-    return () => clearInterval(intervalId);
+    // Call fetchTransactions immediately on mount
+    fetchTransactions();
+
+    // Set up the polling interval
+    const intervalId = setInterval(fetchTransactions, 120000); // 120000 milliseconds = 2 minutes
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, [latestTimestamp, isFirstLoad]);
 
   const processNewTransactions = (newTransactions) => {
@@ -72,7 +75,6 @@ const GetTransaction = () => {
         console.error('Failed to send email:', error);
       });
   };
-
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Transaction Log</h2>
