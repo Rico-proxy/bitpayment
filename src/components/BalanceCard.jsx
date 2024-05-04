@@ -67,7 +67,7 @@ const data = {
 
 export default function BalanceSummaryCard() {
   return (
-    <div style={{ }} className="balance-summary-card bg ">
+    <div style={{ }} className="balance-summary-card bg">
       <div className="header">
         <h2>Your Balance Summary</h2>
         {/* Insert toggle buttons here */}

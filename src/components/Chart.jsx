@@ -71,12 +71,12 @@ const barOptions = {
 
 const Chart = () => {
   return (
-    <div className="bg w-full chart flex flex-col items-center justify-center h-full p-4  text-white ">
+    <div className="bg  w-full chart flex flex-col items-center justify-center h-full   text-white ">
       <h2 className="text-lg font-semibold mb-2">Weekly Summary</h2>
-      <div className="mb-4 w-full h-1/2">
+      <div className="mb-4 w-full ">
         <Doughnut data={doughnutData} options={doughnutOptions} />
       </div>
-      <div className="w-full h-1/2">
+      <div className="w-full ">
         <Bar data={barData} options={barOptions} />
       </div>
     </div>

@@ -1,53 +1,54 @@
-import {React,  useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Circle from './Circle';
 import Circle2 from './Circle2';
 import axios from 'axios';
-import { ArrowUpIcon } from '@heroicons/react/solid';
-import { ArrowDownIcon } from '@heroicons/react/16/solid';
 import CircularProgress from '@mui/material/CircularProgress';
+
 const ThreeCards = () => {
     const [userInfo, setUserInfo] = useState({});
 
-  useEffect(() => {
-   // Retrieve user ID from session storage instead of local storage
-   const userId = sessionStorage.getItem('userId');
-    let intervalId = null;
+    useEffect(() => {
+        const userId = sessionStorage.getItem('userId');
+        let intervalId = null;
 
-    const fetchUserData = () => {
-      if (userId) {
-        axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`)
-          .then(response => {
-            setUserInfo(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching user details:', error);
-          });
-      }
+        const fetchUserData = async () => {
+            if (userId) {
+                try {
+                    const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+                    setUserInfo(response.data);
+                } catch (error) {
+                    console.error('Error fetching user details:', error);
+                    setUserInfo({
+                        usdAccountBalance: 0, // Ensure default values are 0
+                        walletBalance: 0,
+                        ledgerAccountBalance: 0
+                    });
+                }
+            }
+        };
+
+        fetchUserData();
+        intervalId = setInterval(fetchUserData, 10000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const formatCurrency = (amount) => {
+        // Default to 0 if amount is falsy (undefined, null, 0, etc)
+        const validAmount = amount || 0;
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(validAmount);
     };
-
-    // Call fetchUserData immediately and then set up the interval
-    fetchUserData();
-    intervalId = setInterval(fetchUserData, 10000);
-
-    // Clear the interval when the component is unmounted
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []); // Empt
-
-  const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    minimumFractionDigits: 2, // Always display at least two decimal places
-    maximumFractionDigits: 2  // Never display more than two decimal places
-  }).format(amount);
-};
 
   return (
    <card className=' flex flex-col space-y-2 pl-6 md:pl-0'>
             <div  className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-            <p className="text-[18px] font-serif">${formatCurrency(userInfo.usdAccountBalance)}</p>
+            <p className="text-[18px] font-serif">{formatCurrency(userInfo.usdAccountBalance)}</p>
 
                 <p className="text-sm">USD Acount Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
@@ -61,7 +62,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-[18px] font-serif">${formatCurrency(userInfo.walletBalance)}</p>
+                <p className="text-[18px] font-serif">{formatCurrency(userInfo.walletBalance)}</p>
                 <p className="text-sm">Wallet Balance</p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>
@@ -71,7 +72,7 @@ const ThreeCards = () => {
             </div>
             <div className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
-                <p className="text-[18px] font-serif">${formatCurrency(userInfo.ledgerAccountBalance)}</p>
+                <p className="text-[18px] font-serif">{formatCurrency(userInfo.ledgerAccountBalance)}</p>
                 <p className="text-sm">Ledger Acc </p>
                 <p className="text-xs text-blue-300">+0.5% than last month</p>
             </div>

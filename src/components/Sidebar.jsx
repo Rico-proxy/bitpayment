@@ -44,7 +44,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             alt="Logo" 
             className="rounded-full mx-auto" 
             style={{ 
-              width: isOpen ? 50 : 70, 
+              width: isOpen ? 40 : 70, 
               transition: 'width 0.3s'
             }}
           />
@@ -57,7 +57,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               to={menu.link}
               className="flex items-center space-x-2 p-4 hover:bg-gray-800"
             >
-              <menu.icon size="24" className="text-white" />
+              <menu.icon size="" className="text-white text-[18px] md:text-3xl" />
               {!isOpen && <span className="text-white fade-in-right">{menu.name}</span>}
             </Link>
           ))}

@@ -106,8 +106,8 @@ const User = () => {
                 </div>
             </div>
         </head>
-        <div className="px-6">
-        <body className='text-black space-y-3 pt-6 pb-20 pl-10 md:pl-0'>
+        <div className="md:px-6">
+        <body className='text-black space-y-3 pt-6 pb-20 px-6 pl-16 md:pl-0'>
         <div className='flex flex-row justify-between  items-center'>
                       <div className='flex flex-col'>
                               <h1 className="text-[14px] md:text-[26px] font-bold text-white">Account Number</h1>
@@ -159,7 +159,7 @@ const User = () => {
             
           </div>
             <div className='flex flex-col  space-y-4 md:flex md:flex-row md:space-x-5 '>
-                <div>
+                <div className=''>
                 <BalanceCard/>
                 </div>
                 <div>
@@ -177,7 +177,7 @@ const User = () => {
                 <div className='md:hidden'>
                   <RecentTransactionSmall/>
                 </div>
-                <div>
+                <div className=''>
                   <Chart/>
                 </div>
             </div>
