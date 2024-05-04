@@ -67,7 +67,7 @@ const RecentTransactionSmall = () => {
   };
 
   return (
-    <TableContainer component={Paper} className="bg w-[240px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
+    <TableContainer component={Paper} className="bg w-[255px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
       <Table>
         <TableHead>
           <TableRow className="text-white">
