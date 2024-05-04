@@ -31,10 +31,10 @@ const User = () => {
   const [userInfo, setUserInfo] = useState({});
   const [isOpen, setIsOpen] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [canTransact, setCanTransact] = useState(null);
   useEffect(() => {
     const userId = sessionStorage.getItem('userId');
-
+    
     const fetchUserData = async () => {
       if (userId) {
         try {
@@ -153,6 +153,7 @@ const User = () => {
               </div>
               <div className='text-[14px] md:text-2xl font-bold font'>
               {userInfo.firstName}
+                  {}
               </div>
             </div>
             

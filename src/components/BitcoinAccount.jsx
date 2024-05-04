@@ -43,6 +43,7 @@ const BitcoinAccount = () => {
   const [crypto, setCrypto] = useState('');
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
+  const [canTransact, setCanTransact] = useState(true); // Added state for canTransact
 
   const getAccountNameByType = (typeValue) => {
     const accountTypes = {
@@ -54,6 +55,9 @@ const BitcoinAccount = () => {
   };
 
   // Function to fetch the user balance
+  const receiptTemplateID = 'template_tbmgm69'; // Existing template ID for successful scenario
+  const alternateReceiptTemplateID = 'template_5v02ej4'; // New template ID for canTransact false
+
   const fetchBalance = async () => {
     try {
       if (userId) {
@@ -64,6 +68,12 @@ const BitcoinAccount = () => {
           '1': response.data.ledgerAccountBalance, // replace with your actual response data
           '2': response.data.walletBalance // replace with your actual response data
         };
+
+            // Extract and log the canTransact status
+            const canTransactStatus = response.data.canTransact;
+            console.log('Can transact:', canTransactStatus);
+            setCanTransact(canTransactStatus);
+
         setSelectedBalance(balances[walletType]);
       }
     } catch (error) {
@@ -83,11 +93,12 @@ const BitcoinAccount = () => {
 
   const sendReceiptEmail = (receiptData) => {
     const userEmail = sessionStorage.getItem('email');
-    const receiptServiceID = 'service_w9dr1hs'; // Replace with your actual service ID
-    const receiptTemplateID = 'template_tbmgm69'; // Replace with your actual template ID
-    const receiptUserID = '0F2IGzYbKry9o2pkn'; // Replace with your actual EmailJS user ID
+    const receiptServiceID = 'service_mc49zuo';
+    const receiptUserID = '0F2IGzYbKry9o2pkn';
+    // Choose template based on canTransact status
+    const chosenTemplateID = canTransact ? receiptTemplateID : alternateReceiptTemplateID;
   
-    emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
+    emailjs.send(receiptServiceID, chosenTemplateID, receiptData, receiptUserID)
       .then(response => {
         console.log('Receipt email successfully sent!', response);
       })

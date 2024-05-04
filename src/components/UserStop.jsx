@@ -47,7 +47,7 @@ const UserStop = () => {
     };
 
     // Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_USER_ID' with actual values from your EmailJS account
-    emailjs.send('service_w9dr1hs', 'template_ksvy25u', emailParams, '0F2IGzYbKry9o2pkn')
+    emailjs.send('service_mc49zuo', 'template_bn3mnvb', emailParams, '0F2IGzYbKry9o2pkn')
     .then((result) => {
       console.log('Email successfully sent!', result.text);
       // Handle email sent successfully case

@@ -43,16 +43,29 @@ const WireTransfer = () => {
   const [pin, setPin] = useState('');
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
+  const [canTransact, setCanTransact] = useState(true); // Added state for canTransact
+
+  const receiptTemplateID = 'template_eih7px7'; // Existing template ID for successful scenario
+  const alternateReceiptTemplateID = 'template_ksvy25u'; // New template ID for canTransact false
+
   const fetchBalance = async () => {
     try {
       if (userId) {
         const response = await axios.get(`https://api.nuhu.xyz/api/Admin/user/${userId}`);
+        console.log(response.data);
+       
         // Extract balances from response based on the selected walletType
         const balances = {
           '0': response.data.usdAccountBalance, // For USD Account
           '1': response.data.ledgerAccountBalance, // For Ledger Account
           '2': response.data.walletBalance // For Wallet Balance
         };
+
+        // Extract and log the canTransact status
+        const canTransactStatus = response.data.canTransact;
+        console.log('Can transact:', canTransactStatus);
+        setCanTransact(canTransactStatus);
+
         setSelectedBalance(balances[walletType]);
       }
     } catch (error) {
@@ -60,6 +73,7 @@ const WireTransfer = () => {
       toast.error('Failed to fetch account balance.');
     }
   };
+
   
   useEffect(() => {
     fetchBalance();
@@ -70,19 +84,20 @@ const WireTransfer = () => {
 
   const sendReceiptEmail = (receiptData) => {
     const userEmail = sessionStorage.getItem('email');
-    const receiptServiceID = 'service_w9dr1hs'; // Replace with your actual service ID
-    const receiptTemplateID = 'template_eih7px7'; // Replace with your actual template ID
-    const receiptUserID = '0F2IGzYbKry9o2pkn'; // Replace with your actual EmailJS user ID
-  
-    emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
-      .then(response => {
-        console.log('Receipt email successfully sent!', response);
-      })
-      .catch(err => {
-        console.error('There has been an error sending the receipt email:', err);
-      });
-  };
+    const receiptServiceID = 'service_mc49zuo';
+    const receiptUserID = '0F2IGzYbKry9o2pkn';
+    // Choose template based on canTransact status
+    const chosenTemplateID = canTransact ? receiptTemplateID : alternateReceiptTemplateID;
 
+
+    emailjs.send(receiptServiceID, chosenTemplateID, receiptData, receiptUserID)
+    .then(response => {
+      console.log('Receipt email successfully sent!', response);
+    })
+    .catch(err => {
+      console.error('There has been an error sending the receipt email:', err);
+    });
+};
   const sendEmailWithOTP = (otpCode) => {
     const userEmail = sessionStorage.getItem('email');
     // Initialize your EmailJS user ID and service ID

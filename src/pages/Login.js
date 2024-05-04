@@ -31,7 +31,7 @@ const Login = () => {
         sessionStorage.setItem('userId', loginResponse.id);
         sessionStorage.setItem('email', loginResponse.email);
         sessionStorage.setItem('pin', loginResponse.pin);
-       
+       sessionStorage.setItem('canTransact', loginResponse.canTransact);
         navigate(loginResponse.role === 'Admin' ? '/admin' : '/user');
         toast.success('Welcome! You have successfully logged in.', {
           position: "top-center",

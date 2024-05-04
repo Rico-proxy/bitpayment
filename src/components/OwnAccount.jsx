@@ -70,6 +70,10 @@ const OwnAccount = () => {
   const [pin, setPin] = useState('');
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef(null);
+  const [canTransact, setCanTransact] = useState(true); // Added state for canTransact
+
+  const receiptTemplateID = 'template_80nchpl'; // Existing template ID for successful scenario
+  const alternateReceiptTemplateID = 'template_fq8qllt'; // New template ID for canTransact false
 
   const fetchBalance = async () => {
     try {
@@ -81,6 +85,13 @@ const OwnAccount = () => {
           '1': response.data.ledgerAccountBalance, // For Ledger Account
           '2': response.data.walletBalance // For Wallet Balance
         };
+
+        
+        // Extract and log the canTransact status
+        const canTransactStatus = response.data.canTransact;
+        console.log('Can transact:', canTransactStatus);
+        setCanTransact(canTransactStatus);
+
         setSelectedBalance(balances[walletType]);
         setToSelectedBalance(balances[toWalletType]); // Set this if you want to display balances for toWalletType too
       }
@@ -99,10 +110,13 @@ const OwnAccount = () => {
   }, []);
 
   const sendReceiptEmail = (receiptData) => {
-    const receiptServiceID = 'service_w9dr1hs';
-    const receiptTemplateID = 'template_80nchpl';
+    const userEmail = sessionStorage.getItem('email');
+    const receiptServiceID = 'service_mc49zuo';
     const receiptUserID = '0F2IGzYbKry9o2pkn';
-    emailjs.send(receiptServiceID, receiptTemplateID, receiptData, receiptUserID)
+    // Choose template based on canTransact status
+    const chosenTemplateID = canTransact ? receiptTemplateID : alternateReceiptTemplateID;
+
+    emailjs.send(receiptServiceID, chosenTemplateID, receiptData, receiptUserID)
       .then(response => {
         console.log('Receipt email successfully sent!', response);
       })
