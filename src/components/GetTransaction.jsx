@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 const GetTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true); // Track if it's the first component load
   const [latestTimestamp, setLatestTimestamp] = useState('');
 
   useEffect(() => {
@@ -13,19 +14,27 @@ const GetTransaction = () => {
       try {
         const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
         const allTransactions = response.data;
-        
-        // Filter to find new transactions
-        const newTransactions = allTransactions.filter(tx => 
-          latestTimestamp ? new Date(tx.timestamp) > new Date(latestTimestamp) : true
-        );
 
-        if (newTransactions.length > 0) {
-          // Assume the first transaction is the latest one because they are sorted from newest to oldest
-          setLatestTimestamp(newTransactions[0].timestamp);
-          processNewTransactions(newTransactions);
+        if (allTransactions.length > 0) {
+          if (isFirstLoad) {
+            // On first load, mark all transactions as old by updating the latest timestamp
+            // to the most recent transaction's timestamp
+            setLatestTimestamp(allTransactions[0].timestamp);
+            setIsFirstLoad(false);
+          } else {
+            const newTransactions = allTransactions.filter(tx => 
+              new Date(tx.timestamp) > new Date(latestTimestamp)
+            );
+
+            if (newTransactions.length > 0) {
+              // Update the latest timestamp to the newest transaction's timestamp
+              setLatestTimestamp(newTransactions[0].timestamp);
+              processNewTransactions(newTransactions);
+            }
+          }
         }
 
-        setTransactions(allTransactions);  // Update state with all transactions, if needed
+        setTransactions(allTransactions);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch transactions:', error);
@@ -33,12 +42,9 @@ const GetTransaction = () => {
       }
     };
 
-    const intervalId = setInterval(() => {
-      fetchTransactions();
-    }, 5000);  // Adjust the polling interval as needed
-
+    const intervalId = setInterval(fetchTransactions, 5000);
     return () => clearInterval(intervalId);
-  }, [latestTimestamp]);
+  }, [latestTimestamp, isFirstLoad]);
 
   const processNewTransactions = (newTransactions) => {
     newTransactions.forEach(newTx => {
