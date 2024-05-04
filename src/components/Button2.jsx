@@ -27,7 +27,7 @@ const Button2 = () => {
 
   return (
     <div className='relative'>
-      <button onClick={toggleDrawer} className='text-black p-4'>
+      <button onClick={toggleDrawer} className='text-black '>
         {isOpen ? <AiOutlineClose size={24} /> : <CgMenu size={24} />}
       </button>
       <div
