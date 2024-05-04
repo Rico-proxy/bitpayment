@@ -33,7 +33,7 @@ const CryptoPrice2 = () => {
   const displayedCryptos = windowWidth < 640 ? cryptos.slice(0, 3) : cryptos;
 
   return (
-    <div className="flex flex-col items-center p-4 text-white bg rounded-lg h-full shadow-lg">
+    <div className=" flex w-[314px] flex-col items-center  md:p-4 text-white bg rounded-lg h-full shadow-lg md:w-full">
       <h1 className="md:text-3xl font-bold my-4 animate-pulse">Cryptocurrency Prices</h1>
       <div className="w-full">
         {displayedCryptos.map(crypto => {

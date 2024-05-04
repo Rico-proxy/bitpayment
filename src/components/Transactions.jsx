@@ -11,7 +11,7 @@ const Transactions = () => {
       .replace(/^ /, '');
   };
   const [tabValue, setTabValue] = useState(0);
-  const [transactions, setTransactions] = useState({ completed: [], successful: [], reversed: [] });
+  const [transactions, setTransactions] = useState({ all: [], successful: [], reversed: [] });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5); // Number of items per page
 
@@ -20,10 +20,10 @@ const Transactions = () => {
     if (userId) {
       axios.get(`https://api.nuhu.xyz/api/Wallet/get-transactions?userId=${userId}`)
         .then(response => {
-          const completed = response.data;
+          const all = response.data;
           const successful = response.data.filter(transaction => transaction.status === 'Successful');
           const reversed = response.data.filter(transaction => transaction.status === 'AutoReversed');
-          setTransactions({ completed, successful, reversed });
+          setTransactions({ all, successful, reversed });
         })
         .catch(error => console.error('Error fetching transactions:', error));
     }
@@ -41,7 +41,7 @@ const Transactions = () => {
 
   // Paginate transactions
   const paginatedTransactions = paginate(
-    transactions[tabValue === 0 ? 'completed' : tabValue === 1 ? 'successful' : 'reversed'],
+    transactions[tabValue === 0 ? 'all' : tabValue === 1 ? 'successful' : 'reversed'],
     currentPage,
     itemsPerPage
   );
@@ -49,7 +49,7 @@ const Transactions = () => {
   return (
     <div className='bg w-11/12 rounded-xl'>
       <Tabs className='text-white' value={tabValue} onChange={handleChangeTab} aria-label="transaction tabs">
-        <Tab label="Completed" className='text-white' />
+        <Tab label="All" className='text-white' />
         <Tab label="Successful" className='text-white' />
         <Tab label="Reversed" className='text-white' />
       </Tabs>
@@ -79,7 +79,7 @@ const Transactions = () => {
                 </TableCell>
                 <TableCell className="text-white">{formatTransactionType(transaction.type)}</TableCell>
                 <TableCell>
-                  {transaction.status === 'Completed' || transaction.status === 'Successful' ?
+                  {transaction.status === 'All' || transaction.status === 'Successful' ?
                     <MdCheckCircle className='text-green-500'/> :
                     <MdCancel className="text-red-500"/>
                   }
@@ -91,7 +91,7 @@ const Transactions = () => {
       </TableContainer>
       {/* Pagination */}
       <div className="flex justify-center items-center mt-4">
-        {Array.from({ length: Math.ceil(transactions[tabValue === 0 ? 'completed' : tabValue === 1 ? 'successful' : 'reversed'].length / itemsPerPage) }, (_, index) => (
+        {Array.from({ length: Math.ceil(transactions[tabValue === 0 ? 'all' : tabValue === 1 ? 'successful' : 'reversed'].length / itemsPerPage) }, (_, index) => (
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}

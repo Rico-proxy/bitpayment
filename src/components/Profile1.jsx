@@ -49,7 +49,7 @@ const Profile1 = () => {
   }, []); // Empt
  
   return (
-    <div className="bg text-white px-2 md:px-6 md:p-6 rounded-xl shadow-lg ">
+    <div className="bg text-white px-2 p-6 md:px-6 rounded-xl shadow-lg ">
       <div className="flex justify-between items-center">
         <div className='flex flex-row space-x-1'>
         <span className="text-sm font-semibold">ID:</span>
@@ -72,32 +72,32 @@ const Profile1 = () => {
       <div className="  md:flex md:flex-row md:space-x-14  md:justify-between md:items-center mt-6">
        <div className='flex flex-col'>
             <div className="bg-black flex items-center mt-2 bg p-4 rounded-lg">
-                <FaPhone className="mr-1 font-bold text-xl" />
+                <FaPhone className="mr-1 font-bold md:text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
-                  <span className=''>Phone</span>
+                  <span className='text-sm'>Phone</span>
                   <span className='text-sm'>+{userInfo.phoneNumber}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
-                <FaEnvelope className="mr-1 font-bold text-xl" />
+                <FaEnvelope className="mr-1 font-bold md:text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
-                  <span className=''>Email</span>
+                  <span className='text-sm'>Email</span>
                   <span className='text-sm'>{userInfo.email}</span>
                 </div>
               </div>
        </div> 
        <div className='flex flex-col'>
             <div className="bg-black  flex flex-row items-center mt-2 bg p-4 rounded-lg">
-                <GrLocation  className="mr-1 font-bold text-xl" />
+                <GrLocation  className="mr-1 font-bold md:text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-start'>
-                  <span className=''>Address</span>
+                  <span className='text-sm'>Address</span>
                   <span className='text-sm'>{userInfo.address}</span>
                 </div>
               </div>
               <div className="bg-black  flex items-center mt-2 bg p-4 rounded-lg">
-                <BsGlobeAmericas  className="mr-1 font-bold text-xl" />
+                <BsGlobeAmericas  className="mr-1 font-bold md:text-xl" />
                 <div className='flex flex-row  space-x-2 items-center text-center'>
-                  <span className=''>Status</span>
+                  <span className='text-sm'>Status</span>
                   <span className='text-sm'><StatusState/></span>
                 </div>
               </div>

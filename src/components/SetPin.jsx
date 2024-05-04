@@ -71,7 +71,7 @@ const SetPinComponent = () => {
   return (
     <div className="flex flex-col items-center space-y-4 z-40">
       <button
-        className="flex items-center bg-black text-white text-xl px-3 py-1 rounded-lg animate-pulse hover:animate-none"
+        className="flex items-center bg-black text-white text-[12px] md:text-xl px-3 py-1 rounded-lg animate-pulse hover:animate-none"
         onClick={handleButtonClick}
       >
         Set Pin
