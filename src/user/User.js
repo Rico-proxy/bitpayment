@@ -159,7 +159,7 @@ const User = () => {
             
           </div>
             <div className='flex flex-col  space-y-4 md:flex md:flex-row md:space-x-5 '>
-                <div className=''>
+                <div className='pl-2'>
                 <BalanceCard/>
                 </div>
                 <div>

@@ -94,7 +94,7 @@ const Card = () => {
   };
 
   return (
-    <div className="bg rounded-lg mx-8 p-4 md:p-0 md:mx-0">
+    <div className="bg  rounded-lg mx-[14px] ml-6 md:ml-0 p-4 md:p-0 md:mx-0">
       <div style={containerStyle}>
         <Bar data={chartData} options={options} />
       </div>

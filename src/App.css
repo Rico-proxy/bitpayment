@@ -170,7 +170,7 @@ body{
 /* Adjust styles for mobile phones */
 @media (max-width: 480px) {
     .balance-summary-card {
-        width: 93%; /* Increase width to take up more of the small screen */
+        width: 94%; /* Increase width to take up more of the small screen */
         padding: 20px; /* Further reduce padding for small screens */
         font-size: 0.9em; /* Optionally adjust font size */
         height: 100%; /* Optionally adjust height */
@@ -346,4 +346,3 @@ body{
     transform: scaleY(1.0);
   }
 }
-
