@@ -6,9 +6,16 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PreventBackNavigation2 from '../components/PreventBackNavigation2';
-
+import { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Login = () => {
   const navigate = useNavigate();
+
+  const [passwordShown, setPasswordShown] = useState(false); // State to toggle password visibility
+
+  const togglePasswordVisibility = () => { // Function to toggle the password visibility
+    setPasswordShown(!passwordShown);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -100,7 +107,7 @@ const Login = () => {
     <div style={{backgroundImage: "url('assets/3.jpg')",}} className='overflow-y-hidden min-h-screen bg-[#0f1b39]'>
       <PreventBackNavigation2/>
       <ToastContainer />
-      <div className='flex justify-center pt-32 md:pt-0'>
+      <div className='flex justify-center pt-10 md:pt-0'>
         <div className='flex flex-col pt-10 md:pt-10'>
           <div className='font-bold'>
             <h1 className='text-2xl font-bold mb-10 text-white text-center'>Enter your Login Details</h1>
@@ -115,9 +122,12 @@ const Login = () => {
                 <FiMail className="text-black font-bold font-xl" />
                 <input type="email" name='email' placeholder="Email" required className="pl-4 border-l-2 outline-none text-sm" />
               </div>
-              <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
+            <div className="flex items-center border-2 border-gray-200 rounded-full p-2">
                 <RiLockPasswordLine className="text-black font-bold font-xl" />
-                <input type="password" name='password' placeholder="Password" required className="pl-4 border-l-2 outline-none text-sm" />
+                <input type={passwordShown ? 'text' : 'password'} name='password' placeholder="Password" required className="pl-4 border-l-2 outline-none text-sm" />
+                <div onClick={togglePasswordVisibility}>
+                  {passwordShown ? <FaEyeSlash className="text-gray-700" /> : <FaEye className="text-gray-700" />}
+                </div>
               </div>
               <div>
                 <button type='submit' className='hover:bg-[#2a3b64] text-[13px] hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white font-bold py-4 px-8 rounded-lg w-full'>LOGIN</button>
