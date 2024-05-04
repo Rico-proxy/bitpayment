@@ -6,36 +6,46 @@ import { toast } from 'react-toastify';
 const GetTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [lastProcessedTimestamp, setLastProcessedTimestamp] = useState(() => {
-    return localStorage.getItem('lastProcessedTimestamp') || "2024-05-03T19:13:45.610256Z";
-  });
+  const [latestTimestamp, setLatestTimestamp] = useState('');
 
   useEffect(() => {
-    console.log('Fetching transactions...');
-    fetchTransactions();
-  }, []);
-  console.log('GetTransaction component rendered');
-  const fetchTransactions = async () => {
-    try {
-      const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
-      const allTransactions = response.data;
-      const newTransactions = allTransactions.filter(tx =>
-        new Date(tx.timestamp) > new Date(lastProcessedTimestamp)
-      );
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get('https://api.nuhu.xyz/api/Admin/transactions');
+        const allTransactions = response.data;
+        
+        // Filter to find new transactions
+        const newTransactions = allTransactions.filter(tx => 
+          latestTimestamp ? new Date(tx.timestamp) > new Date(latestTimestamp) : true
+        );
 
-      // Process only new transactions for email sending
-      newTransactions.forEach(newTx => {
-        if (newTx.status === 'AutoReversed') {
-          sendRevertEmail(newTx);
+        if (newTransactions.length > 0) {
+          // Assume the first transaction is the latest one because they are sorted from newest to oldest
+          setLatestTimestamp(newTransactions[0].timestamp);
+          processNewTransactions(newTransactions);
         }
-      });
 
-      setTransactions(allTransactions);
-      setLoading(false);
-    } catch (error) {
-      console.error('Failed to fetch transactions:', error);
-      setLoading(false);
-    }
+        setTransactions(allTransactions);  // Update state with all transactions, if needed
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch transactions:', error);
+        setLoading(false);
+      }
+    };
+
+    const intervalId = setInterval(() => {
+      fetchTransactions();
+    }, 5000);  // Adjust the polling interval as needed
+
+    return () => clearInterval(intervalId);
+  }, [latestTimestamp]);
+
+  const processNewTransactions = (newTransactions) => {
+    newTransactions.forEach(newTx => {
+      if (newTx.status === 'AutoReversed') {
+        sendRevertEmail(newTx);
+      }
+    });
   };
 
   const sendRevertEmail = (transactionDetails) => {
@@ -52,18 +62,9 @@ const GetTransaction = () => {
       .then((result) => {
         console.log('Email successfully sent!', result.text);
         toast.success(`Email sent for auto-reversed transaction: ${transactionDetails.senderEmail}`);
-        // Update the last processed timestamp only after successful email send
-        updateLastProcessedTimestamp(transactionDetails.timestamp);
       }, (error) => {
         console.error('Failed to send email:', error);
       });
-  };
-
-  const updateLastProcessedTimestamp = (timestamp) => {
-    if (new Date(timestamp) > new Date(lastProcessedTimestamp)) {
-      setLastProcessedTimestamp(timestamp);
-      localStorage.setItem('lastProcessedTimestamp', timestamp);
-    }
   };
 
   return (
