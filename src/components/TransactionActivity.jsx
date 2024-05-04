@@ -5,15 +5,7 @@ import { toast } from 'react-toastify';
 const TransactionActivity = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Initialize all autoReversalSettings to 'enabled' by default for each user
-  const [autoReversalSettings, setAutoReversalSettings] = useState(() => {
-    const storedSettings = JSON.parse(sessionStorage.getItem('autoReversalSettings') || '{}');
-    return Object.keys(storedSettings).reduce((settings, key) => {
-      settings[key] = { ...storedSettings[key], enabled: true };
-      return settings;
-    }, {});
-  });
+  const [autoReversalSettings, setAutoReversalSettings] = useState({});
 
   useEffect(() => {
     fetchUsers();
@@ -22,8 +14,17 @@ const TransactionActivity = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('https://api.nuhu.xyz/api/Admin/users');
-      console.log('Fetched users:', response.data);
-      setUsers(response.data);
+      const usersData = response.data;
+      console.log('Fetched users:', usersData);
+      
+      // Initialize autoReversalSettings based on the fetched data
+      const updatedSettings = {};
+      usersData.forEach(user => {
+        updatedSettings[user.id] = { enabled: user.canTransact };
+      });
+
+      setAutoReversalSettings(updatedSettings);
+      setUsers(usersData);
       setLoading(false);
     } catch (error) {
       console.error('Failed to fetch users:', error);
