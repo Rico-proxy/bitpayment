@@ -228,7 +228,7 @@ const BitcoinAccount = () => {
   return (
     <div className="flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
-      <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[64px] md:space-x-[150px] rounded-lg p-8 border-2'>
+      <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[74px] md:space-x-[150px] rounded-lg p-8 border-2'>
         <div className='flex flex-row space-x-2'>
           <div >
             <CiBadgeDollar className='text-2xl'/>
@@ -242,8 +242,8 @@ const BitcoinAccount = () => {
         </div>
       </button>
       {showForm && (
-        <div className="fixed inset-0 bg-[#0f1b39] z-50 flex justify-center items-center pl-14">
-          <div ref={formRef} className="bg-white shadow-2xl p-6 rounded w-[300px] md:w-[400px] text-[12px] md:text-[16px]">
+        <div className="fixed inset-0 bg-[#0f1b39] z-50 flex justify-center items-center ">
+          <div ref={formRef} className="bg-white shadow-2xl p-6 rounded w-full md:w-[400px] text-[12px] md:text-[16px]">
             <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
               <div className='font-bold text-[#0f1b39]'>
                 Bitcoin Transfer

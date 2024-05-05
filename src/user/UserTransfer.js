@@ -30,9 +30,9 @@ const UserTransfer = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home `}>
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg  overflow-x-hidden bg-cover Home `}>
       <div className='hidden'><Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar}/></div>
-      <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
+      <div className={`w-full h-full min-h-screen bg-black-600/50 backdrop-brightness-50  `}>
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
             
@@ -61,20 +61,22 @@ const UserTransfer = () => {
                 </div>
             </div>
         </head>
-        <div className='md:px-20  '>
-            <body className='text-black space-y-8  min-h-screen'>
+        <div className=''>
+        <div className=''>
+            <body className='text-black  '>
                   <TransferType/>
             </body>
-          <footer className='pr-4  w-full justif-end' >
+          
+        </div>
+        <footer className='px-10  w-full pt-20 md:pt-5  ' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
-                  <div className='flex justify-center'>
+                  <div className='font-bold flex md:justify-center  text-[10px] md:text-xl p-4 md:p-0'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
 
                   </div>
                 </div>
           </footer>
-        </div>
-        
+          </div>
       </div>
     </div>
   );
