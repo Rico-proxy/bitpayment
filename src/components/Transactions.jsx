@@ -49,9 +49,9 @@ const Transactions = () => {
   return (
     <div className='bg w-11/12 rounded-xl'>
       <Tabs className='text-white' value={tabValue} onChange={handleChangeTab} aria-label="transaction tabs">
-        <Tab label="All" className='text-white text-[14px]' />
-        <Tab label="Successful" className='text-white text-[14px]' />
-        <Tab label="Reversed" className='text-white text-[14px]' />
+        <Tab label="All" className='text-white text-[12px] md:text-[14px]' />
+        <Tab label="Successful" className='text-white text-[12px] md:text-[14px]' />
+        <Tab label="Reversed" className='text-white text-[12px] md:text-[14px]' />
       </Tabs>
       <TableContainer component={Paper} className='bg'>
         <Table>
