@@ -130,7 +130,7 @@ const UserBalance = () => {
                         <BalanceSlide/>
                         </div> 
             </body>
-            <footer className='mx-2 md:pr-4 pt-0 md:pt-10 pl-20' >
+            <footer className=' md:pr-4 pt-0 md:pt-10 pl-20' >
                 <div className='bg md:p-3  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='font-bold flex md:justify-center  text-[10px] md:text-xl p-4 md:p-0'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
