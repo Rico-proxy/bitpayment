@@ -76,14 +76,13 @@ const UserSupport = () => {
             <body className='text-black space-y-8 pt-24 pb-20 min-h-screen'>
                  <SupportMessage1/>
             </body>
-          <footer className='pr-4  w-full justif-end' >
-                <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
-                  <div className='flex justify-center'>
+            <footer className='pr-5 md:pr-4 pt-0 md:pt-10 pl-10' >
+                <div className='bg md:p-3  text-white rounded-tl-xl rounded-tr-xl'>
+                  <div className='font-bold flex md:justify-center  text-[10px] md:text-xl p-4 md:p-0'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
-
                   </div>
                 </div>
-          </footer>
+        </footer>
         </div>
         
       </div>
