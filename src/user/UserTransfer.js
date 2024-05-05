@@ -69,7 +69,7 @@ const UserTransfer = () => {
           
         </div>
         <footer className='px-10  w-full pt-20 md:pt-5  ' >
-                <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
+                <div className='bg p-2  text-white rounded-tl-xl rounded-tr-xl'>
                   <div className='font-bold flex md:justify-center  text-[10px] md:text-xl p-4 md:p-0'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
 
