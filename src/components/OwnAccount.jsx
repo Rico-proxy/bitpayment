@@ -233,7 +233,7 @@ const OwnAccount = () => {
   return (
     <div className="flex flex-col">
       <Toaster position="top-center" reverseOrder={false} />
-      <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[150px] rounded-lg p-8 border-2'>
+      <button onClick={handleTransferClick} className='hover:shadow-2xl hover:bg-blue-900 text-center items-center flex flex-row text-white bg-[#0f1b39] space-x-[70px] md:space-x-[150px] rounded-lg p-8 border-2'>
         <div className='flex flex-row space-x-2 text-[14px]'>
           <div>
             <CiBadgeDollar className='text-2xl'/>
