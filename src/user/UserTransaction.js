@@ -81,7 +81,7 @@ const UserTransaction = () => {
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
-                  <div className='flex justify-center font-bold text-[5px] md:text-xl'>
+                  <div className='flex justify-center font-bold text-[9px] md:text-xl'>
                   @2024 All rights reserved Bitpay Payment Systems Limited
 
                   </div>
