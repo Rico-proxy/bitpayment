@@ -242,8 +242,8 @@ const BitcoinAccount = () => {
         </div>
       </button>
       {showForm && (
-        <div className="fixed inset-0 bg-[#0f1b39] z-50 flex justify-center items-center">
-          <div ref={formRef} className="bg-white shadow-2xl p-6 rounded w-[400px] text-[16px]">
+        <div className="fixed inset-0 bg-[#0f1b39] z-50 flex justify-center items-center pl-14">
+          <div ref={formRef} className="bg-white shadow-2xl p-6 rounded w-[300px] md:w-[400px] text-[12px] md:text-[16px]">
             <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
               <div className='font-bold text-[#0f1b39]'>
                 Bitcoin Transfer

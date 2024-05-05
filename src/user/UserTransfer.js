@@ -30,8 +30,8 @@ const UserTransfer = () => {
   };
 
   return (
-    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home ${isOpen ? 'md:pl-20' : 'md:pl-44'}`}>
-      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+    <div style={{ backgroundImage: "url('assets/3.jpg')"}} className={`bg min-h-screen overflow-x-hidden bg-cover Home `}>
+      <div className='hidden'><Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar}/></div>
       <div className={`w-full h-full bg-black-600/50 backdrop-brightness-50 content ${isOpen ? '' : 'active-sidebar'}`}>
         {/* Main content goes here */}
         <head className="flex flex-row space-x-6 justify-between py-4 items-center">
@@ -61,7 +61,7 @@ const UserTransfer = () => {
                 </div>
             </div>
         </head>
-        <div className='md:px-20 pl-20 md:pl-0'>
+        <div className='md:px-20  '>
             <body className='text-black space-y-8  min-h-screen'>
                   <TransferType/>
             </body>
