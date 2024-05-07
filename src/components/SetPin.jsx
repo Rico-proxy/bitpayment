@@ -33,19 +33,14 @@ const SetPinComponent = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         console.log('PIN set successfully:', jsonResponse);
-        setShowToast(true); // Display toast message
-        setTimeout(() => {
-          setShowToast(false); // Hide toast message after 3 seconds
-          setPin('');
-          setShowForm(false); // Close form
-        }, 3000);
+        setPin(''); // Reset pin input
+        setShowForm(false); // Close form
+        setShowToast(true); // Show toast message
       } else {
         console.error('Failed to set PIN:', response.statusText);
-       
       }
     } catch (error) {
       console.error('Network error:', error);
-      
     }
   };
 

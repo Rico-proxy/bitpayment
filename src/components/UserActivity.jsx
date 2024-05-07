@@ -10,7 +10,7 @@ const ActivityLog = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Display only 20 items per page
+  const itemsPerPage = 5; // Display only 20 items per page
 
   useEffect(() => {
     fetchActivities();
@@ -21,7 +21,7 @@ const ActivityLog = () => {
     try {
       const response = await axios.get('https://api.nuhu.xyz/api/Admin/activities');
       // Get only the last 20 activities from the response data
-      const last20Activities = response.data.slice(-20);
+      const last20Activities = response.data.slice(-10);
       setActivities(last20Activities);
     } catch (error) {
       console.error('Failed to fetch activities:', error);

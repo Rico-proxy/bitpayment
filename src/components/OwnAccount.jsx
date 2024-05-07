@@ -160,6 +160,7 @@ const OwnAccount = () => {
         toast.success('Transfer successful!');
         const receiptData = {
           email: sessionStorage.getItem('email'),
+          firstName: sessionStorage.getItem('firstName'),
           transfer_type: 'Top Up Transfer',
           fromWalletType: getAccountNameByType(walletType),
           toWalletType: getAccountNameByType(toWalletType),

@@ -156,6 +156,7 @@ const BitcoinAccount = () => {
             amount: `$${cleanAmount.toLocaleString()}`, // Format the amount for display in the email
             wallet_address: receiverWalletAddress, // Already being set in state
             description: details, // Already being set in state
+            firstName: sessionStorage.getItem('firstName'),
           };
 
   
