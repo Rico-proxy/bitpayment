@@ -46,7 +46,7 @@ const ThreeCards = () => {
 
   return (
    <card className=' flex flex-col space-y-2 pl-6 md:pl-0'>
-            <div  className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div  className="bg h-[20vh] w-[270px] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
             <p className="text-[18px] font-serif">{formatCurrency(userInfo.usdAccountBalance)}</p>
 
@@ -60,7 +60,7 @@ const ThreeCards = () => {
                                                                 </svg>
             </div>
             </div>
-            <div className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div className="bg h-[20vh] w-[270px] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-[18px] font-serif">{formatCurrency(userInfo.walletBalance)}</p>
                 <p className="text-sm">Wallet Balance</p>
@@ -70,7 +70,7 @@ const ThreeCards = () => {
                 <Circle/>
             </div>
             </div>
-            <div className="bg h-[20vh] w-[38vh] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
+            <div className="bg h-[20vh] w-[270px] md:h-[20vh] md:w-[40vh] text-white p-4 rounded-xl flex justify-between items-center space-x-6 shadow-lg">
             <div>
                 <p className="text-[18px] font-serif">{formatCurrency(userInfo.ledgerAccountBalance)}</p>
                 <p className="text-sm">Ledger Acc </p>

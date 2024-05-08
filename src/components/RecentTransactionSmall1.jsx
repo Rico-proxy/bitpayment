@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { MdCheckCircle, MdCancel, MdArrowDownward, MdArrowUpward } from 'react-icons/md';
 
-const RecentTransactionSmall = () => {
+const RecentTransactionSmall1 = () => {
   const formatTransactionType = (type) => {
     // Check if the type is exactly 'USD' and return it as is
     if (type === 'USD') {
@@ -67,12 +67,13 @@ const RecentTransactionSmall = () => {
   };
 
   return (
-    <TableContainer component={Paper} className="bg w-[280px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
+    <TableContainer component={Paper} className="bg w-[290px]  md:ml-0 md:w-[800px] rounded-xl overflow-x-auto">
       <Table>
         <TableHead>
           <TableRow className="text-white">
             <TableCell className='text-white text-[14px] md:text-xl font-bold'>Amount</TableCell>
             <TableCell className='text-white text-[14px] md:text-xl font-bold'>Status</TableCell>
+            <TableCell className='text-white text-[14px] md:text-xl font-bold'>Wallet Type</TableCell>
             <TableCell className='text-white text-[14px] md:text-xl font-bold'>Type</TableCell>
           </TableRow>
         </TableHead>
@@ -86,7 +87,7 @@ const RecentTransactionSmall = () => {
   })}
 </TableCell>
               <TableCell className="text-white text-[13px]">{transaction.icon}</TableCell>
-             
+              <TableCell className="text-white text-[13px]">{transaction.walletType ? formatTransactionType(transaction.walletType) : 'N/A'}</TableCell>
               <TableCell className="text-white text-[13px]">{transaction.type}</TableCell>
             </TableRow>
           ))}
@@ -96,4 +97,4 @@ const RecentTransactionSmall = () => {
   );
 };
 
-export default RecentTransactionSmall;
+export default RecentTransactionSmall1;

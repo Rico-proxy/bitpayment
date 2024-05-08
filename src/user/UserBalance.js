@@ -28,6 +28,7 @@ import RecentTransactionSmall from '../components/RecentTransactionSmall';
 import BalanceSlide from '../components/BalanceSlide';
 import LoadingSpinner from '../components/LoadingSpinner';
 import WeeklySummarySmall from '../components/WeeklySummarySmall';
+import RecentTransactionSmall1 from '../components/RecentTransactionSmall1'
 const UserBalance = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [Open, Close] = useState(false);
@@ -89,9 +90,9 @@ const UserBalance = () => {
            </div>
        </div>
    </head>
-        <div className='mx-14 md:mx-6'>
+        <div className='mx-10 ml-[82px] md:mx-6'>
             <body className=''>
-              <div className='pb-20 pl-10 pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
+              <div className='pb-20 pl- pt-10 md:pt-0  min-h-screen md:flex md:flex-row '>
                     <div className='md:flex flex-col justify-between'>
                         <div className='md:grid md:grid-cols-2 md:gap-2'>
                             <div className=''>
@@ -101,7 +102,7 @@ const UserBalance = () => {
                                     <MainBalance/>
                       
                             </div>
-                            <div className='w-[60vh] pt-3  md:hidden pb-10'>
+                            <div className='w-[490px] pt-3  md:hidden pb-10'>
                                     <MainBalance2/>
                       
                             </div>
@@ -109,7 +110,8 @@ const UserBalance = () => {
                          <RecentTransaction/>
                           </div>
                           <div className=' md:hidden'>
-                            <RecentTransactionSmall/>
+                           
+                            <RecentTransactionSmall1/>
                             </div>   
                        
                         </div>
