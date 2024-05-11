@@ -135,9 +135,9 @@ const Login = () => {
               </div>
             </form>
             <div className='pt-4 flex justify-end space-x-3'>
-              <div>
-                If Not Registered
-              </div>
+            <Link to='/update' className='text-blue-900 font-bold'>
+                Forgotten Password
+              </Link>
               <Link to='/register' className='text-blue-900 font-bold'>
                 Register now
               </Link>

@@ -32,6 +32,8 @@ import packageFile from '../package.json';
 import CacheLoading from './CacheLoading';
 import Stop from './admin/Stop';
 import History from './admin/History';
+import UpdatePasswordForm from './components/UpdatePasswordForm';
+import ChangePassword from './components/ChangePassword';
 
 function App() {
   const version = packageFile.version;
@@ -49,7 +51,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Access />} />
           <Route path='/website' element={<ProtectedRoute><Website /></ProtectedRoute>} />
-         
+          <Route path='/update' element={<UpdatePasswordForm/>}/>
+          <Route path='/change' element={<ChangePassword/> }/>
           <Route path="/error" element={<Error />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

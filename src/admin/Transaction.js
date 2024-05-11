@@ -8,6 +8,7 @@ import { RiSettings4Line } from 'react-icons/ri';
 import Slide from '../components/Slide';
 import UserActivity from '../components/UserActivity';
 import TransactionActivity from '../components/TransactionActivity';
+import UpdatePasswordForm from '../components/UpdatePasswordForm';
 const Activity = () => {
   
   
@@ -56,6 +57,7 @@ const Activity = () => {
         <div className=''>
             <body className='text-black space-y-8 pt-24 pb-20 min-h-screen'>
                  <TransactionActivity/>
+                 <UpdatePasswordForm/>
             </body>
           <footer className='pr-4  w-full justif-end' >
                 <div className='bg p-3  text-white rounded-tl-xl rounded-tr-xl'>
