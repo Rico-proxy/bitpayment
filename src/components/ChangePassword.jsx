@@ -79,6 +79,9 @@ function ChangePassword() {
                             {passwordShown ? <FaEyeSlash /> : <FaEye />}
                         </div>
                     </div>
+                    <p className="text-sm text-gray-600 mb-2">
+                        Password must contain at least one uppercase letter, one digit, and one special character.
+                    </p>
                     <div>
                         <button type='submit' className='hover:bg-[#2a3b64] text-[13px] hover:delay-150 duration-150 bg-[#0f1b39] shadow-2xl text-white font-bold py-4 px-8 rounded-lg w-full'>
                             Update Password
